@@ -34,6 +34,7 @@ dependencies:
   fluent_ui: ^4.4.2
   pluto_menu_bar: ^3.0.1
   menu_bar: ^0.4.1
+  syncfusion_flutter_datagrid: ^21.1.37
   
 
 dev_dependencies:

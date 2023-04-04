@@ -14,7 +14,7 @@ import 'package:napt_sklad/view/screens/main_panel.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MainPanel());
+    await tester.pumpWidget(MainPanel());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
