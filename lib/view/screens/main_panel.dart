@@ -1,6 +1,4 @@
-import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart' hide MenuBar hide MenuStyle;
-import 'package:menu_bar/menu_bar.dart';
+import 'package:flutter/material.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
 
 class MainPanel extends StatelessWidget {
@@ -8,25 +6,38 @@ class MainPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: NavigationView(
-        appBar: NavigationAppBar(
-            actions: PlutoMenuBar(
-          menus: [
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-            PlutoMenuItem(title: "Data"),
-          ],
-          height: 30,
-        )),
-        content: const Text("data"),
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PlutoMenuBar(height: 30, menus: [
+            PlutoMenuItem(title: "title"),
+            PlutoMenuItem(title: "title"),
+            PlutoMenuItem(title: "title"),
+            PlutoMenuItem(title: "title"),
+            PlutoMenuItem(title: "title"),
+            PlutoMenuItem(title: "title"),
+          ]),
+          Flexible(
+            flex: 5,
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 3,
+                  child: Container(
+                    color: Colors.amber,
+                  ),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    color: Color.fromARGB(255, 35, 0, 212),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

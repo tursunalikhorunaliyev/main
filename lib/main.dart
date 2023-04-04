@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:napt_sklad/view/screens/main_panel.dart';
 
 void main(List<String> args) {
-  runApp(const FluentApp(
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: MainPanel(),
   ));
