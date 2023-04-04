@@ -19,13 +19,39 @@ class MainPanel extends StatelessWidget {
             PlutoMenuItem(title: "title"),
           ]),
           Flexible(
-            flex: 5,
+            flex: 1,
             child: Row(
               children: [
                 Flexible(
-                  flex: 3,
-                  child: Container(
-                    color: Colors.amber,
+                  flex: 14,
+                  child: Column(
+                    children: [
+                      Flexible(
+                        flex: 5,
+                        child: Row(
+                          children: [
+                            Flexible(
+                              flex: 8,
+                              child: Container(
+                                color: Colors.amber,
+                              ),
+                            ),
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                color: Color.fromARGB(255, 183, 0, 86),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Flexible(
+                        flex: 3,
+                        child: Container(
+                          color: Color.fromARGB(255, 255, 119, 7),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Flexible(
