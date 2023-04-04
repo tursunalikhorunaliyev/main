@@ -1,10 +1,13 @@
+import 'package:cr_calendar/cr_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/model/app_data.dart';
 import 'package:napt_sklad/model/test_model.dart';
 import 'package:napt_sklad/model/test_data.dart';
+import 'package:napt_sklad/view/widgets/custome_input.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class MainPanel extends StatelessWidget {
   MainPanel({super.key});
@@ -99,8 +102,27 @@ class MainPanel extends StatelessWidget {
                             ),
                             Flexible(
                               flex: 2,
-                              child: Container(
-                                color: Color.fromARGB(255, 183, 0, 86),
+                              child: Column(
+                                children: [
+                                  const Flexible(
+                                    flex: 2,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                      child: CustomeInput(),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 2,
+                                  ),
+                                  Flexible(
+                                    flex: 2,
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8),
+                                        child: SfDateRangePicker()),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -109,7 +131,7 @@ class MainPanel extends StatelessWidget {
                       Flexible(
                         flex: 3,
                         child: Container(
-                          color: Color.fromARGB(255, 255, 119, 7),
+                          color: const Color.fromARGB(255, 255, 119, 7),
                         ),
                       ),
                     ],
@@ -118,7 +140,7 @@ class MainPanel extends StatelessWidget {
                 Flexible(
                   flex: 2,
                   child: Container(
-                    color: Color.fromARGB(255, 35, 0, 212),
+                    color: const Color.fromARGB(255, 35, 0, 212),
                   ),
                 ),
               ],
