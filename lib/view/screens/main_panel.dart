@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/model/student_model.dart';
+import 'package:napt_sklad/model/app_data.dart';
+import 'package:napt_sklad/model/test_model.dart';
 import 'package:napt_sklad/model/test_data.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
@@ -8,29 +9,8 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 class MainPanel extends StatelessWidget {
   MainPanel({super.key});
 
-  List students = [
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-    Student(
-        "Tursunali", "Xorunaliyev", 25, "IELTS 7", "Ferghana", "+998996931328"),
-  ];
-  TestDataGridSource testData = TestDataGridSource(students: []);
+  TestDataGridSource testData =
+      TestDataGridSource(students: AppData.testDataModel);
 
   @override
   Widget build(BuildContext context) {
@@ -62,26 +42,27 @@ class MainPanel extends StatelessWidget {
                               flex: 8,
                               child: SfDataGrid(
                                 source: testData,
-                                headerRowHeight: 50,
+                                headerRowHeight: 30,
+                                headerGridLinesVisibility:
+                                    GridLinesVisibility.both,
                                 stackedHeaderRows: [
                                   StackedHeaderRow(cells: [
                                     StackedHeaderCell(
-                                        columnNames: ["So skidkoy1"],
-                                        child: const SizedBox()),
-                                    StackedHeaderCell(
-                                        columnNames: ["So skidkoy2"],
-                                        child: const SizedBox()),
+                                        columnNames: ["Sena", "Summa"],
+                                        child: const Center(
+                                            child: Text("So skidkoy"))),
                                   ])
                                 ],
                                 columns: [
                                   GridColumn(
-                                    minimumWidth: 200,
+                                    minimumWidth: 208,
                                     columnName: "PN",
                                     label: const GridColumns(
                                         text: "Polnoe Naimovanie"),
                                   ),
                                   GridColumn(
-                                    columnName: "PN",
+                                    maximumWidth: 200,
+                                    columnName: "Kolichestvo",
                                     label:
                                         const GridColumns(text: "Kolichestvo"),
                                   ),
@@ -90,37 +71,27 @@ class MainPanel extends StatelessWidget {
                                     label: const GridColumns(text: "Sena"),
                                   ),
                                   GridColumn(
-                                    columnName: "So skidkoy1",
-                                    label:
-                                        const GridColumns(text: "So skidkoy"),
-                                  ),
-                                  GridColumn(
                                     columnName: "Summa",
                                     label: const GridColumns(text: "Summa"),
                                   ),
                                   GridColumn(
-                                    columnName: "So skidkoy2",
-                                    label:
-                                        const GridColumns(text: "So skidkoy"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "PN",
+                                    columnName: "Srok God",
                                     label: const GridColumns(text: "Srok God"),
                                   ),
                                   GridColumn(
-                                    columnName: "PN",
+                                    columnName: "Seriya",
                                     label: const GridColumns(text: "Seriya"),
                                   ),
                                   GridColumn(
-                                    columnName: "PN",
+                                    columnName: "MX",
                                     label: const GridColumns(text: "MX"),
                                   ),
                                   GridColumn(
-                                    columnName: "PN",
+                                    columnName: "IKPU",
                                     label: const GridColumns(text: "IKPU"),
                                   ),
                                   GridColumn(
-                                    columnName: "PN",
+                                    columnName: "Mark",
                                     label: const GridColumns(text: "Mark"),
                                   ),
                                 ],
