@@ -57,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  fluent_ui:
+    dependency: "direct main"
+    description:
+      name: fluent_ui
+      sha256: "6e9859514a4cf385f21b115f79939c232a9f6c99da5034d42b3965cc2cdcb12c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -70,11 +78,24 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   js:
     dependency: transitive
     description:
@@ -107,6 +128,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  math_expressions:
+    dependency: transitive
+    description:
+      name: math_expressions
+      sha256: "6cec3bb1f5a78701cc25d63705ddfa807062d00bc0d85ba8b2d13daed9fe61c5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.1"
+  menu_bar:
+    dependency: "direct main"
+    description:
+      name: menu_bar
+      sha256: "07d5d6a5b0e26cc64b1cbab77762ba8f375130020c926af78d1dc2923bb41be7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.1"
   meta:
     dependency: transitive
     description:
@@ -123,6 +160,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
+  pluto_menu_bar:
+    dependency: "direct main"
+    description:
+      name: pluto_menu_bar
+      sha256: "154a9907b0758b804fb0f5bcfb0a28f504af4349124bf7d7b5aa815a2dde820a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
+  scroll_pos:
+    dependency: transitive
+    description:
+      name: scroll_pos
+      sha256: cfca311b6b8d51538ff90e206fbe6ce3b36e7125ea6da4a40eb626c7f9f083b1
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -186,3 +247,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.3 <3.0.0"
+  flutter: ">=3.7.0"
