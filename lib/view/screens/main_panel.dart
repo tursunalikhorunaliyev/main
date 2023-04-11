@@ -4,16 +4,15 @@ import 'package:napt_sklad/model/app_data.dart';
 import 'package:napt_sklad/model/test_model.dart';
 import 'package:napt_sklad/model/test_data.dart';
 import 'package:napt_sklad/view/widgets/custome_input.dart';
+import 'package:napt_sklad/view/widgets/data_grid_main_page.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
+import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class MainPanel extends StatelessWidget {
-  MainPanel({super.key});
-
-  TestDataGridSource testData =
-      TestDataGridSource(students: AppData.testDataModel);
+  const MainPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,93 +42,116 @@ class MainPanel extends StatelessWidget {
                           children: [
                             Flexible(
                               flex: 8,
-                              child: SfDataGrid(
-                                source: testData,
-                                headerRowHeight: 30,
-                                headerGridLinesVisibility:
-                                    GridLinesVisibility.both,
-                                stackedHeaderRows: [
-                                  StackedHeaderRow(cells: [
-                                    StackedHeaderCell(
-                                        columnNames: ["Sena", "Summa"],
-                                        child: const Center(
-                                            child: Text("So skidkoy"))),
-                                  ])
-                                ],
-                                columns: [
-                                  GridColumn(
-                                    minimumWidth: 208,
-                                    columnName: "PN",
-                                    label: const GridColumns(
-                                        text: "Polnoe Naimovanie"),
+                              child: Column(
+                                children: [
+                                  Flexible(
+                                    flex: 20,
+                                    child: DataGridMainPage(),
                                   ),
-                                  GridColumn(
-                                    maximumWidth: 200,
-                                    columnName: "Kolichestvo",
-                                    label:
-                                        const GridColumns(text: "Kolichestvo"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "Sena",
-                                    label: const GridColumns(text: "Sena"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "Summa",
-                                    label: const GridColumns(text: "Summa"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "Srok God",
-                                    label: const GridColumns(text: "Srok God"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "Seriya",
-                                    label: const GridColumns(text: "Seriya"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "MX",
-                                    label: const GridColumns(text: "MX"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "IKPU",
-                                    label: const GridColumns(text: "IKPU"),
-                                  ),
-                                  GridColumn(
-                                    columnName: "Mark",
-                                    label: const GridColumns(text: "Mark"),
+                                  Flexible(
+                                    flex: 2,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        border: Border.symmetric(
+                                            horizontal: BorderSide(
+                                              color: Colors.black,
+                                            ),
+                                            vertical: BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 215, 215, 215))),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+                            /* const VerticalDivider(
+                              indent: 0,
+                              endIndent: 0,
+                              thickness: 1,
+                              color: Color.fromARGB(255, 32, 32, 32),
+                            ), */
                             Flexible(
                               flex: 2,
-                              child: Column(
-                                children: [
-                                  const Flexible(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8),
-                                      child: CustomeInput(),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: Column(
+                                  children: [
+                                    Flexible(
+                                      flex: 2,
+                                      child: Column(
+                                        children: [
+                                          const Flexible(
+                                            flex: 2,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                right: 8,
+                                              ),
+                                              child: CustomeInput(
+                                                hintText: "0",
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 2,
+                                          ),
+                                          Flexible(
+                                            flex: 2,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 8),
+                                              child: CustomeInput(
+                                                hintText: "01.12.2022",
+                                                suffix: Image.asset(
+                                                  "assets/calendar.png",
+                                                  width: 32,
+                                                  height: 32,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 2,
-                                  ),
-                                  Flexible(
-                                    flex: 2,
-                                    child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8),
-                                        child: SfDateRangePicker()),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 12,
+                                    ),
+                                    const Flexible(
+                                      flex: 8,
+                                      child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8),
+                                          child: PokupokInfo()),
+                                    ),
+                                    Flexible(
+                                      flex: 1,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            "assets/cancel.png",
+                                            width: 20,
+                                            height: 20,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          const InkWell(
+                                              child: Text("Zakrit chek"))
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Flexible(
-                        flex: 3,
+                        flex: 5,
                         child: Container(
                           color: const Color.fromARGB(255, 255, 119, 7),
                         ),

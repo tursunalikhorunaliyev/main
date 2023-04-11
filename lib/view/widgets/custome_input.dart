@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomeInput extends StatelessWidget {
   final Widget suffix;
-  const CustomeInput({super.key, this.suffix = const SizedBox()});
+  final String hintText;
+  const CustomeInput(
+      {super.key, this.hintText = "", this.suffix = const SizedBox()});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class CustomeInput extends StatelessWidget {
           TextField(
             cursorHeight: 18,
             decoration: InputDecoration(
-              hintText: "0",
+              hintText: hintText,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               filled: true,
@@ -28,7 +30,21 @@ class CustomeInput extends StatelessWidget {
               ),
             ),
           ),
-          suffix
+          Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+                child: GestureDetector(
+                    onTap: () {
+                      showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1000),
+                        lastDate: DateTime(2200),
+                      );
+                    },
+                    child: suffix),
+              ))
         ],
       ),
     );

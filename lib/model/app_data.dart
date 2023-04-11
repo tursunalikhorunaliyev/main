@@ -6,8 +6,8 @@ abstract class AppData {
     (index) => TestModel(
       "Bolnol India 10 sht",
       20,
-      6000,
-      7000,
+      60023420,
+      70068768,
       "02.06.2024",
       "12345678",
       "test",
