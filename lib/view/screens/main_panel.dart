@@ -1,15 +1,16 @@
 import 'package:cr_calendar/cr_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/model/app_data.dart';
-import 'package:napt_sklad/model/test_model.dart';
-import 'package:napt_sklad/model/test_data.dart';
+import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
+import 'package:napt_sklad/model/datagrid_content.dart';
+import 'package:napt_sklad/model/sell_model_test.dart';
 import 'package:napt_sklad/view/widgets/custome_input.dart';
-import 'package:napt_sklad/view/widgets/data_grid_main_page.dart';
+import 'package:napt_sklad/view/widgets/data_grid_sell.dart';
+import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
+import 'package:napt_sklad/view/widgets/footer_widget.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:provider/provider.dart';
 
 class MainPanel extends StatelessWidget {
   const MainPanel({super.key});
@@ -40,25 +41,29 @@ class MainPanel extends StatelessWidget {
                         flex: 5,
                         child: Row(
                           children: [
+                            const SizedBox(
+                              width: 1,
+                            ),
                             Flexible(
-                              flex: 8,
+                              flex: 10,
                               child: Column(
                                 children: [
                                   Flexible(
                                     flex: 20,
-                                    child: DataGridMainPage(),
+                                    child: DataGridMainSellList(),
                                   ),
                                   Flexible(
                                     flex: 2,
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        border: Border.symmetric(
-                                            horizontal: BorderSide(
-                                              color: Colors.black,
-                                            ),
-                                            vertical: BorderSide(
-                                                color: Color.fromARGB(
-                                                    255, 215, 215, 215))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 1),
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          border: Border(
+                                            top:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                        ),
+                                        child: const DataGridFooter(),
                                       ),
                                     ),
                                   ),
@@ -74,8 +79,7 @@ class MainPanel extends StatelessWidget {
                             Flexible(
                               flex: 2,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5),
+                                padding: const EdgeInsets.only(left: 5),
                                 child: Column(
                                   children: [
                                     Flexible(
@@ -151,11 +155,13 @@ class MainPanel extends StatelessWidget {
                         ),
                       ),
                       Flexible(
-                        flex: 5,
-                        child: Container(
-                          color: const Color.fromARGB(255, 255, 119, 7),
-                        ),
-                      ),
+                          flex: 5,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              left: 1,
+                            ),
+                            child: DataGridMainSoldList(),
+                          )),
                     ],
                   ),
                 ),

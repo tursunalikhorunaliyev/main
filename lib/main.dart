@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
 import 'package:napt_sklad/view/screens/main_panel.dart';
-import 'package:napt_sklad/view/screens/test_screen.dart';
+import 'package:provider/provider.dart';
 
 void main(List<String> args) {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MainPanel(),
+  runApp(Provider(
+    create: (context) => DataGridProvider(),
+    child: const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MainPanel(),
+    ),
   ));
 }

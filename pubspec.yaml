@@ -33,8 +33,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   pluto_menu_bar: ^3.0.1
   menu_bar: ^0.4.1
-  syncfusion_flutter_datagrid: ^21.1.37
-  syncfusion_flutter_datepicker: ^21.1.38
+  syncfusion_flutter_core: ^21.1.39
+  syncfusion_flutter_datagrid: ^21.1.39
+  provider: ^6.0.5
+  google_fonts: ^4.0.3
+  
   cr_calendar: ^1.1.0
   
 
