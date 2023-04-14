@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/view/widgets/custome_input.dart';
-import 'package:napt_sklad/view/widgets/custome_input_date_picker.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sell.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
 import 'package:napt_sklad/view/widgets/footer_widget.dart';
@@ -140,7 +139,7 @@ class MainPanel extends StatelessWidget {
                                             width: 5,
                                           ),
                                           const InkWell(
-                                              child: Text("Zakrit chek"))
+                                              child: Text("Закрит чек"))
                                         ],
                                       ),
                                     )

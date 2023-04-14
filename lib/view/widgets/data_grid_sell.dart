@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/controller/custome_selection_manager.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
 import 'package:napt_sklad/model/datagrid_content.dart';
 import 'package:napt_sklad/model/sell_dataGrid_source.dart';
@@ -79,51 +78,51 @@ class DataGridMainSellList extends StatelessWidget {
             maximumWidth: 120,
             columnName: "Kolichestvo",
             label: const GridColumns(
-              text: "Kolichestvo",
+              text: "Количество",
             ),
           ),
           GridColumn(
             maximumWidth: 120,
             columnName: "Sena",
             label: const GridColumns(
-              text: "Sena",
+              text: "Цена",
             ),
           ),
           GridColumn(
             maximumWidth: 120,
             columnName: "Summa",
             label: const GridColumns(
-              text: "Summa",
+              text: "Сумма",
             ),
           ),
           GridColumn(
             columnName: "Srok God",
             label: const GridColumns(
-              text: "Srok God",
+              text: "Срок год",
             ),
           ),
           GridColumn(
             columnName: "Seriya",
             label: const GridColumns(
-              text: "Seriya",
+              text: "Серия",
             ),
           ),
           GridColumn(
             columnName: "MX",
             label: const GridColumns(
-              text: "MX",
+              text: "МХ",
             ),
           ),
           GridColumn(
             columnName: "IKPU",
             label: const GridColumns(
-              text: "IKPU",
+              text: "ИКПУ",
             ),
           ),
           GridColumn(
             columnName: "Mark",
             label: const GridColumns(
-              text: "Mark",
+              text: "Марк",
             ),
           ),
         ],

@@ -58,61 +58,61 @@ class DataGridMainSoldList extends StatelessWidget {
             minimumWidth: 464,
             columnName: "PN",
             label: const GridColumns(
-              text: "Polnoe Naimovanie",
+              text: "Полное наимование",
             ),
           ),
           GridColumn(
             maximumWidth: 40,
             columnName: "UP",
             label: const GridColumns(
-              text: "UP",
+              text: "УП",
             ),
           ),
           GridColumn(
             maximumWidth: 120,
             columnName: "Sena",
             label: const GridColumns(
-              text: "Sena",
+              text: "Цена",
             ),
           ),
           GridColumn(
             minimumWidth: 125,
             columnName: "Ostatok",
             label: const GridColumns(
-              text: "Ostatok",
+              text: "Остаток",
             ),
           ),
           GridColumn(
             minimumWidth: 150,
             columnName: "Seriya",
             label: const GridColumns(
-              text: "Seriya",
+              text: "Серия",
             ),
           ),
           GridColumn(
             columnName: "Srok God",
             label: const GridColumns(
-              text: "Srok God",
+              text: "Срок год",
             ),
           ),
           GridColumn(
             maximumWidth: 80,
             columnName: "MX",
             label: const GridColumns(
-              text: "MX",
+              text: "МХ",
             ),
           ),
           GridColumn(
             maximumWidth: 60,
             columnName: "IKPU",
             label: const GridColumns(
-              text: "IKPU",
+              text: "ИКПУ",
             ),
           ),
           GridColumn(
             columnName: "Aksiya",
             label: const GridColumns(
-              text: "Aksiya",
+              text: "Акция",
             ),
           ),
         ],

@@ -9,7 +9,7 @@ class PokupokInfo extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.topLeft,
-          child: const Text("Summa"),
+          child: const Text("Сумма"),
         ),
         Container(
           alignment: Alignment.bottomRight,
@@ -24,7 +24,7 @@ class PokupokInfo extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.topLeft,
-          child: const Text("Skidka"),
+          child: const Text("Скидка"),
         ),
         Container(
           alignment: Alignment.bottomRight,
@@ -40,7 +40,7 @@ class PokupokInfo extends StatelessWidget {
         Container(
           alignment: Alignment.topLeft,
           child: const Text(
-            "K Oplata",
+            "К оплата",
           ),
         ),
         Container(
