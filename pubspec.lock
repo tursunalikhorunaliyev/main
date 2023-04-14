@@ -307,6 +307,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
+  ripple_button:
+    dependency: "direct main"
+    description:
+      name: ripple_button
+      sha256: f26518673e4be91034791725a011a758b5496dd1b5d87339d8c599b41556ba0f
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.1"
   scrollable_positioned_list:
     dependency: transitive
     description:

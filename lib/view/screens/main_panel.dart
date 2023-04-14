@@ -4,6 +4,7 @@ import 'package:napt_sklad/view/widgets/custome_input_date_picker.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sell.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
 import 'package:napt_sklad/view/widgets/footer_widget.dart';
+import 'package:napt_sklad/view/widgets/payment_panel.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:napt_sklad/view/widgets/search_panel.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
@@ -165,15 +166,22 @@ class MainPanel extends StatelessWidget {
                     ],
                   ),
                 ),
-                Flexible(
+                const VerticalDivider(
+                  thickness: 1,
+                  width: 0,
+                  indent: 1,
+                  endIndent: 1,
+                  color: Colors.black,
+                ),
+                const Flexible(
                   flex: 2,
-                  child: Container(
-                    color: const Color.fromARGB(255, 35, 0, 212),
+                  child: Center(
+                    child: PaymentPanel(),
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
