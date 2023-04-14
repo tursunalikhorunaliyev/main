@@ -50,7 +50,7 @@ class SearchPanel extends StatelessWidget {
                   side: AlwaysActiveBorderSizeCheckbox(),
                 ),
               ),
-              const Text("Sostavnoy poisk"),
+              const Text("Cоставной поиск"),
               Transform.scale(
                 scale: 0.8,
                 child: Checkbox(
@@ -63,7 +63,7 @@ class SearchPanel extends StatelessWidget {
                   side: AlwaysActiveBorderSizeCheckbox(),
                 ),
               ),
-              const Text("Shtuchno"),
+              const Text("Штучно"),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: SizedBox(
