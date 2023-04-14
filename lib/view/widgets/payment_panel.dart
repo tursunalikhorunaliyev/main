@@ -11,37 +11,58 @@ class PaymentPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Text(
+          "01.12.2022",
+          style: GoogleFonts.ubuntu(
+            fontSize: 18,
+          ),
+        ),
+        Text(
+          "01.12.2022",
+          style: GoogleFonts.ubuntu(
+            fontSize: 18,
+          ),
+        ),
+        Text(
+          "01.12.2022",
+          style: GoogleFonts.ubuntu(
+            fontSize: 18,
+          ),
+        ),
         Column(
-          children: [
-            Text(
-              "01.12.2022",
-              style: GoogleFonts.ubuntu(
-                fontSize: 18,
-              ),
-            ),
-            Text(
-              "01.12.2022",
-              style: GoogleFonts.ubuntu(
-                fontSize: 18,
-              ),
-            ),
-            Text(
-              "01.12.2022",
-              style: GoogleFonts.ubuntu(
-                fontSize: 18,
-              ),
-            ),
-            const PaymentButton(
+          children: const [
+            PaymentButton(
               imagePath: "assets/cash.png",
-              buttonText: "Nalichie F9",
+              buttonText: "Наличные F8",
             ),
-            const PaymentButton(
+            PaymentButton(
               imagePath: "assets/humo.png",
-              buttonText: "Humo F8",
+              buttonText: "Humo F9",
             ),
-            const PaymentButton(
+            PaymentButton(
               imagePath: "assets/uzcard.png",
-              buttonText: "Humo F10",
+              buttonText: "UzCard F10",
+            ),
+            PaymentButton(
+              imagePath: "assets/phonelink.png",
+              buttonText: "Прочее F11",
+            ),
+            PaymentButton(
+              imagePath: "assets/info.png",
+              buttonText: "Страховка F12",
+            ),
+          ],
+        ),
+        const Spacer(),
+        Column(
+          children: const [
+            PaymentButton(
+              imagePath: "assets/vozvrat.png",
+              buttonText: "Возврат от\nпокупателя",
+            ),
+            PaymentButton(
+              imagePath: "assets/exit.png",
+              buttonText: "Выход",
             ),
           ],
         )

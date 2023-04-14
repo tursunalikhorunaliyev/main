@@ -27,7 +27,7 @@ class SearchPanel extends StatelessWidget {
                 width: 200,
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: "",
+                    hintText: "Поиск",
                     contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0),
@@ -82,7 +82,7 @@ class SearchPanel extends StatelessWidget {
                 width: 200,
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: "",
+                    hintText: "Поиск",
                     contentPadding: const EdgeInsets.symmetric(horizontal: 8),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(0),
