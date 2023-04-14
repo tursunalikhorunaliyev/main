@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/controller/checkbox_border.dart';
 import 'package:napt_sklad/model/sell_model_test.dart';
 import 'package:napt_sklad/model/sold_model_test.dart';
 
@@ -7,13 +8,13 @@ abstract class DataGridContent {
     100,
     (index) => SellDataModel(
       Checkbox(
-        value: false,
-        onChanged: (isChecked) {},
-        activeColor: Colors.black,
-        checkColor: Colors.black,
-        fillColor: const MaterialStatePropertyAll(Colors.black),
-        focusColor: Colors.amber,
-      ),
+          value: true,
+          onChanged: (isChecked) {},
+          activeColor: Colors.transparent,
+          checkColor: Colors.black,
+          focusColor: Colors.amber,
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          side: AlwaysActiveBorderSizeCheckbox()),
       "Bolnol 10 sht",
       20,
       60023420,
@@ -30,13 +31,13 @@ abstract class DataGridContent {
     100,
     (index) => SoldDataModel(
       Checkbox(
-        value: false,
-        onChanged: (isChecked) {},
-        activeColor: Colors.black,
-        checkColor: Colors.black,
-        fillColor: const MaterialStatePropertyAll(Colors.black),
-        focusColor: Colors.amber,
-      ),
+          value: true,
+          onChanged: (isChecked) {},
+          activeColor: Colors.transparent,
+          checkColor: Colors.black,
+          focusColor: Colors.amber,
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          side: AlwaysActiveBorderSizeCheckbox()),
       "Bolnol 10 sht tytyytyty",
       20,
       600230,

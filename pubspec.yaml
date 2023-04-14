@@ -37,6 +37,7 @@ dependencies:
   syncfusion_flutter_datagrid: ^21.1.39
   provider: ^6.0.5
   google_fonts: ^4.0.3
+  date_field: ^3.0.5
   
   cr_calendar: ^1.1.0
   

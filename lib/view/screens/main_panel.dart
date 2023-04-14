@@ -1,16 +1,12 @@
-import 'package:cr_calendar/cr_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
-import 'package:napt_sklad/model/datagrid_content.dart';
-import 'package:napt_sklad/model/sell_model_test.dart';
 import 'package:napt_sklad/view/widgets/custome_input.dart';
+import 'package:napt_sklad/view/widgets/custome_input_date_picker.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sell.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
 import 'package:napt_sklad/view/widgets/footer_widget.dart';
-import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
+import 'package:napt_sklad/view/widgets/search_panel.dart';
 import 'package:pluto_menu_bar/pluto_menu_bar.dart';
-import 'package:provider/provider.dart';
 
 class MainPanel extends StatelessWidget {
   const MainPanel({super.key});
@@ -30,7 +26,7 @@ class MainPanel extends StatelessWidget {
             PlutoMenuItem(title: "title"),
           ]),
           Flexible(
-            flex: 1,
+            flex: 5,
             child: Row(
               children: [
                 Flexible(
@@ -38,7 +34,7 @@ class MainPanel extends StatelessWidget {
                   child: Column(
                     children: [
                       Flexible(
-                        flex: 5,
+                        flex: 28,
                         child: Row(
                           children: [
                             const SizedBox(
@@ -154,14 +150,18 @@ class MainPanel extends StatelessWidget {
                           ],
                         ),
                       ),
+                      const Flexible(
+                        flex: 2,
+                        child: SearchPanel(),
+                      ),
                       Flexible(
-                          flex: 5,
-                          child: Padding(
+                        flex: 20,
+                        child: Padding(
                             padding: const EdgeInsets.only(
                               left: 1,
                             ),
-                            child: DataGridMainSoldList(),
-                          )),
+                            child: DataGridMainSoldList()),
+                      ),
                     ],
                   ),
                 ),

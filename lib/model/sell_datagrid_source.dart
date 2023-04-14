@@ -19,7 +19,7 @@ class SellDataGridSource extends DataGridSource {
                 value: e.checkbox,
               ),
               DataGridCell<String>(
-                columnName: "Polnoe Naimovanie",
+                columnName: "PN",
                 value: e.polnoeNaimovaniye,
               ),
               DataGridCell<int>(
@@ -72,10 +72,9 @@ class SellDataGridSource extends DataGridSource {
   }
 
   Widget columContent(DataGridCell<dynamic> e) {
-    if (e.columnName == "UP" ||
+    if (e.columnName == "Kolichestvo" ||
         e.columnName == "Sena" ||
-        e.columnName == "IKPU" ||
-        e.columnName == "Aksiya") {
+        e.columnName == "IKPU") {
       return Padding(
         padding: const EdgeInsets.only(right: 3),
         child: Align(
@@ -107,9 +106,16 @@ class SellDataGridSource extends DataGridSource {
         child: Align(
           alignment: Alignment.centerLeft,
           child: e.columnName == " "
-              ? Checkbox(
-                  value: true,
-                  onChanged: (value) {},
+              ? Transform.scale(
+                  scale: 0.8,
+                  child: Checkbox(
+                      value: true,
+                      onChanged: (isChecked) {},
+                      activeColor: Colors.transparent,
+                      checkColor: Colors.black,
+                      focusColor: Colors.amber,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      side: AlwaysActiveBorderSizeCheckbox()),
                 )
               : Text(
                   e.value.toString(),
@@ -126,9 +132,16 @@ class SellDataGridSource extends DataGridSource {
         child: Align(
           alignment: Alignment.center,
           child: e.columnName == " "
-              ? Checkbox(
-                  value: true,
-                  onChanged: (value) {},
+              ? Transform.scale(
+                  scale: 0.8,
+                  child: Checkbox(
+                      value: true,
+                      onChanged: (isChecked) {},
+                      activeColor: Colors.transparent,
+                      checkColor: Colors.black,
+                      focusColor: Colors.amber,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      side: AlwaysActiveBorderSizeCheckbox()),
                 )
               : Text(
                   e.value.toString(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/controller/checkbox_border.dart';
 import 'package:napt_sklad/controller/custome_selection_manager.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
 import 'package:napt_sklad/model/datagrid_content.dart';
@@ -37,15 +38,20 @@ class DataGridMainSoldList extends StatelessWidget {
         rowHeight: 32,
         source: testData,
         gridLinesVisibility: GridLinesVisibility.both,
-        headerRowHeight: 30,
+        headerRowHeight: 50,
         headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
             maximumWidth: 40,
             columnName: " ",
             label: Checkbox(
-              value: false,
-              onChanged: (value) {},
+              value: true,
+              onChanged: (isChecked) {},
+              activeColor: Colors.transparent,
+              checkColor: Colors.black,
+              focusColor: Colors.amber,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              side: AlwaysActiveBorderSizeCheckbox(),
             ),
           ),
           GridColumn(

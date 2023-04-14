@@ -32,7 +32,7 @@ class PokupokInfo extends StatelessWidget {
         Container(
           alignment: Alignment.topLeft,
           child: const Text(
-            "S Oplata",
+            "K Oplata",
           ),
         ),
         Container(
