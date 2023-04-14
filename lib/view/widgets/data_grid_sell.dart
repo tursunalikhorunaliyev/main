@@ -21,7 +21,7 @@ class DataGridMainSellList extends StatelessWidget {
     return SfDataGridTheme(
       data: SfDataGridThemeData(
         selectionColor: Colors.amber,
-        rowHoverColor: Colors.amber,
+        rowHoverColor: Colors.blue,
         currentCellStyle: const DataGridCurrentCellStyle(
           borderColor: Colors.black,
           borderWidth: 1,

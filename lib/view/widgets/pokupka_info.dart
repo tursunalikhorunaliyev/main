@@ -18,6 +18,10 @@ class PokupokInfo extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
         ),
+        const Divider(
+          color: Colors.black26,
+          thickness: 1,
+        ),
         Container(
           alignment: Alignment.topLeft,
           child: const Text("Skidka"),
@@ -28,6 +32,10 @@ class PokupokInfo extends StatelessWidget {
             "0.00",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
+        ),
+        const Divider(
+          color: Colors.black26,
+          thickness: 1,
         ),
         Container(
           alignment: Alignment.topLeft,
@@ -41,6 +49,10 @@ class PokupokInfo extends StatelessWidget {
             "0.00",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
           ),
+        ),
+        const Divider(
+          color: Colors.black26,
+          thickness: 1,
         ),
       ],
     );
