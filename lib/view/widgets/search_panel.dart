@@ -98,13 +98,13 @@ class SearchPanel extends StatelessWidget {
           const Spacer(),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              fixedSize: Size(80, 50),
+              fixedSize: const Size(80, 50),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(0),
               ),
             ),
             onPressed: () {},
-            child: Icon(Icons.print_sharp),
+            child: const Icon(Icons.print_sharp),
           )
         ],
       ),
