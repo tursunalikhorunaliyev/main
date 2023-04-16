@@ -39,7 +39,9 @@ dependencies:
   google_fonts: ^4.0.3
   date_field: ^3.0.5
   ripple_button: ^3.4.1
-  cr_calendar: ^1.1.0
+  tabbed_view: ^1.16.0+1
+  bloc: ^8.0.0
+  flutter_bloc: ^8.0.0
   
 
 dev_dependencies:

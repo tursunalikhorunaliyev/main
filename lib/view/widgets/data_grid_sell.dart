@@ -85,7 +85,7 @@ class DataGridMainSellList extends StatelessWidget {
             maximumWidth: 120,
             columnName: "Sena",
             label: const GridColumns(
-              text: "Цена",
+              text: "Сена",
             ),
           ),
           GridColumn(

@@ -1,9 +1,5 @@
-import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/view/widgets/custome_input.dart';
 import 'package:napt_sklad/view/widgets/custome_input_date_picker.dart';
 
 class SearchPanel extends StatelessWidget {

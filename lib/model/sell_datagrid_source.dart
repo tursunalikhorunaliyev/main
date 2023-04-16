@@ -135,13 +135,14 @@ class SellDataGridSource extends DataGridSource {
               ? Transform.scale(
                   scale: 0.8,
                   child: Checkbox(
-                      value: true,
-                      onChanged: (isChecked) {},
-                      activeColor: Colors.transparent,
-                      checkColor: Colors.black,
-                      focusColor: Colors.amber,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      side: AlwaysActiveBorderSizeCheckbox()),
+                    value: true,
+                    onChanged: (isChecked) {},
+                    activeColor: Colors.transparent,
+                    checkColor: Colors.black,
+                    focusColor: Colors.amber,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    side: AlwaysActiveBorderSizeCheckbox(),
+                  ),
                 )
               : Text(
                   e.value.toString(),
@@ -151,7 +152,6 @@ class SellDataGridSource extends DataGridSource {
                 ),
         ),
       );
-      ;
     }
   }
 }

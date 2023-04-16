@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/model/sell_model_test.dart';
 import 'package:napt_sklad/model/sold_model_test.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -139,7 +138,6 @@ class SoldDataGridSource extends DataGridSource {
                 ),
         ),
       );
-      ;
     }
   }
 }

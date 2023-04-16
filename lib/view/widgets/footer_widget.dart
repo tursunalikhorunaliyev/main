@@ -13,6 +13,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 40,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border.symmetric(
               vertical: BorderSide(
                 color: Colors.black,
@@ -26,6 +27,7 @@ class DataGridFooter extends StatelessWidget {
             minWidth: 208,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -43,6 +45,7 @@ class DataGridFooter extends StatelessWidget {
             minWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -56,6 +59,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -69,6 +73,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -82,6 +87,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -95,6 +101,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -108,6 +115,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -121,6 +129,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
@@ -134,6 +143,7 @@ class DataGridFooter extends StatelessWidget {
             maxWidth: 100,
           ),
           decoration: const BoxDecoration(
+            color: Color.fromARGB(13, 0, 0, 0),
             border: Border(
               right: BorderSide(
                 color: Colors.black,
