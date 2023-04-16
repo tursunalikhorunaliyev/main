@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
 import 'package:napt_sklad/model/sold_model_test.dart';
+import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class SoldDataGridSource extends DataGridSource {
@@ -14,7 +15,7 @@ class SoldDataGridSource extends DataGridSource {
         .map(
           (e) => DataGridRow(
             cells: [
-              DataGridCell<Checkbox>(
+              DataGridCell<Widget>(
                 columnName: " ",
                 value: e.checkbox,
               ),
@@ -73,7 +74,6 @@ class SoldDataGridSource extends DataGridSource {
 
   Widget columContent(DataGridCell<dynamic> e) {
     if (e.columnName == "UP" ||
-        e.columnName == "Sena" ||
         e.columnName == "IKPU" ||
         e.columnName == "Aksiya") {
       return Padding(
@@ -81,9 +81,60 @@ class SoldDataGridSource extends DataGridSource {
         child: Align(
           alignment: Alignment.centerRight,
           child: e.columnName == " "
-              ? Checkbox(
-                  value: true,
-                  onChanged: (value) {},
+              ? CustomeCheckBox()
+              : Text(
+                  e.value.toString(),
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+        ),
+      );
+    } else if (e.columnName == "Sena") {
+      return Container(
+        alignment: Alignment.centerRight,
+        color: Color.fromARGB(255, 0, 255, 255),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 3),
+          child: e.columnName == " "
+              ? Transform.scale(
+                  scale: 0.8,
+                  child: Checkbox(
+                      value: true,
+                      onChanged: (isChecked) {},
+                      activeColor: Colors.transparent,
+                      checkColor: Colors.black,
+                      focusColor: Colors.amber,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      side: AlwaysActiveBorderSizeCheckbox()),
+                )
+              : Text(
+                  e.value.toString(),
+                  style: GoogleFonts.roboto(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+        ),
+      );
+    } else if (e.columnName == "Ostatok") {
+      return Container(
+        alignment: Alignment.center,
+        color: Color.fromARGB(255, 153, 251, 251),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 3),
+          child: e.columnName == " "
+              ? Transform.scale(
+                  scale: 0.8,
+                  child: Checkbox(
+                      value: true,
+                      onChanged: (isChecked) {},
+                      activeColor: Colors.transparent,
+                      checkColor: Colors.black,
+                      focusColor: Colors.amber,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      side: AlwaysActiveBorderSizeCheckbox()),
                 )
               : Text(
                   e.value.toString(),

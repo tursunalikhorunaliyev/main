@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SellDataModel {
-  final Checkbox checkbox;
+  final Widget checkbox;
   final String polnoeNaimovaniye;
   final int kolichestvo;
   final int sena;
