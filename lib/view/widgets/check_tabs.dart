@@ -29,20 +29,6 @@ class CheckTabs extends StatelessWidget {
                   flex: 20,
                   child: DataGridMainSellList(),
                 ),
-                Flexible(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 1),
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                      child: const DataGridFooter(),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -52,39 +38,6 @@ class CheckTabs extends StatelessWidget {
               padding: const EdgeInsets.only(left: 5),
               child: Column(
                 children: [
-                  Flexible(
-                    flex: 2,
-                    child: Column(
-                      children: [
-                        const Flexible(
-                          flex: 2,
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 8, top: 8),
-                            child: CustomeInput(
-                              hintText: "0",
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Flexible(
-                          flex: 2,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: CustomeInput(
-                              hintText: "01.12.2022",
-                              suffix: Image.asset(
-                                "assets/calendar.png",
-                                width: 32,
-                                height: 32,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   const SizedBox(
                     height: 12,
                   ),
@@ -109,9 +62,9 @@ class CheckTabs extends StatelessWidget {
                           return InkWell(
                             onTap: () {
                               final newSliderCubit = SliderCubitData(
-                                state.contentLength - 1,
-                                state.pageIndex,
-                                state.pageController,
+                                contentLength: state.contentLength - 1,
+                                pageIndex: state.pageIndex,
+                                pageController: state.pageController,
                               );
                               sliderBloC.emit(newSliderCubit);
                             },

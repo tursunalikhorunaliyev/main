@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 
-class TestPage extends StatelessWidget {
+class TestPage extends StatefulWidget {
   const TestPage({super.key});
+
+  @override
+  State<TestPage> createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
+  int selectedIndex = -1;
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: CustomeCheckBox(),
+      body: Column(
+        children: List.generate(
+          10,
+          (index) => Checkbox(
+            value: selectedIndex == index ? isSelected : false,
+            onChanged: (value) {
+              isSelected = !isSelected;
+              selectedIndex = index;
+              setState(() {});
+            },
+          ),
+        ),
       ),
     );
   }

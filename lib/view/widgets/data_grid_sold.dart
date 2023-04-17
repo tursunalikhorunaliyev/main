@@ -40,19 +40,6 @@ class DataGridMainSoldList extends StatelessWidget {
         headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
-            maximumWidth: 40,
-            columnName: " ",
-            label: Checkbox(
-              value: true,
-              onChanged: (isChecked) {},
-              activeColor: Colors.transparent,
-              checkColor: Colors.black,
-              focusColor: Colors.amber,
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              side: AlwaysActiveBorderSizeCheckbox(),
-            ),
-          ),
-          GridColumn(
             minimumWidth: 464,
             columnName: "PN",
             label: const GridColumns(

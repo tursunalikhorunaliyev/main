@@ -3,36 +3,36 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PaymentButton extends StatelessWidget {
   final String imagePath;
+  final String hotKeyText;
   final String buttonText;
   const PaymentButton(
-      {super.key, required this.imagePath, required this.buttonText});
+      {super.key,
+      required this.imagePath,
+      this.hotKeyText = "",
+      required this.buttonText});
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),
+    return Tooltip(
+      message: buttonText,
+      height: 20,
+      child: InkWell(
+        onTap: () {},
         child: Container(
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.black),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 imagePath,
                 cacheHeight: 30,
               ),
-              Text(
-                buttonText,
-                style: GoogleFonts.ubuntu(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              hotKeyText.isNotEmpty ? Text(hotKeyText) : const SizedBox()
             ],
           ),
         ),

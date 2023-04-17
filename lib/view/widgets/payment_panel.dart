@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:napt_sklad/view/widgets/payment_button.dart';
+import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 class PaymentPanel extends StatelessWidget {
   const PaymentPanel({super.key});
@@ -8,46 +9,63 @@ class PaymentPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          "01.12.2022",
-          style: GoogleFonts.ubuntu(
-            fontSize: 18,
-          ),
+        const SizedBox(
+          height: 5,
         ),
         Text(
-          "01.12.2022",
-          style: GoogleFonts.ubuntu(
-            fontSize: 18,
+          DateTime.now().toString().split(" ")[0].toString(),
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
         ),
-        Text(
-          "01.12.2022",
-          style: GoogleFonts.ubuntu(
-            fontSize: 18,
+        DigitalClock(
+          is24HourTimeFormat: true,
+          hourMinuteDigitTextStyle: const TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w400,
           ),
+          colon: const Text(
+            ":",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          secondDigitTextStyle: const TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w200,
+          ),
+          digitAnimationStyle: Curves.fastLinearToSlowEaseIn,
         ),
         Column(
           children: const [
             PaymentButton(
               imagePath: "assets/cash.png",
-              buttonText: "Наличные F8",
+              hotKeyText: "F8",
+              buttonText: "Наличные",
             ),
             PaymentButton(
               imagePath: "assets/humo.png",
-              buttonText: "Humo F9",
+              hotKeyText: "F9",
+              buttonText: "Humo",
             ),
             PaymentButton(
               imagePath: "assets/uzcard.png",
-              buttonText: "UzCard F10",
+              hotKeyText: "F10",
+              buttonText: "UzCard",
             ),
             PaymentButton(
               imagePath: "assets/phonelink.png",
-              buttonText: "Прочее F11",
+              hotKeyText: "F11",
+              buttonText: "Прочее",
             ),
             PaymentButton(
               imagePath: "assets/info.png",
-              buttonText: "Страховка F12",
+              hotKeyText: "F12",
+              buttonText: "Страховка",
             ),
           ],
         ),

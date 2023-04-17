@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
+import 'package:napt_sklad/controller/enums/check_box_enum.dart';
 import 'package:napt_sklad/model/sold_model_test.dart';
 import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -15,10 +16,6 @@ class SoldDataGridSource extends DataGridSource {
         .map(
           (e) => DataGridRow(
             cells: [
-              DataGridCell<Widget>(
-                columnName: " ",
-                value: e.checkbox,
-              ),
               DataGridCell<String>(
                 columnName: "Polnoe Naimovanie",
                 value: e.polnoeNaimovaniye,
@@ -80,69 +77,41 @@ class SoldDataGridSource extends DataGridSource {
         padding: const EdgeInsets.only(right: 3),
         child: Align(
           alignment: Alignment.centerRight,
-          child: e.columnName == " "
-              ? CustomeCheckBox()
-              : Text(
-                  e.value.toString(),
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+          child: Text(
+            e.value.toString(),
+            style: GoogleFonts.roboto(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       );
     } else if (e.columnName == "Sena") {
-      return Container(
+      return Align(
         alignment: Alignment.centerRight,
-        color: Color.fromARGB(255, 0, 255, 255),
         child: Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: e.columnName == " "
-              ? Transform.scale(
-                  scale: 0.8,
-                  child: Checkbox(
-                      value: true,
-                      onChanged: (isChecked) {},
-                      activeColor: Colors.transparent,
-                      checkColor: Colors.black,
-                      focusColor: Colors.amber,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      side: AlwaysActiveBorderSizeCheckbox()),
-                )
-              : Text(
-                  e.value.toString(),
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+          child: Text(
+            e.value.toString(),
+            style: GoogleFonts.roboto(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       );
     } else if (e.columnName == "Ostatok") {
-      return Container(
+      return Align(
         alignment: Alignment.center,
-        color: Color.fromARGB(255, 153, 251, 251),
         child: Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: e.columnName == " "
-              ? Transform.scale(
-                  scale: 0.8,
-                  child: Checkbox(
-                      value: true,
-                      onChanged: (isChecked) {},
-                      activeColor: Colors.transparent,
-                      checkColor: Colors.black,
-                      focusColor: Colors.amber,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      side: AlwaysActiveBorderSizeCheckbox()),
-                )
-              : Text(
-                  e.value.toString(),
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+          child: Text(
+            e.value.toString(),
+            style: GoogleFonts.roboto(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       );
     } else if (e.columnName == "PN") {
@@ -150,18 +119,13 @@ class SoldDataGridSource extends DataGridSource {
         padding: const EdgeInsets.only(left: 2),
         child: Align(
           alignment: Alignment.centerLeft,
-          child: e.columnName == " "
-              ? Checkbox(
-                  value: true,
-                  onChanged: (value) {},
-                )
-              : Text(
-                  e.value.toString(),
-                  style: GoogleFonts.roboto(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+          child: Text(
+            e.value.toString(),
+            style: GoogleFonts.roboto(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       );
     } else {
@@ -169,24 +133,12 @@ class SoldDataGridSource extends DataGridSource {
         padding: const EdgeInsets.only(left: 2),
         child: Align(
           alignment: Alignment.center,
-          child: e.columnName == " "
-              ? Transform.scale(
-                  scale: 0.8,
-                  child: Checkbox(
-                      value: true,
-                      onChanged: (isChecked) {},
-                      activeColor: Colors.transparent,
-                      checkColor: Colors.black,
-                      focusColor: Colors.amber,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      side: AlwaysActiveBorderSizeCheckbox()),
-                )
-              : Text(
-                  e.value.toString(),
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+          child: Text(
+            e.value.toString(),
+            style: GoogleFonts.roboto(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       );
     }

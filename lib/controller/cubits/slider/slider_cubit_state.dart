@@ -7,10 +7,12 @@ class SliderCubitData extends SliderCubitState {
   int contentLength;
   int pageIndex;
   PageController pageController;
+  DateTime? dateTime;
 
-  SliderCubitData(
-    this.contentLength,
-    this.pageIndex,
-    this.pageController,
-  );
+  SliderCubitData({
+    required this.contentLength,
+    required this.pageIndex,
+    required this.pageController,
+    this.dateTime,
+  });
 }

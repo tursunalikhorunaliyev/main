@@ -42,6 +42,7 @@ dependencies:
   tabbed_view: ^1.16.0+1
   bloc: ^8.0.0
   flutter_bloc: ^8.0.0
+  slide_digital_clock: ^1.0.3
   
 
 dev_dependencies:

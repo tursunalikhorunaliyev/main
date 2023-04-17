@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
-import 'package:napt_sklad/view/screens/check_tabs_panel.dart.dart';
+import 'package:napt_sklad/view/widgets/check_tabs_panel.dart.dart';
 import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
 import 'package:napt_sklad/view/widgets/menu_bar.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
@@ -22,7 +22,7 @@ class MainPanel extends StatelessWidget {
             child: Row(
               children: [
                 Flexible(
-                  flex: 14,
+                  flex: 16,
                   child: Column(
                     children: [
                       Flexible(

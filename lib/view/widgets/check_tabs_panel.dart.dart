@@ -16,9 +16,13 @@ class CheckTabsPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final checkProvider = Provider.of<SliderCubit>(context);
+
     return BlocBuilder<SliderCubit, SliderCubitData>(
       bloc: checkProvider,
       builder: (context, state) {
+        List<String> dateTimeList = state.dateTime.toString().split(" ");
+        final date = dateTimeList[0];
+        final time = dateTimeList[1].split(".")[0];
         log(state.contentLength.toString());
 
         if (state.contentLength > 1) {
@@ -48,19 +52,21 @@ class CheckTabsPanel extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    final slideData = SliderCubitData(state.contentLength + 1,
-                        state.pageIndex, state.pageController);
+                    final slideData = SliderCubitData(
+                        contentLength: state.contentLength + 1,
+                        pageIndex: state.pageIndex,
+                        pageController: state.pageController,
+                        dateTime: DateTime.now());
                     checkProvider.emit(slideData);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 1),
                     child: Container(
                       alignment: Alignment.center,
-                      width: 100,
                       color: const Color.fromARGB(255, 0, 151, 50),
-                      child: const Text(
-                        "Новый чек",
-                        style: TextStyle(
+                      child: Text(
+                        "$date $time",
+                        style: const TextStyle(
                           color: Colors.white,
                         ),
                       ),

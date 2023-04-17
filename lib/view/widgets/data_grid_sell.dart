@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
+import 'package:napt_sklad/controller/enums/check_box_enum.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
 import 'package:napt_sklad/model/datagrid_content.dart';
 import 'package:napt_sklad/model/sell_dataGrid_source.dart';
+import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -31,44 +33,17 @@ class DataGridMainSellList extends StatelessWidget {
       ),
       child: SfDataGrid(
         controller: dataGridProvider.dataGridController,
-        selectionMode: SelectionMode.single,
+        selectionMode: SelectionMode.multiple,
         navigationMode: GridNavigationMode.row,
         rowHeight: 32,
         source: testData,
         gridLinesVisibility: GridLinesVisibility.both,
         headerRowHeight: 40,
         headerGridLinesVisibility: GridLinesVisibility.both,
-        stackedHeaderRows: [
-          StackedHeaderRow(
-            cells: [
-              StackedHeaderCell(
-                columnNames: ["Sena", "Summa"],
-                child: const ColoredBox(
-                  color: Colors.black12,
-                  child: Center(
-                    child: Text(
-                      "So skidkoy",
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
+        stackedHeaderRows: [],
         columns: [
           GridColumn(
-              maximumWidth: 40,
-              columnName: " ",
-              label: Checkbox(
-                  value: false,
-                  onChanged: (isChecked) {},
-                  activeColor: Colors.transparent,
-                  checkColor: Colors.black,
-                  focusColor: Colors.amber,
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  side: AlwaysActiveBorderSizeCheckbox())),
-          GridColumn(
-            minimumWidth: 208,
+            minimumWidth: 266,
             columnName: "PN",
             label: const GridColumns(
               text: "Полное наимование",
