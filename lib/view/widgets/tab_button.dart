@@ -35,7 +35,7 @@ class CustomeTabButton extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 1),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: buttonIndex == state.slideIndex ||

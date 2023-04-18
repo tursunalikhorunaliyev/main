@@ -113,7 +113,7 @@ class SellDataGridSource extends DataGridSource {
       );
     } else if (e.columnName == "PN") {
       return Padding(
-        padding: const EdgeInsets.only(left: 2),
+        padding: const EdgeInsets.only(left: 8),
         child: Align(
           alignment: Alignment.centerLeft,
           child: Text(

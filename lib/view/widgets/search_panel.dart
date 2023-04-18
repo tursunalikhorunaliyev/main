@@ -13,7 +13,7 @@ class SearchPanel extends StatelessWidget {
           width: 0.2,
         ),
         SizedBox(
-          width: 1179,
+          width: 1199,
           child: TextField(
             decoration: InputDecoration(
               hintText: "Поиск",

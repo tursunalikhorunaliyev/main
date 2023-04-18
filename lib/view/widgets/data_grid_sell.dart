@@ -33,7 +33,7 @@ class DataGridMainSellList extends StatelessWidget {
       ),
       child: SfDataGrid(
         controller: dataGridProvider.dataGridController,
-        selectionMode: SelectionMode.multiple,
+        selectionMode: SelectionMode.single,
         navigationMode: GridNavigationMode.row,
         rowHeight: 32,
         source: testData,

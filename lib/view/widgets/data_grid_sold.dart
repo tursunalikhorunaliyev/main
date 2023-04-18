@@ -40,7 +40,7 @@ class DataGridMainSoldList extends StatelessWidget {
         headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
-            minimumWidth: 464,
+            minimumWidth: 523.5,
             columnName: "PN",
             label: const GridColumns(
               text: "Полное наимование",

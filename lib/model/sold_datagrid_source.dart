@@ -115,9 +115,9 @@ class SoldDataGridSource extends DataGridSource {
       );
     } else if (e.columnName == "PN") {
       return Padding(
-        padding: const EdgeInsets.only(left: 2),
+        padding: const EdgeInsets.only(left: 5),
         child: Align(
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.topLeft,
           child: Text(
             e.value.toString(),
             style: const TextStyle(
