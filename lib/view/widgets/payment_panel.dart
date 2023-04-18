@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:napt_sklad/view/widgets/payment_button.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 

@@ -7,10 +7,11 @@ class SliderCubitData extends SliderCubitState {
   final List<Widget> dataGridPanels;
   final List<Widget> checkTabs;
   final PageController pageController;
+  final List<DateTime> createdTimes;
 
-  SliderCubitData({
-    required this.dataGridPanels,
-    required this.checkTabs,
-    required this.pageController,
-  });
+  SliderCubitData(
+      {required this.dataGridPanels,
+      required this.checkTabs,
+      required this.pageController,
+      required this.createdTimes});
 }

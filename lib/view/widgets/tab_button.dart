@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -16,31 +18,28 @@ class CustomeTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabButtonCubit = BlocProvider.of<TabButtonIndexDartCubit>(context);
     final slideCubit = BlocProvider.of<SliderCubit>(context);
-    return BlocBuilder<TabButtonIndexDartCubit, TabButtonIndexDartState>(
-      bloc: tabButtonCubit,
-      builder: (context, state) {
-        state as TabButtonIndex;
-        return InkWell(
-          onTap: () {
-            tabButtonCubit.emit(
-              TabButtonIndex(
-                buttonIndex: buttonIndex,
-              ),
-            );
+    return InkWell(
+      onTap: () {
+        log(buttonIndex.toString());
+        tabButtonCubit.emit(
+          TabButtonIndex(
+            slideIndex: buttonIndex,
+          ),
+        );
+      },
+      child: BlocBuilder<TabButtonIndexDartCubit, TabButtonIndexDartState>(
+        bloc: tabButtonCubit,
+        builder: (context, state) {
+          state as TabButtonIndex;
 
-            slideCubit.state.pageController.animateToPage(
-              buttonIndex,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.fastLinearToSlowEaseIn,
-            );
-          },
-          child: Padding(
+          return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 1),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: buttonIndex == state.buttonIndex
+                color: buttonIndex == state.slideIndex ||
+                        (buttonIndex == 0 && state.slideIndex == 0)
                     ? Colors.pink.shade100
                     : null,
                 border: Border.all(
@@ -48,15 +47,17 @@ class CustomeTabButton extends StatelessWidget {
                 ),
               ),
               child: Text(
-                creationTime.toString().split(" ")[1].split(".")[0],
+                buttonIndex == 0
+                    ? "[пустой]"
+                    : creationTime.toString().split(" ")[1].split(".")[0],
                 style: const TextStyle(
                   color: Colors.black,
                 ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

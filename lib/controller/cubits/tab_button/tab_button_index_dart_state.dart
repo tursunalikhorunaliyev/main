@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 abstract class TabButtonIndexDartState {}
 
 class TabButtonIndex extends TabButtonIndexDartState {
-  final int buttonIndex;
+  final int slideIndex;
 
-  TabButtonIndex({required this.buttonIndex});
+  TabButtonIndex({required this.slideIndex});
 }

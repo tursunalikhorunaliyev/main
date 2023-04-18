@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:napt_sklad/controller/checkbox_border.dart';
 import 'package:napt_sklad/controller/enums/check_box_enum.dart';
 import 'package:napt_sklad/model/sell_model_test.dart';
@@ -77,7 +76,7 @@ class SellDataGridSource extends DataGridSource {
           alignment: Alignment.centerRight,
           child: Text(
             e.value.toString(),
-            style: GoogleFonts.roboto(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
@@ -91,7 +90,7 @@ class SellDataGridSource extends DataGridSource {
           padding: const EdgeInsets.only(right: 3),
           child: Text(
             e.value.toString(),
-            style: GoogleFonts.roboto(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
@@ -105,7 +104,7 @@ class SellDataGridSource extends DataGridSource {
           padding: const EdgeInsets.only(right: 3),
           child: Text(
             e.value.toString(),
-            style: GoogleFonts.roboto(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
@@ -119,7 +118,7 @@ class SellDataGridSource extends DataGridSource {
           alignment: Alignment.centerLeft,
           child: Text(
             e.value.toString(),
-            style: GoogleFonts.roboto(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
@@ -133,7 +132,7 @@ class SellDataGridSource extends DataGridSource {
           padding: const EdgeInsets.only(right: 3),
           child: Text(
             e.value.toString(),
-            style: GoogleFonts.roboto(
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
@@ -147,7 +146,7 @@ class SellDataGridSource extends DataGridSource {
           alignment: Alignment.center,
           child: Text(
             e.value.toString(),
-            style: GoogleFonts.roboto(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
