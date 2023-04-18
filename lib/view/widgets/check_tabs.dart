@@ -60,7 +60,25 @@ class CheckTabs extends StatelessWidget {
                         bloc: sliderBloC,
                         builder: (context, state) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              final List<Widget> slidePanels =
+                                  state.dataGridPanels;
+
+                              final List<Widget> slideTabs = state.checkTabs;
+
+                              if (slideTabs.length > 1) {
+                                slidePanels.removeAt(slidePanels.length - 2);
+                                slideTabs.removeAt(slideTabs.length - 2);
+                                final newSlideData = SliderCubitData(
+                                  dataGridPanels: slidePanels,
+                                  checkTabs: slideTabs,
+                                  pageController: state.pageController,
+                                );
+                                sliderBloC.emit(
+                                  newSlideData,
+                                );
+                              }
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

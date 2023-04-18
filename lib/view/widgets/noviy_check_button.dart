@@ -24,14 +24,22 @@ class NoviyCheckButton extends StatelessWidget {
               final List<Widget> newcheckTabs = state.checkTabs;
 
               newTopPanels.add(const CheckTabs());
-              newcheckTabs.add(
-                Container(
-                  alignment: Alignment.center,
-                  color: const Color.fromARGB(255, 0, 151, 50),
-                  child: Text(
-                    DateTime.now().toString().split(" ")[1].split(".")[0],
-                    style: const TextStyle(
-                      color: Colors.white,
+              newcheckTabs.insert(
+                newcheckTabs.length - 1,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    alignment: Alignment.center,
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.black)),
+                    //color: const Color.fromARGB(255, 0, 151, 50),
+                    child: Text(
+                      DateTime.now().toString().split(" ")[1].split(".")[0],
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -47,6 +55,7 @@ class NoviyCheckButton extends StatelessWidget {
               );
             },
             child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
               alignment: Alignment.center,
               color: const Color.fromARGB(255, 0, 151, 50),
               child: const Text(
