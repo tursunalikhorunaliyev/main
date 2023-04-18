@@ -60,14 +60,7 @@ class CheckTabs extends StatelessWidget {
                         bloc: sliderBloC,
                         builder: (context, state) {
                           return InkWell(
-                            onTap: () {
-                              final newSliderCubit = SliderCubitData(
-                                contentLength: state.contentLength - 1,
-                                pageIndex: state.pageIndex,
-                                pageController: state.pageController,
-                              );
-                              sliderBloC.emit(newSliderCubit);
-                            },
+                            onTap: () {},
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

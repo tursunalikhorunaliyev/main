@@ -4,15 +4,13 @@ part of 'slider_cubit_cubit.dart';
 abstract class SliderCubitState {}
 
 class SliderCubitData extends SliderCubitState {
-  int contentLength;
-  int pageIndex;
-  PageController pageController;
-  DateTime? dateTime;
+  final List<Widget> dataGridPanels;
+  final List<Widget> checkTabs;
+  final PageController pageController;
 
   SliderCubitData({
-    required this.contentLength,
-    required this.pageIndex,
+    required this.dataGridPanels,
+    required this.checkTabs,
     required this.pageController,
-    this.dateTime,
   });
 }

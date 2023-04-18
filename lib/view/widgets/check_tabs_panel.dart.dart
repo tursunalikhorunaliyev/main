@@ -20,60 +20,26 @@ class CheckTabsPanel extends StatelessWidget {
     return BlocBuilder<SliderCubit, SliderCubitData>(
       bloc: checkProvider,
       builder: (context, state) {
-        List<String> dateTimeList = state.dateTime.toString().split(" ");
-        final date = dateTimeList[0];
-        final time = dateTimeList[1].split(".")[0];
-        log(state.contentLength.toString());
-
-        if (state.contentLength > 1) {
+        if (state.checkTabs.length > 1) {
           state.pageController.animateToPage(
-            state.contentLength - 1,
+            state.checkTabs.length - 1,
             duration: const Duration(milliseconds: 500),
             curve: Curves.fastLinearToSlowEaseIn,
           );
         }
-
         return Column(children: [
           Flexible(
-            child: PageView.builder(
+            child: PageView(
+              allowImplicitScrolling: true,
               controller: state.pageController,
               scrollDirection: Axis.horizontal,
-              itemCount: state.contentLength,
-              itemBuilder: (context, index) {
-                return const CheckTabs();
-              },
+              children: state.dataGridPanels,
             ),
           ),
           SizedBox(
             height: 30,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: state.contentLength,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    final slideData = SliderCubitData(
-                        contentLength: state.contentLength + 1,
-                        pageIndex: state.pageIndex,
-                        pageController: state.pageController,
-                        dateTime: DateTime.now());
-                    checkProvider.emit(slideData);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 1),
-                    child: Container(
-                      alignment: Alignment.center,
-                      color: const Color.fromARGB(255, 0, 151, 50),
-                      child: Text(
-                        "$date $time",
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
+            child: Row(
+              children: state.checkTabs,
             ),
           )
         ]);
