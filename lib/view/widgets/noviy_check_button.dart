@@ -3,7 +3,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
 import 'package:napt_sklad/view/widgets/check_tabs.dart';
+import 'package:napt_sklad/view/widgets/tab_button.dart';
 import 'package:provider/provider.dart';
 
 class NoviyCheckButton extends StatelessWidget {
@@ -23,27 +26,17 @@ class NoviyCheckButton extends StatelessWidget {
               final List<Widget> newTopPanels = state.dataGridPanels;
               final List<Widget> newcheckTabs = state.checkTabs;
 
-              newTopPanels.add(const CheckTabs());
+              if (newcheckTabs.length > 1) {
+                newTopPanels.add(const CheckTabs());
+              }
+
               newcheckTabs.insert(
-                newcheckTabs.length - 1,
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 1),
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                    alignment: Alignment.center,
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.black)),
-                    //color: const Color.fromARGB(255, 0, 151, 50),
-                    child: Text(
-                      DateTime.now().toString().split(" ")[1].split(".")[0],
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-              );
+                  newcheckTabs.length - 1,
+                  CustomeTabButton(
+                    buttonIndex: newcheckTabs.length - 1,
+                    creationTime: DateTime.now(),
+                  ));
+
               final sliderCubitDataNew = SliderCubitData(
                 dataGridPanels: newTopPanels,
                 checkTabs: newcheckTabs,

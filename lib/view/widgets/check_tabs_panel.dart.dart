@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/view/widgets/check_tabs.dart';
 import 'package:provider/provider.dart';
 
@@ -22,27 +23,33 @@ class CheckTabsPanel extends StatelessWidget {
       builder: (context, state) {
         if (state.checkTabs.length > 1) {
           state.pageController.animateToPage(
-            state.checkTabs.length - 1,
+            state.checkTabs.length,
             duration: const Duration(milliseconds: 500),
             curve: Curves.fastLinearToSlowEaseIn,
           );
         }
-        return Column(children: [
-          Flexible(
-            child: PageView(
-              allowImplicitScrolling: true,
-              controller: state.pageController,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              child: PageView(
+                allowImplicitScrolling: true,
+                controller: state.pageController,
+                scrollDirection: Axis.horizontal,
+                children: state.dataGridPanels,
+              ),
+            ),
+            SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              children: state.dataGridPanels,
-            ),
-          ),
-          SizedBox(
-            height: 30,
-            child: Row(
-              children: state.checkTabs,
-            ),
-          )
-        ]);
+              child: SizedBox(
+                height: 30,
+                child: Row(
+                  children: state.checkTabs,
+                ),
+              ),
+            )
+          ],
+        );
       },
     );
   }
