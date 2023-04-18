@@ -25,7 +25,7 @@ class CheckTabsPanel extends StatelessWidget {
     return BlocBuilder<SliderCubit, SliderCubitData>(
       bloc: checkProvider,
       builder: (context, state) {
-        if (state.dataGridPanels.length > 1) {
+        if (state.checkTabs.length > 2) {
           state.pageController.animateToPage(
             state.dataGridPanels.length - 1,
             duration: const Duration(milliseconds: 300),
@@ -44,18 +44,18 @@ class CheckTabsPanel extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return state.dataGridPanels[index];
                 },
-                onPageChanged: (value) {
+                /* onPageChanged: (value) {
+                  tabBarCubit.emit(TabButtonIndex(slideIndex: value));
                   state.pageController.animateToPage(
                     value,
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.fastLinearToSlowEaseIn,
                   );
-                  tabBarCubit.emit(TabButtonIndex(slideIndex: value));
-                },
+                }, */
               ),
             ),
             SizedBox(
-              height: 30,
+              height: 40,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: checkProvider.state.checkTabs.length,

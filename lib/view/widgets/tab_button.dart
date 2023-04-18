@@ -26,6 +26,12 @@ class CustomeTabButton extends StatelessWidget {
             slideIndex: buttonIndex,
           ),
         );
+
+        slideCubit.state.pageController.animateToPage(
+          buttonIndex,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.fastLinearToSlowEaseIn,
+        );
       },
       child: BlocBuilder<TabButtonIndexDartCubit, TabButtonIndexDartState>(
         bloc: tabButtonCubit,
@@ -41,7 +47,7 @@ class CustomeTabButton extends StatelessWidget {
                 color: buttonIndex == state.slideIndex ||
                         (buttonIndex == 0 && state.slideIndex == 0)
                     ? Colors.pink.shade100
-                    : null,
+                    : Color.fromARGB(31, 214, 214, 214),
                 border: Border.all(
                   color: Colors.black,
                 ),
