@@ -47,7 +47,7 @@ class CustomeTabButton extends StatelessWidget {
                 color: buttonIndex == state.slideIndex ||
                         (buttonIndex == 0 && state.slideIndex == 0)
                     ? Colors.pink.shade100
-                    : Color.fromARGB(31, 214, 214, 214),
+                    : const Color.fromARGB(31, 214, 214, 214),
                 border: Border.all(
                   color: Colors.black,
                 ),
