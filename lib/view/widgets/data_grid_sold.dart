@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/checkbox_border.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
 import 'package:napt_sklad/model/datagrid_content.dart';
 import 'package:napt_sklad/model/sold_datagrid_source.dart';
@@ -17,6 +16,7 @@ class DataGridMainSoldList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataGridProvider = Provider.of<DataGridProvider>(context);
+    final media = MediaQuery.of(context).size;
     return SfDataGridTheme(
       data: SfDataGridThemeData(
         selectionColor: Colors.amber,
@@ -40,7 +40,17 @@ class DataGridMainSoldList extends StatelessWidget {
         headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
-            minimumWidth: 523.5,
+            minimumWidth: media.width == 3840
+                ? 2945
+                : media.width == 3456
+                    ? 2562
+                    : media.width == 2560
+                        ? 1665
+                        : media.width == 1920
+                            ? 1025
+                            : media.width == 1280
+                                ? 385
+                                : 545,
             columnName: "PN",
             label: const GridColumns(
               text: "Полное наимование",

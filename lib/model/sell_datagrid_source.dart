@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/controller/enums/check_box_enum.dart';
 import 'package:napt_sklad/model/sell_model_test.dart';
-import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class SellDataGridSource extends DataGridSource {
@@ -88,11 +85,13 @@ class SellDataGridSource extends DataGridSource {
         alignment: Alignment.centerRight,
         child: Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: Text(
-            e.value.toString(),
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+          child: Expanded(
+            child: Text(
+              e.value.toString(),
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

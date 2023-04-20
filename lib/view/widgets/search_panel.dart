@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/view/widgets/custome_input_date_picker.dart';
 
 class SearchPanel extends StatelessWidget {
   const SearchPanel({super.key});
@@ -12,8 +10,7 @@ class SearchPanel extends StatelessWidget {
         const SizedBox(
           width: 0.2,
         ),
-        SizedBox(
-          width: 1199,
+        Expanded(
           child: TextField(
             decoration: InputDecoration(
               hintText: "Поиск",
@@ -87,7 +84,7 @@ class SearchPanel extends StatelessWidget {
             ),
           ],
         ), */
-        const Spacer(),
+
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             fixedSize: const Size(80, 50),

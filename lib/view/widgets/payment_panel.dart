@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/service/month_name.dart';
+import 'package:napt_sklad/view/widgets/custome_clock.dart';
 import 'package:napt_sklad/view/widgets/payment_button.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 
@@ -7,6 +9,7 @@ class PaymentPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> dateData = MonthName.getData(DateTime.now());
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -14,31 +17,13 @@ class PaymentPanel extends StatelessWidget {
           height: 5,
         ),
         Text(
-          DateTime.now().toString().split(" ")[0].toString(),
+          "${dateData[0]} ${dateData[1]}",
           style: const TextStyle(
             fontSize: 20,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        DigitalClock(
-          is24HourTimeFormat: true,
-          hourMinuteDigitTextStyle: const TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w400,
-          ),
-          colon: const Text(
-            ":",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          secondDigitTextStyle: const TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w200,
-          ),
-          digitAnimationStyle: Curves.fastLinearToSlowEaseIn,
-        ),
+        const CustomeClock(),
         Column(
           children: const [
             PaymentButton(

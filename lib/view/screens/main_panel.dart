@@ -32,8 +32,8 @@ class MainPanel extends StatelessWidget {
                           child: const CheckTabsPanel(),
                         ),
                       ),
-                      const Flexible(
-                        flex: 2,
+                      const SizedBox(
+                        height: 45,
                         child: SearchPanel(),
                       ),
                       Flexible(
@@ -42,7 +42,7 @@ class MainPanel extends StatelessWidget {
                             padding: const EdgeInsets.only(
                               left: 1,
                             ),
-                            child: DataGridMainSoldList()),
+                            child: Expanded(child: DataGridMainSoldList())),
                       ),
                     ],
                   ),
@@ -54,8 +54,8 @@ class MainPanel extends StatelessWidget {
                   endIndent: 1,
                   color: Colors.black,
                 ),
-                const Flexible(
-                  flex: 2,
+                const SizedBox(
+                  width: 140,
                   child: Center(
                     child: PaymentPanel(),
                   ),

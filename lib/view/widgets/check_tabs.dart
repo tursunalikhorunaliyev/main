@@ -28,93 +28,84 @@ class CheckTabs extends StatelessWidget {
           const SizedBox(
             width: 1,
           ),
-          Flexible(
-            flex: 10,
+          Expanded(
+            child: DataGridMainSellList(),
+          ),
+          SizedBox(
+            width: 210,
             child: Column(
               children: [
-                Flexible(
-                  flex: 20,
-                  child: DataGridMainSellList(),
+                const SizedBox(
+                  height: 12,
                 ),
-              ],
-            ),
-          ),
-          Flexible(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 12,
+                const Flexible(
+                  flex: 8,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: PokupokInfo(),
                   ),
-                  const Flexible(
-                    flex: 8,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8),
-                      child: PokupokInfo(),
-                    ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 12,
                   ),
-                  Flexible(
-                    flex: 1,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 5),
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.pink.shade100,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: InkWell(
-                        onTap: () {
-                          final state = tabButtonCubit.state as TabButtonIndex;
-                          log("-----------*--${state.slideIndex}--*--------");
-                          final List<Widget> slidePanels =
-                              sliderBloC.state.dataGridPanels;
-                          final List<Widget> tabButtons =
-                              sliderBloC.state.checkTabs;
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                    width: 150,
+                    decoration: BoxDecoration(
+                        color: Colors.pink.shade100,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: InkWell(
+                      onTap: () {
+                        final state = tabButtonCubit.state as TabButtonIndex;
+                        log("-----------*--${state.slideIndex}--*--------");
+                        final List<Widget> slidePanels =
+                            sliderBloC.state.dataGridPanels;
+                        final List<Widget> tabButtons =
+                            sliderBloC.state.checkTabs;
 
-                          final List<DateTime> createdTimes =
-                              sliderBloC.state.createdTimes;
+                        final List<DateTime> createdTimes =
+                            sliderBloC.state.createdTimes;
 
-                          if (slidePanels.length != 1) {
-                            slidePanels.removeAt(state.slideIndex);
-                            tabButtons.removeAt(state.slideIndex);
-                            createdTimes.removeAt(state.slideIndex);
+                        if (slidePanels.length != 1) {
+                          slidePanels.removeAt(state.slideIndex);
+                          tabButtons.removeAt(state.slideIndex);
+                          createdTimes.removeAt(state.slideIndex);
 
-                            sliderBloC.emit(
-                              SliderCubitData(
-                                  dataGridPanels: slidePanels,
-                                  checkTabs: tabButtons,
-                                  pageController:
-                                      sliderBloC.state.pageController,
-                                  createdTimes: createdTimes),
-                            );
-                            tabButtonCubit.emit(
-                              TabButtonIndex(
-                                slideIndex: state.slideIndex - 1,
-                              ),
-                            );
-                          }
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/cancel.png",
-                              width: 20,
-                              height: 20,
+                          sliderBloC.emit(
+                            SliderCubitData(
+                                dataGridPanels: slidePanels,
+                                checkTabs: tabButtons,
+                                pageController: sliderBloC.state.pageController,
+                                createdTimes: createdTimes),
+                          );
+                          tabButtonCubit.emit(
+                            TabButtonIndex(
+                              slideIndex: state.slideIndex - 1,
                             ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Text("Закрит чек")
-                          ],
-                        ),
+                          );
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/cancel.png",
+                            width: 20,
+                            height: 20,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text("Закрит чек")
+                        ],
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         ],

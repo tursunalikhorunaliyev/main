@@ -1,10 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/controller/enums/check_box_enum.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
 import 'package:napt_sklad/model/datagrid_content.dart';
 import 'package:napt_sklad/model/sell_dataGrid_source.dart';
-import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -19,6 +18,9 @@ class DataGridMainSellList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataGridProvider = Provider.of<DataGridProvider>(context);
+    final media = MediaQuery.of(context).size;
+    log(media.width.toString());
+    log(media.height.toString());
     return SfDataGridTheme(
       data: SfDataGridThemeData(
         selectionColor: Colors.amber,
@@ -43,28 +45,38 @@ class DataGridMainSellList extends StatelessWidget {
         stackedHeaderRows: [],
         columns: [
           GridColumn(
-            minimumWidth: 266,
+            minimumWidth: media.width == 3840
+                ? 2668
+                : media.width == 3456
+                    ? 2285
+                    : media.width == 2560
+                        ? 1388
+                        : media.width == 1920
+                            ? 748
+                            : media.width == 1280
+                                ? 108
+                                : 268,
             columnName: "PN",
             label: const GridColumns(
               text: "Полное наимование",
             ),
           ),
           GridColumn(
-            maximumWidth: 120,
+            maximumWidth: 80,
             columnName: "Kolichestvo",
             label: const GridColumns(
-              text: "Количество",
+              text: "Кол-во",
             ),
           ),
           GridColumn(
-            maximumWidth: 120,
+            minimumWidth: 120,
             columnName: "Sena",
             label: const GridColumns(
               text: "Сена",
             ),
           ),
           GridColumn(
-            maximumWidth: 120,
+            minimumWidth: 120,
             columnName: "Summa",
             label: const GridColumns(
               text: "Сумма",

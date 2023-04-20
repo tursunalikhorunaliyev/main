@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/checkbox_border.dart';
-import 'package:napt_sklad/controller/enums/check_box_enum.dart';
 import 'package:napt_sklad/model/sold_model_test.dart';
-import 'package:napt_sklad/view/widgets/check_box_custome.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class SoldDataGridSource extends DataGridSource {
@@ -16,9 +13,7 @@ class SoldDataGridSource extends DataGridSource {
           (e) => DataGridRow(
             cells: [
               DataGridCell<String>(
-                columnName: "Polnoe Naimovanie",
-                value: e.polnoeNaimovaniye,
-              ),
+                  columnName: "PN", value: e.polnoeNaimovaniye),
               DataGridCell<int>(
                 columnName: "UP",
                 value: e.up,
