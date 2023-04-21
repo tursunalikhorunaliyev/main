@@ -32,17 +32,15 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   pluto_menu_bar: ^3.0.1
-  menu_bar: ^0.4.1
+ 
   syncfusion_flutter_core: ^21.1.39
   syncfusion_flutter_datagrid: ^21.1.39
   provider: ^6.0.5
-  date_field: ^3.0.5
-  ripple_button: ^3.4.1
-  tabbed_view: ^1.16.0+1
   bloc: ^8.0.0
   flutter_bloc: ^8.0.0
-  slide_digital_clock: ^1.0.3
   intl: ^0.18.0
+  flutter_feathersjs: ^4.0.5+1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

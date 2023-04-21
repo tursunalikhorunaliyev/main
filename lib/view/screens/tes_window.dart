@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
+import '../../controller/data/connection_data.dart';
+import 'package:http/http.dart' as http;
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -10,6 +15,22 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   int selectedIndex = -1;
   bool isSelected = false;
+
+  getData() async {
+    var response =
+        await Api.feathers().create(serviceName: "authentication", data: {
+      "strategy": "local",
+      "email": "test",
+      "password": "test",
+    });
+    log(response.toString());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
