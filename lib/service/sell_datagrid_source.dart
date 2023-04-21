@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/model/sold_model_test.dart';
+import 'package:napt_sklad/controller/data/model/sell_model_test.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class SoldDataGridSource extends DataGridSource {
+class SellDataGridSource extends DataGridSource {
   List<DataGridRow> _studentsGrid = [];
 
-  final List<SoldDataModel> students;
+  final List<SellDataModel> students;
 
-  SoldDataGridSource({required this.students}) {
+  SellDataGridSource({required this.students}) {
     _studentsGrid = students
         .map(
           (e) => DataGridRow(
             cells: [
               DataGridCell<String>(
-                  columnName: "PN", value: e.polnoeNaimovaniye),
+                columnName: "PN",
+                value: e.polnoeNaimovaniye,
+              ),
               DataGridCell<int>(
-                columnName: "UP",
-                value: e.up,
+                columnName: "Kolichestvo",
+                value: e.kolichestvo,
               ),
               DataGridCell<int>(
                 columnName: "Sena",
                 value: e.sena,
               ),
               DataGridCell<int>(
-                columnName: "Ostatok",
-                value: e.ostatok,
+                columnName: "Summa",
+                value: e.summa,
               ),
               DataGridCell<String>(
                 columnName: "Srok god",
-                value: e.srok,
+                value: e.srokGod,
               ),
               DataGridCell<String>(
                 columnName: "Seriya",
@@ -43,8 +45,8 @@ class SoldDataGridSource extends DataGridSource {
                 value: e.ikpu,
               ),
               DataGridCell<String>(
-                columnName: "Aksiya",
-                value: e.aksiya,
+                columnName: "Mark",
+                value: e.mark,
               ),
             ],
           ),
@@ -64,9 +66,7 @@ class SoldDataGridSource extends DataGridSource {
   }
 
   Widget columContent(DataGridCell<dynamic> e) {
-    if (e.columnName == "UP" ||
-        e.columnName == "IKPU" ||
-        e.columnName == "Aksiya") {
+    if (e.columnName == "IKPU") {
       return Padding(
         padding: const EdgeInsets.only(right: 3),
         child: Align(
@@ -76,6 +76,22 @@ class SoldDataGridSource extends DataGridSource {
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
+    } else if (e.columnName == "Kolichestvo") {
+      return Align(
+        alignment: Alignment.centerRight,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 3),
+          child: Expanded(
+            child: Text(
+              e.value.toString(),
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
@@ -94,11 +110,11 @@ class SoldDataGridSource extends DataGridSource {
           ),
         ),
       );
-    } else if (e.columnName == "Ostatok") {
-      return Align(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 3),
+    } else if (e.columnName == "PN") {
+      return Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Align(
+          alignment: Alignment.centerLeft,
           child: Text(
             e.value.toString(),
             style: const TextStyle(
@@ -108,11 +124,11 @@ class SoldDataGridSource extends DataGridSource {
           ),
         ),
       );
-    } else if (e.columnName == "PN") {
-      return Padding(
-        padding: const EdgeInsets.only(left: 5),
-        child: Align(
-          alignment: Alignment.topLeft,
+    } else if (e.columnName == "Summa") {
+      return Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 3),
           child: Text(
             e.value.toString(),
             style: const TextStyle(

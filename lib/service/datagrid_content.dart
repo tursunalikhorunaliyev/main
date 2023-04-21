@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/model/sell_model_test.dart';
-import 'package:napt_sklad/model/sold_model_test.dart';
+import 'package:napt_sklad/controller/data/model/sell_model_test.dart';
+import 'package:napt_sklad/controller/data/model/sold_model_test.dart';
 
 abstract class DataGridContent {
   static final List<SellDataModel> testDataModelSell = List.generate(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
-import 'package:napt_sklad/model/datagrid_content.dart';
-import 'package:napt_sklad/model/sold_datagrid_source.dart';
+import 'package:napt_sklad/service/datagrid_content.dart';
+import 'package:napt_sklad/service/sold_datagrid_source.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -10,7 +10,8 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 class DataGridMainSoldList extends StatelessWidget {
   DataGridMainSoldList({super.key});
 
-  final testData = SoldDataGridSource(students: DataGridContent.testDataModelSold);
+  final testData =
+      SoldDataGridSource(students: DataGridContent.testDataModelSold);
 
   @override
   Widget build(BuildContext context) {

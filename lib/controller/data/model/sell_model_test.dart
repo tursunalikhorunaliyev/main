@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class SellDataModel {
   final String polnoeNaimovaniye;
   final int kolichestvo;
@@ -10,6 +8,15 @@ class SellDataModel {
   final String mx;
   final String ikpu;
   final String mark;
-  SellDataModel(this.polnoeNaimovaniye, this.kolichestvo, this.sena, this.summa,
-      this.srokGod, this.seriya, this.mx, this.ikpu, this.mark);
+  SellDataModel(
+    this.polnoeNaimovaniye,
+    this.kolichestvo,
+    this.sena,
+    this.summa,
+    this.srokGod,
+    this.seriya,
+    this.mx,
+    this.ikpu,
+    this.mark,
+  );
 }

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class SoldDataModel {
   final String polnoeNaimovaniye;
   final int up;

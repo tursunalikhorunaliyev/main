@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/provider/data_grid_provider.dart';
-import 'package:napt_sklad/model/datagrid_content.dart';
-import 'package:napt_sklad/model/sell_dataGrid_source.dart';
+import 'package:napt_sklad/service/datagrid_content.dart';
+import 'package:napt_sklad/service/sell_datagrid_source.dart';
 import 'package:napt_sklad/view/widgets/grid_columns.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -12,14 +12,13 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 class DataGridMainSellList extends StatelessWidget {
   DataGridMainSellList({super.key});
 
-  final testData = SellDataGridSource(students: DataGridContent.testDataModelSell);
+  final testData =
+      SellDataGridSource(students: DataGridContent.testDataModelSell);
 
   @override
   Widget build(BuildContext context) {
     final dataGridProvider = Provider.of<DataGridProvider>(context);
     final media = MediaQuery.of(context).size;
-    log(media.width.toString());
-    log(media.height.toString());
     return SfDataGridTheme(
       data: SfDataGridThemeData(
         selectionColor: Colors.amber,
