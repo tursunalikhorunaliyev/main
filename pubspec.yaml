@@ -42,7 +42,7 @@ dependencies:
   bloc: ^8.0.0
   flutter_bloc: ^8.0.0
   slide_digital_clock: ^1.0.3
-  
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

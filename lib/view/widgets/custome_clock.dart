@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/cubits/timer/timer_cubit.dart';
@@ -13,15 +11,23 @@ class CustomeClock extends StatelessWidget {
     return BlocBuilder<TimerCubit, TimerState>(
       bloc: dateTimeCubit,
       builder: (context, state) {
-        state as TimerData;
-        log(state.dateTime.toString());
-
-        return Text(
-          state.dateTime,
-          style: const TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-          ),
+        return Column(
+          children: [
+            Text(
+              state.date,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              state.time,
+              style: const TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         );
       },
     );

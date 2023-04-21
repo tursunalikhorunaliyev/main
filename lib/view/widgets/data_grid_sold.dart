@@ -10,8 +10,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 class DataGridMainSoldList extends StatelessWidget {
   DataGridMainSoldList({super.key});
 
-  final testData =
-      SoldDataGridSource(students: DataGridContent.testDataModelSold);
+  final testData = SoldDataGridSource(students: DataGridContent.testDataModelSold);
 
   @override
   Widget build(BuildContext context) {
@@ -40,31 +39,32 @@ class DataGridMainSoldList extends StatelessWidget {
         headerGridLinesVisibility: GridLinesVisibility.both,
         columns: [
           GridColumn(
-            minimumWidth: media.width == 3840
-                ? 2945
-                : media.width == 3456
-                    ? 2562
-                    : media.width == 2560
-                        ? 1665
-                        : media.width == 1920
-                            ? 1025
-                            : media.width == 1280
-                                ? 385
-                                : 545,
+            minimumWidth: 400,
+            // media.width == 3840
+            //     ? 2945
+            //     : media.width == 3456
+            //         ? 2562
+            //         : media.width == 2560
+            //             ? 1665
+            //             : media.width == 1920
+            //                 ? 1025
+            //                 : media.width == 1280
+            //                     ? 385
+            //                     : 545,
             columnName: "PN",
             label: const GridColumns(
               text: "Полное наимование",
             ),
           ),
           GridColumn(
-            maximumWidth: 40,
+            maximumWidth: 50,
             columnName: "UP",
             label: const GridColumns(
               text: "УП",
             ),
           ),
           GridColumn(
-            maximumWidth: 120,
+            maximumWidth: 150,
             columnName: "Sena",
             label: const GridColumns(
               text: "Цена",
@@ -105,6 +105,7 @@ class DataGridMainSoldList extends StatelessWidget {
             ),
           ),
           GridColumn(
+            minimumWidth: 155,
             columnName: "Aksiya",
             label: const GridColumns(
               text: "Акция",

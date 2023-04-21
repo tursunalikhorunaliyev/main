@@ -12,8 +12,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 class DataGridMainSellList extends StatelessWidget {
   DataGridMainSellList({super.key});
 
-  final testData =
-      SellDataGridSource(students: DataGridContent.testDataModelSell);
+  final testData = SellDataGridSource(students: DataGridContent.testDataModelSell);
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +44,18 @@ class DataGridMainSellList extends StatelessWidget {
         stackedHeaderRows: [],
         columns: [
           GridColumn(
-            minimumWidth: media.width == 3840
-                ? 2668
-                : media.width == 3456
-                    ? 2285
-                    : media.width == 2560
-                        ? 1388
-                        : media.width == 1920
-                            ? 748
-                            : media.width == 1280
-                                ? 108
-                                : 268,
+            minimumWidth: 240,
+            // media.width == 3840
+            //     ? 2668
+            //     : media.width == 3456
+            //         ? 2285
+            //         : media.width == 2560
+            //             ? 1388
+            //             : media.width == 1920
+            //                 ? 748
+            //                 : media.width == 1280
+            //                     ? 108
+            //                     : 268,
             columnName: "PN",
             label: const GridColumns(
               text: "Полное наимование",
@@ -72,7 +72,7 @@ class DataGridMainSellList extends StatelessWidget {
             minimumWidth: 120,
             columnName: "Sena",
             label: const GridColumns(
-              text: "Сена",
+              text: "Цена",
             ),
           ),
           GridColumn(
@@ -95,6 +95,7 @@ class DataGridMainSellList extends StatelessWidget {
             ),
           ),
           GridColumn(
+            maximumWidth: 30,
             columnName: "MX",
             label: const GridColumns(
               text: "МХ",

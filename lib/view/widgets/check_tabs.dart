@@ -15,8 +15,7 @@ class CheckTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sliderBloC = Provider.of<SliderCubit>(context);
-    final tabButtonCubit =
-        BlocProvider.of<TabButtonIndexDartCubit>(context, listen: false);
+    final tabButtonCubit = BlocProvider.of<TabButtonIndexDartCubit>(context, listen: false);
     return Container(
       decoration: const BoxDecoration(
         border: Border(
@@ -50,59 +49,72 @@ class CheckTabs extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     bottom: 12,
                   ),
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                    width: 150,
-                    decoration: BoxDecoration(
-                        color: Colors.pink.shade100,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: InkWell(
-                      onTap: () {
-                        final state = tabButtonCubit.state as TabButtonIndex;
-                        log("-----------*--${state.slideIndex}--*--------");
-                        final List<Widget> slidePanels =
-                            sliderBloC.state.dataGridPanels;
-                        final List<Widget> tabButtons =
-                            sliderBloC.state.checkTabs;
-
-                        final List<DateTime> createdTimes =
-                            sliderBloC.state.createdTimes;
-
-                        if (slidePanels.length != 1) {
-                          slidePanels.removeAt(state.slideIndex);
-                          tabButtons.removeAt(state.slideIndex);
-                          createdTimes.removeAt(state.slideIndex);
-
-                          sliderBloC.emit(
-                            SliderCubitData(
-                                dataGridPanels: slidePanels,
-                                checkTabs: tabButtons,
-                                pageController: sliderBloC.state.pageController,
-                                createdTimes: createdTimes),
-                          );
-                          tabButtonCubit.emit(
-                            TabButtonIndex(
-                              slideIndex: state.slideIndex - 1,
-                            ),
-                          );
-                        }
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
-                          Image.asset(
-                            "assets/cancel.png",
-                            width: 20,
-                            height: 20,
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              // fixedSize: const Size(80, 50),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(0),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: const Icon(Icons.print_sharp),
                           ),
-                          const SizedBox(
-                            width: 5,
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                            width: 150,
+                            decoration:
+                                BoxDecoration(color: Colors.pink.shade100, borderRadius: BorderRadius.circular(20)),
+                            child: InkWell(
+                              onTap: () {
+                                final state = tabButtonCubit.state as TabButtonIndex;
+                                log("-----------*--${state.slideIndex}--*--------");
+                                final List<Widget> slidePanels = sliderBloC.state.dataGridPanels;
+                                final List<Widget> tabButtons = sliderBloC.state.checkTabs;
+
+                                final List<DateTime> createdTimes = sliderBloC.state.createdTimes;
+
+                                if (slidePanels.length != 1) {
+                                  slidePanels.removeAt(state.slideIndex);
+                                  tabButtons.removeAt(state.slideIndex);
+                                  createdTimes.removeAt(state.slideIndex);
+
+                                  sliderBloC.emit(
+                                    SliderCubitData(
+                                        dataGridPanels: slidePanels,
+                                        checkTabs: tabButtons,
+                                        pageController: sliderBloC.state.pageController,
+                                        createdTimes: createdTimes),
+                                  );
+                                  tabButtonCubit.emit(
+                                    TabButtonIndex(
+                                      slideIndex: state.slideIndex - 1,
+                                    ),
+                                  );
+                                }
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/cancel.png",
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  const Text("Закрыть")
+                                ],
+                              ),
+                            ),
                           ),
-                          const Text("Закрит чек")
                         ],
                       ),
-                    ),
+                    ],
                   ),
                 )
               ],

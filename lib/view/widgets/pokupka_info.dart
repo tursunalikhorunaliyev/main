@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/view/widgets/custome_clock.dart';
 
 class PokupokInfo extends StatelessWidget {
   const PokupokInfo({super.key});
@@ -7,6 +8,7 @@ class PokupokInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const CustomeClock(),
         Container(
           alignment: Alignment.topLeft,
           child: const Text("Сумма"),

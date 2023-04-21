@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
@@ -8,8 +9,7 @@ import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_st
 class CustomeTabButton extends StatelessWidget {
   final int buttonIndex;
   final DateTime creationTime;
-  const CustomeTabButton(
-      {super.key, required this.buttonIndex, required this.creationTime});
+  const CustomeTabButton({super.key, required this.buttonIndex, required this.creationTime});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +40,7 @@ class CustomeTabButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: buttonIndex == state.slideIndex ||
-                        (buttonIndex == 0 && state.slideIndex == 0)
+                color: buttonIndex == state.slideIndex || (buttonIndex == 0 && state.slideIndex == 0)
                     ? Colors.pink.shade100
                     : const Color.fromARGB(31, 214, 214, 214),
                 border: Border.all(
@@ -49,9 +48,10 @@ class CustomeTabButton extends StatelessWidget {
                 ),
               ),
               child: Text(
-                buttonIndex == 0
-                    ? "[пустой]"
-                    : creationTime.toString().split(" ")[1].split(".")[0],
+                // buttonIndex == 0
+                //     ? "[пустой]"
+                //     :
+                creationTime.toString().split(" ")[1].split(".")[0],
                 style: const TextStyle(
                   color: Colors.black,
                 ),

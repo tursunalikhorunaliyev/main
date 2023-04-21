@@ -1,9 +1,16 @@
 part of 'timer_cubit.dart';
 
-abstract class TimerState {}
+abstract class TimerState {
+  get date => null;
+  get time => null;
+}
 
 class TimerData extends TimerState {
-  final String dateTime;
+  @override
+  final String date;
 
-  TimerData(this.dateTime);
+  @override
+  final String time;
+
+  TimerData(this.date, this.time);
 }
