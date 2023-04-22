@@ -21,8 +21,13 @@ class PaymentButton extends StatelessWidget {
           onTap: () {},
           child: Container(
             width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
+            decoration: const BoxDecoration(
+              border: Border.symmetric(
+                horizontal: BorderSide(
+                  color: Colors.black,
+                  width: 0.5,
+                ),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

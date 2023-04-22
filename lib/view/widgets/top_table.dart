@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 
 class TopTable extends StatelessWidget {
-  const TopTable({super.key});
+  final List<SellDataModel> sellDataModel;
+  const TopTable({
+    super.key,
+    required this.sellDataModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +16,10 @@ class TopTable extends StatelessWidget {
         Expanded(
           child: ListView.builder(
             scrollDirection: Axis.vertical,
-            itemCount: 1000,
-            itemBuilder: (context, index) => row(),
+            itemCount: sellDataModel.length,
+            itemBuilder: (context, index) => row(
+              sellDataModel[index],
+            ),
           ),
         )
       ],
@@ -200,7 +207,7 @@ class TopTable extends StatelessWidget {
     );
   }
 
-  Widget row() {
+  Widget row(SellDataModel dataModel) {
     return SizedBox(
       height: 40,
       child: Row(
@@ -208,11 +215,18 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 18,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.polnoeNaimovaniye,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -220,11 +234,18 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 4,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.kolichestvo.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -232,11 +253,18 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 6,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.sena.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -244,6 +272,7 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 6,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
@@ -251,16 +280,10 @@ class TopTable extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
+              child: Text(
+                dataModel.summa.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -268,11 +291,37 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 5,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.srokGod.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 5,
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 0, 131, 175),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.seriya.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -280,6 +329,7 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 2,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
@@ -287,16 +337,10 @@ class TopTable extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
+              child: Text(
+                dataModel.mx.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -304,11 +348,37 @@ class TopTable extends StatelessWidget {
           Flexible(
             flex: 5,
             child: Container(
+              alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.ikpu.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 5,
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 0, 131, 175),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 0.5,
+                ),
+              ),
+              child: Text(
+                dataModel.mark.toString(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),

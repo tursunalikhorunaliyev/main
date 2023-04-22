@@ -6,52 +6,56 @@ class PaymentPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Column(
-          children: const [
-            PaymentButton(
-              imagePath: "assets/cash.png",
-              hotKeyText: "F8",
-              buttonText: "Наличные",
-            ),
-            PaymentButton(
-              imagePath: "assets/humo.png",
-              hotKeyText: "F9",
-              buttonText: "Humo",
-            ),
-            PaymentButton(
-              imagePath: "assets/uzcard.png",
-              hotKeyText: "F10",
-              buttonText: "UzCard",
-            ),
-            PaymentButton(
-              imagePath: "assets/phonelink.png",
-              hotKeyText: "F11",
-              buttonText: "Прочее",
-            ),
-            PaymentButton(
-              imagePath: "assets/info.png",
-              hotKeyText: "F12",
-              buttonText: "Страховка",
-            ),
-          ],
-        ),
-        const Spacer(),
-        Column(
-          children: const [
-            PaymentButton(
-              imagePath: "assets/vozvrat.png",
-              buttonText: "Возврат от покупателя",
-            ),
-            PaymentButton(
-              imagePath: "assets/exit.png",
-              buttonText: "Выход",
-            ),
-          ],
-        )
-      ],
+    return Container(
+      decoration: const BoxDecoration(
+          border: Border(left: BorderSide(color: Colors.black))),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Column(
+            children: const [
+              PaymentButton(
+                imagePath: "assets/cash.png",
+                hotKeyText: "F8",
+                buttonText: "Наличные",
+              ),
+              PaymentButton(
+                imagePath: "assets/humo.png",
+                hotKeyText: "F9",
+                buttonText: "Humo",
+              ),
+              PaymentButton(
+                imagePath: "assets/uzcard.png",
+                hotKeyText: "F10",
+                buttonText: "UzCard",
+              ),
+              PaymentButton(
+                imagePath: "assets/phonelink.png",
+                hotKeyText: "F11",
+                buttonText: "Прочее",
+              ),
+              PaymentButton(
+                imagePath: "assets/info.png",
+                hotKeyText: "F12",
+                buttonText: "Страховка",
+              ),
+            ],
+          ),
+          const Spacer(),
+          Column(
+            children: const [
+              PaymentButton(
+                imagePath: "assets/vozvrat.png",
+                buttonText: "Возврат от покупателя",
+              ),
+              PaymentButton(
+                imagePath: "assets/exit.png",
+                buttonText: "Выход",
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

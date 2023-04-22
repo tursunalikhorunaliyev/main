@@ -5,9 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
-import 'package:napt_sklad/top_table.dart';
-import 'package:napt_sklad/view/widgets/data_grid_sell.dart';
+import 'package:napt_sklad/service/datagrid_content.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
+import 'package:napt_sklad/view/widgets/top_table.dart';
 import 'package:provider/provider.dart';
 
 class CheckTabs extends StatelessWidget {
@@ -20,8 +20,14 @@ class CheckTabs extends StatelessWidget {
         BlocProvider.of<TabButtonIndexDartCubit>(context, listen: false);
     return Row(
       children: [
-        const TopTable(),
-        SizedBox(
+        Expanded(
+          child: TopTable(sellDataModel: DataGridContent.testDataModelSell),
+        ),
+        const SizedBox(
+          width: 250,
+          child: PokupokInfo(),
+        ),
+        /* SizedBox(
           width: 210,
           child: Column(
             children: [
@@ -112,7 +118,7 @@ class CheckTabs extends StatelessWidget {
               )
             ],
           ),
-        ),
+        ), */
       ],
     );
   }
