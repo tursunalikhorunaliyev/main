@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/service/month_name.dart';
 import 'package:napt_sklad/view/widgets/payment_button.dart';
 
 class PaymentPanel extends StatelessWidget {
@@ -7,7 +6,6 @@ class PaymentPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> dateData = MonthName.getData(DateTime.now());
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

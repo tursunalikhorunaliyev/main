@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/data/model/sold_model_test.dart';
+import 'package:napt_sklad/controller/data/model/tables/sold_model_test.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class SoldDataGridSource extends DataGridSource {
@@ -67,72 +67,45 @@ class SoldDataGridSource extends DataGridSource {
     if (e.columnName == "UP" ||
         e.columnName == "IKPU" ||
         e.columnName == "Aksiya") {
-      return Padding(
-        padding: const EdgeInsets.only(right: 3),
-        child: Align(
-          alignment: Alignment.centerRight,
-          child: Text(
-            e.value.toString(),
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      return Text(
+        e.value.toString(),
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
         ),
       );
     } else if (e.columnName == "Sena") {
-      return Align(
-        alignment: Alignment.centerRight,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 3),
-          child: Text(
-            e.value.toString(),
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      return Text(
+        e.value.toString(),
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
         ),
       );
     } else if (e.columnName == "Ostatok") {
-      return Align(
-        alignment: Alignment.center,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 3),
-          child: Text(
-            e.value.toString(),
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+      return Padding(
+        padding: const EdgeInsets.only(right: 3),
+        child: Text(
+          e.value.toString(),
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
       );
     } else if (e.columnName == "PN") {
-      return Padding(
-        padding: const EdgeInsets.only(left: 5),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            e.value.toString(),
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      return Text(
+        e.value.toString(),
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
         ),
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.only(left: 2),
-        child: Align(
-          alignment: Alignment.center,
-          child: Text(
-            e.value.toString(),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      return Text(
+        e.value.toString(),
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
         ),
       );
     }

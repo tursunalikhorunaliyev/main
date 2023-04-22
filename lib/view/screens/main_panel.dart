@@ -1,22 +1,80 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
+import 'package:napt_sklad/bottom_table.dart';
+import 'package:napt_sklad/top_table.dart';
 import 'package:napt_sklad/view/widgets/check_tabs_panel.dart.dart';
-import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
+import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:napt_sklad/view/widgets/search_panel.dart';
-import 'package:provider/provider.dart';
 
 class MainPanel extends StatelessWidget {
   const MainPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final s = MediaQuery.of(context).size.width - 310;
+    log(s.toString());
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Row(
         children: [
+          Expanded(
+            child: Column(
+              children: [
+                Flexible(
+                  flex: 5,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 310,
+                        child: const TopTable(),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        width: 250,
+                        //color: Colors.pink.shade900,
+                        child: const PokupokInfo(),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 45,
+                  color: const Color.fromARGB(255, 7, 255, 168),
+                ),
+                Container(
+                  height: 40,
+                  color: Colors.deepOrangeAccent,
+                  child: const SearchPanel(),
+                ),
+                Flexible(
+                  flex: 4,
+                  child: Container(
+                    color: Colors.deepOrange,
+                    child: const BottomTable(),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            width: 60,
+            //color: Colors.red,
+            child: const PaymentPanel(),
+          )
+        ],
+      ), /* Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          SizedBox(
+            width: 60,
+            child: Center(
+              child: PaymentPanel(),
+            ),
+          ),
           // const MenuBarTop(),
-          Flexible(
+          /* Flexible(
             flex: 5,
             child: Row(
               children: [
@@ -61,9 +119,9 @@ class MainPanel extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          ), */
         ],
-      ),
+      ), */
     );
   }
 }

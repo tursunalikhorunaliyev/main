@@ -29,12 +29,11 @@ class PaymentButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: imagePath.endsWith("humo.png") ? 3 : 5),
+                  padding: const EdgeInsets.symmetric(vertical: 5),
                   child: Image.asset(
                     imagePath,
-                    width: imagePath.endsWith("humo.png") ? 35 : 30,
-                    height: imagePath.endsWith("humo.png") ? 35 : 30,
+                    width: 30,
+                    height: 30,
                   ),
                 ),
                 hotKeyText.isNotEmpty

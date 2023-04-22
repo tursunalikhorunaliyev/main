@@ -24,7 +24,7 @@ void main(List<String> args) {
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const TestPage(),
+      home: const MainPanel(),
     ),
   ));
 }

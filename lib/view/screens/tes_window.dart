@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:developer';
 
-import '../../controller/data/connection_data.dart';
+import 'package:flutter/material.dart';
+import 'package:napt_sklad/view/widgets/data_grid_sell.dart';
+import 'package:napt_sklad/view/widgets/data_grid_sold.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -12,37 +15,47 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   int selectedIndex = -1;
   bool isSelected = false;
-
-  getData() async {
-    final response = await Api.feathers().find(serviceName: "memories", query: {
-      "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
-      "ctx": const ['drugs'],
-      "search": "крем для рук"
-    });
-    print(response.toString());
-  }
+  String data = "";
 
   @override
   void initState() {
     super.initState();
-    getData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: List.generate(
-          10,
-          (index) => Checkbox(
-            value: selectedIndex == index ? isSelected : false,
-            onChanged: (value) {
-              isSelected = !isSelected;
-              selectedIndex = index;
-              setState(() {});
-            },
+      body: Row(
+        children: [
+          Expanded(
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    color: Colors.green,
+                  ),
+                ),
+                Container(
+                  height: 45,
+                  color: Colors.amber,
+                ),
+                Container(
+                  height: 40,
+                  color: Colors.deepOrangeAccent,
+                ),
+                Expanded(
+                  child: Container(
+                    color: Colors.pink,
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+          Container(
+            width: 60,
+            color: Colors.red,
+          )
+        ],
       ),
     );
   }

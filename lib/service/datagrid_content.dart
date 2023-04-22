@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/data/model/sell_model_test.dart';
-import 'package:napt_sklad/controller/data/model/sold_model_test.dart';
+import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
+import 'package:napt_sklad/controller/data/model/tables/sold_model_test.dart';
 
 abstract class DataGridContent {
   static final List<SellDataModel> testDataModelSell = List.generate(
@@ -12,9 +12,9 @@ abstract class DataGridContent {
       70068768,
       "02.06.2024",
       "12345678",
-      "test",
-      "test",
-      "test",
+      "1",
+      "1",
+      "1",
     ),
   );
 
