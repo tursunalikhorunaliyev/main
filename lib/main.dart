@@ -19,9 +19,12 @@ void main(List<String> args) {
         create: (context) => DataGridProvider(),
       ),
     ],
-    child: const MaterialApp(
+    child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TestPage(),
+      theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const TestPage(),
     ),
   ));
 }

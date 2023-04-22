@@ -40,7 +40,6 @@ dependencies:
   flutter_bloc: ^8.0.0
   intl: ^0.18.0
   flutter_feathersjs: ^4.0.5+1
-  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
