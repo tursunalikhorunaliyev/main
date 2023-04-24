@@ -14,8 +14,6 @@ class MainPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final s = MediaQuery.of(context).size.width - 310;
-    log(s.toString());
     return Scaffold(
       body: Row(
         children: [

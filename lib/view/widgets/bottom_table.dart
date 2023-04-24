@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
+import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/controller/data/model/tables/sold_model_test.dart';
 
 class BottomTable extends StatelessWidget {
@@ -10,15 +15,27 @@ class BottomTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final searchCubti = BlocProvider.of<SearchCubit>(context);
+
     return Column(
       children: [
         rowHeader(),
-        Expanded(
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: soldDataModel.length,
-            itemBuilder: (context, index) => row(soldDataModel[index]),
-          ),
+        BlocBuilder<SearchCubit, SearchCubitState>(
+          bloc: searchCubti,
+          builder: (context, state) {
+            state as SearchCubitData;
+            log(state.searchData.toString());
+            return state.searchData == null
+                ? const SizedBox()
+                : Expanded(
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: state.searchData!.data.length,
+                      itemBuilder: (context, index) =>
+                          row(state.searchData!.data[index]),
+                    ),
+                  );
+          },
         )
       ],
     );
@@ -205,7 +222,7 @@ class BottomTable extends StatelessWidget {
     );
   }
 
-  Widget row(SoldDataModel dataModel) {
+  Widget row(Data dataModel) {
     return SizedBox(
       height: 40,
       child: Row(
@@ -222,7 +239,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.polnoeNaimovaniye,
+                dataModel.name,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -241,7 +258,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.up.toString(),
+                dataModel.manufacturer,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -260,7 +277,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.sena.toString(),
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -279,7 +296,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.ostatok.toString(),
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -298,7 +315,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.seriya,
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -317,7 +334,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.srok,
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -336,7 +353,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.mx,
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -355,7 +372,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.ikpu,
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -374,7 +391,7 @@ class BottomTable extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.aksiya,
+                "",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

@@ -14,7 +14,7 @@ class FeathersService {
     return authData;
   }
 
-  Future<SearchData> getData(String search) async {
+  Future<SearchData> getSearchData(String search) async {
     Map<String, dynamic> response =
         await Api.feathers().find(serviceName: "memories", query: {
       "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
