@@ -15,9 +15,6 @@ class CheckTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sliderBloC = Provider.of<SliderCubit>(context);
-    final tabButtonCubit =
-        BlocProvider.of<TabButtonIndexDartCubit>(context, listen: false);
     return Row(
       children: [
         Expanded(

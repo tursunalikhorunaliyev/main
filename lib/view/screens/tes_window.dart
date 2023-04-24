@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class TestPage extends StatefulWidget {
@@ -19,39 +21,26 @@ class _TestPageState extends State<TestPage> {
 
   @override
   Widget build(BuildContext context) {
+    final focusNode = FocusNode();
     return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    color: Colors.green,
-                  ),
-                ),
-                Container(
-                  height: 45,
-                  color: Colors.amber,
-                ),
-                Container(
-                  height: 40,
-                  color: Colors.deepOrangeAccent,
-                ),
-                Expanded(
-                  child: Container(
-                    color: Colors.pink,
-                  ),
-                )
-              ],
-            ),
+        body: Center(
+      child: RawKeyboardListener(
+        autofocus: focusNode.hasFocus,
+        focusNode: focusNode,
+        onKey: (value) {
+          log(value.toString());
+        },
+        child: GestureDetector(
+          onTap: () {
+            focusNode.requestFocus();
+          },
+          child: Container(
+            width: 200,
+            height: 200,
+            color: Colors.amber,
           ),
-          Container(
-            width: 60,
-            color: Colors.red,
-          )
-        ],
+        ),
       ),
-    );
+    ));
   }
 }

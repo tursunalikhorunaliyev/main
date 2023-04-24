@@ -2,21 +2,18 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/bloc/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
-import 'package:napt_sklad/controller/data/model/search/search_data.dart';
-import 'package:napt_sklad/controller/data/model/tables/sold_model_test.dart';
+import 'package:napt_sklad/view/widgets/bottom_grid_row.dart';
 
 class BottomTable extends StatelessWidget {
-  final List<SoldDataModel> soldDataModel;
   const BottomTable({
     super.key,
-    required this.soldDataModel,
   });
-
   @override
   Widget build(BuildContext context) {
     final searchCubti = BlocProvider.of<SearchCubit>(context);
-
+    final selectorBloC = BlocProvider.of<SelectorBloC>(context);
     return Column(
       children: [
         rowHeader(),
@@ -24,17 +21,20 @@ class BottomTable extends StatelessWidget {
           bloc: searchCubti,
           builder: (context, state) {
             state as SearchCubitData;
-            log(state.searchData.toString());
-            return state.searchData == null
-                ? const SizedBox()
-                : Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: state.searchData!.data.length,
-                      itemBuilder: (context, index) =>
-                          row(state.searchData!.data[index]),
-                    ),
-                  );
+            if (state.searchData == null) {
+              return const SizedBox();
+            }
+            selectorBloC.changeDataLength(state.searchData!.data.length);
+            return Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: state.searchData!.data.length,
+                itemBuilder: (context, index) => BottomGridRow(
+                  dataModel: state.searchData!.data[index],
+                  index: index,
+                ),
+              ),
+            );
           },
         )
       ],
@@ -212,187 +212,6 @@ class BottomTable extends StatelessWidget {
               child: const Text(
                 "Акция",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget row(Data dataModel) {
-    return SizedBox(
-      height: 40,
-      child: Row(
-        children: [
-          Flexible(
-            flex: 18,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 2,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.manufacturer,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 6,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 6,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 2,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                "",
-                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),

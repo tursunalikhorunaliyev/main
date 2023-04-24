@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/bloc/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
 import 'package:napt_sklad/service/datagrid_content.dart';
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
@@ -34,8 +36,10 @@ class MainPanel extends StatelessWidget {
                   flex: 4,
                   child: Container(
                     color: Colors.deepOrange,
-                    child: BottomTable(
-                        soldDataModel: DataGridContent.testDataModelSold),
+                    child: BlocProvider(
+                      create: (context) => SelectorBloC(),
+                      child: const BottomTable(),
+                    ),
                   ),
                 )
               ],
@@ -46,64 +50,7 @@ class MainPanel extends StatelessWidget {
             child: PaymentPanel(),
           )
         ],
-      ), /* Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          SizedBox(
-            width: 60,
-            child: Center(
-              child: PaymentPanel(),
-            ),
-          ),
-          // const MenuBarTop(),
-          /* Flexible(
-            flex: 5,
-            child: Row(
-              children: [
-                Flexible(
-                  flex: 16,
-                  child: Column(
-                    children: [
-                      Flexible(
-                        flex: 28,
-                        child: Provider(
-                          create: (context) => SliderCubit(),
-                          child: const CheckTabsPanel(),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 45,
-                        child: SearchPanel(),
-                      ),
-                      Flexible(
-                        flex: 20,
-                        child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 1,
-                            ),
-                            child: Expanded(child: DataGridMainSoldList())),
-                      ),
-                    ],
-                  ),
-                ),
-                const VerticalDivider(
-                  thickness: 1,
-                  width: 0,
-                  indent: 1,
-                  endIndent: 1,
-                  color: Colors.black,
-                ),
-                const SizedBox(
-                  width: 60,
-                  child: Center(
-                    child: PaymentPanel(),
-                  ),
-                ),
-              ],
-            ),
-          ), */
-        ],
-      ), */
+      ),
     );
   }
 }
