@@ -17,5 +17,5 @@ class SliderCubit extends Cubit<SliderCubitData> {
               const NoviyCheckButton()
             ],
             pageController: PageController(),
-            createdTimes: [DateTime.now(), DateTime.now()]));
+            createdTimes: [DateTime.now()]));
 }

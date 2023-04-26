@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
-import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
-import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
-import 'package:napt_sklad/view/widgets/check_tabs.dart';
 import 'package:napt_sklad/view/widgets/noviy_check_button.dart';
 import 'package:napt_sklad/view/widgets/tab_button.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +17,6 @@ class CheckTabsPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final checkProvider = Provider.of<SliderCubit>(context);
-    final tabBarCubit = BlocProvider.of<TabButtonIndexDartCubit>(context);
-
     return BlocBuilder<SliderCubit, SliderCubitData>(
       bloc: checkProvider,
       builder: (context, state) {
@@ -44,14 +39,6 @@ class CheckTabsPanel extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return state.dataGridPanels[index];
                 },
-                /* onPageChanged: (value) {
-                  tabBarCubit.emit(TabButtonIndex(slideIndex: value));
-                  state.pageController.animateToPage(
-                    value,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.fastLinearToSlowEaseIn,
-                  );
-                }, */
               ),
             ),
             SizedBox(
@@ -69,15 +56,6 @@ class CheckTabsPanel extends StatelessWidget {
                 },
               ),
             )
-            /* SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SizedBox(
-                height: 30,
-                child: Row(
-                  children: state.checkTabs,
-                ),
-              ),
-            ) */
           ],
         );
       },

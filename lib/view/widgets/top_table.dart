@@ -217,7 +217,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -236,7 +235,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -255,7 +253,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -274,7 +271,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -293,7 +289,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -312,7 +307,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -331,7 +325,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -350,7 +343,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,
@@ -369,7 +361,6 @@ class TopTable extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 131, 175),
                 border: Border.all(
                   color: Colors.black,
                   width: 0.5,

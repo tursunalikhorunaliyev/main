@@ -2,9 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:napt_sklad/controller/blocs/bloc/selector_blo_c_bloc.dart';
+import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
-import 'package:napt_sklad/service/datagrid_content.dart';
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
 import 'package:napt_sklad/view/widgets/check_tabs_panel.dart.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
@@ -27,19 +26,15 @@ class MainPanel extends StatelessWidget {
                     child: Provider(
                         create: (context) => SliderCubit(),
                         child: const CheckTabsPanel())),
-                Container(
+                const SizedBox(
                   height: 40,
-                  color: Colors.deepOrangeAccent,
-                  child: const SearchPanel(),
+                  child: SearchPanel(),
                 ),
                 Flexible(
                   flex: 4,
-                  child: Container(
-                    color: Colors.deepOrange,
-                    child: BlocProvider(
-                      create: (context) => SelectorBloC(),
-                      child: const BottomTable(),
-                    ),
+                  child: BlocProvider(
+                    create: (context) => SelectorBloC(),
+                    child: const BottomTable(),
                   ),
                 )
               ],

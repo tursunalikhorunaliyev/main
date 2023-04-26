@@ -50,7 +50,8 @@ class NoviyCheckButton extends StatelessWidget {
               sliderCubit.emit(
                 sliderCubitDataNew,
               );
-              tabButtonCubit.emit(TabButtonIndex(slideIndex: newcheckTabs.length - 2));
+              tabButtonCubit
+                  .emit(TabButtonIndex(slideIndex: newcheckTabs.length - 2));
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
