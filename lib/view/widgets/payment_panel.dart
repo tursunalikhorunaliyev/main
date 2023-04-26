@@ -7,6 +7,7 @@ class PaymentPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      ///
       decoration: const BoxDecoration(
           border: Border(left: BorderSide(color: Colors.black))),
       child: Column(
