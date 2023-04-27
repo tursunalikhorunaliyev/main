@@ -14,6 +14,7 @@ class FeathersService {
     return authData;
   }
 
+/* 
   List<Map<String, dynamic>> listCheckDoc(Map<String, dynamic> data) async {
     Map<String, dynamic> response = await Api.feathers().find(
         serviceName: "memories",
@@ -82,7 +83,7 @@ class FeathersService {
         });
     return response;
   }
-
+*/
   Future<SearchData> getSearchData(String search) async {
     Map<String, dynamic> response =
         await Api.feathers().find(serviceName: "memories", query: {

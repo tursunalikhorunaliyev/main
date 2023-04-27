@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
 
@@ -15,7 +14,7 @@ class CustomeTabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabButtonCubit = BlocProvider.of<TabButtonIndexDartCubit>(context);
-    final slideCubit = BlocProvider.of<SliderCubit>(context);
+
     return InkWell(
       onTap: () {
         log(buttonIndex.toString());
@@ -23,11 +22,6 @@ class CustomeTabButton extends StatelessWidget {
           TabButtonIndex(
             slideIndex: buttonIndex,
           ),
-        );
-        slideCubit.state.pageController.animateToPage(
-          buttonIndex,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.fastLinearToSlowEaseIn,
         );
       },
       child: BlocBuilder<TabButtonIndexDartCubit, TabButtonIndexDartState>(

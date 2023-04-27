@@ -4,13 +4,9 @@ part of 'selector_blo_c_bloc.dart';
 @immutable
 abstract class SelectorBloCState {}
 
-class SelectorBloCIndexState extends SelectorBloCState with EquatableMixin {
+class SelectorBloCIndexState extends SelectorBloCState {
   final int currentIndex;
   SelectorBloCIndexState({
     required this.currentIndex,
   });
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [currentIndex];
 }

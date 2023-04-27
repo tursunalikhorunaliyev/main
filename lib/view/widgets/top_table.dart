@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
+import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
 class TopTable extends StatelessWidget {
   final List<SellDataModel> sellDataModel;
+  final SelectorBloC selectorBloC;
   const TopTable({
     super.key,
     required this.sellDataModel,
+    required this.selectorBloC,
   });
 
   @override
   Widget build(BuildContext context) {
+    selectorBloC.changeDataLength(sellDataModel.length);
     return Column(
       children: [
         rowHeader(),
         Expanded(
           child: ListView.builder(
+            addAutomaticKeepAlives: true,
             scrollDirection: Axis.vertical,
             itemCount: sellDataModel.length,
-            itemBuilder: (context, index) => row(
-              sellDataModel[index],
+            itemBuilder: (context, index) => TopTableGridRow(
+              dataModel: sellDataModel[index],
+              index: index,
+              selectorBloC: selectorBloC,
             ),
           ),
         )
@@ -197,178 +206,6 @@ class TopTable extends StatelessWidget {
               child: const Text(
                 "Марк",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget row(SellDataModel dataModel) {
-    return SizedBox(
-      height: 40,
-      child: Row(
-        children: [
-          Flexible(
-            flex: 18,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.polnoeNaimovaniye,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 4,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.kolichestvo.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 6,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.sena.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 6,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.summa.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.srokGod.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.seriya.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 2,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.mx.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.ikpu.toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            flex: 5,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 0.5,
-                ),
-              ),
-              child: Text(
-                dataModel.mark.toString(),
-                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),

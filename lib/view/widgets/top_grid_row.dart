@@ -1,42 +1,49 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 
-class BottomGridRow extends StatelessWidget {
-  final Data dataModel;
+class TopTableGridRow extends StatelessWidget {
+  final SelectorBloC selectorBloC;
+  final SellDataModel dataModel;
   final int index;
-  const BottomGridRow(
-      {super.key, required this.dataModel, required this.index});
+  const TopTableGridRow(
+      {super.key,
+      required this.dataModel,
+      required this.index,
+      required this.selectorBloC});
 
   @override
   Widget build(BuildContext context) {
-    final selectorCubit = BlocProvider.of<SelectorBloC>(context);
     final focusNode = FocusNode();
+
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
-      bloc: selectorCubit,
+      bloc: selectorBloC,
       builder: (context, state) {
-        log("o'zgardi");
         state as SelectorBloCIndexState;
-        log(state.currentIndex.toString());
         return RawKeyboardListener(
           focusNode: focusNode,
           autofocus: focusNode.hasFocus,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
-              selectorCubit
+              selectorBloC
                   .add(SelectorKeyDownEvent(currentIndex: state.currentIndex));
             } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
-              selectorCubit
+              selectorBloC
                   .add(SelectorKeyUpEvent(currentIndex: state.currentIndex));
             }
           },
           child: GestureDetector(
             onTap: () {
-              selectorCubit.add(SelectorClickEvent(currentIndex: index));
               focusNode.requestFocus();
+              selectorBloC.add(
+                SelectorClickEvent(
+                  currentIndex: index,
+                ),
+              );
             },
             child: SizedBox(
               height: 40,
@@ -56,7 +63,112 @@ class BottomGridRow extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        dataModel.name,
+                        dataModel.polnoeNaimovaniye,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 4,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: state.currentIndex == index
+                            ? const Color.fromARGB(255, 0, 131, 175)
+                            : null,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
+                        ),
+                      ),
+                      child: Text(
+                        dataModel.kolichestvo.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 6,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: state.currentIndex == index
+                            ? const Color.fromARGB(255, 0, 131, 175)
+                            : null,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
+                        ),
+                      ),
+                      child: Text(
+                        dataModel.sena.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 6,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: state.currentIndex == index
+                            ? const Color.fromARGB(255, 0, 131, 175)
+                            : null,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
+                        ),
+                      ),
+                      child: Text(
+                        dataModel.summa.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: state.currentIndex == index
+                            ? const Color.fromARGB(255, 0, 131, 175)
+                            : null,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
+                        ),
+                      ),
+                      child: Text(
+                        dataModel.srokGod.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: state.currentIndex == index
+                            ? const Color.fromARGB(255, 0, 131, 175)
+                            : null,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
+                        ),
+                      ),
+                      child: Text(
+                        dataModel.seriya.toString(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -77,7 +189,7 @@ class BottomGridRow extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        dataModel.manufacturer,
+                        dataModel.mx.toString(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -85,7 +197,7 @@ class BottomGridRow extends StatelessWidget {
                     ),
                   ),
                   Flexible(
-                    flex: 6,
+                    flex: 5,
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -97,30 +209,9 @@ class BottomGridRow extends StatelessWidget {
                           width: 0.5,
                         ),
                       ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 6,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
+                      child: Text(
+                        dataModel.ikpu.toString(),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -139,93 +230,9 @@ class BottomGridRow extends StatelessWidget {
                           width: 0.5,
                         ),
                       ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
+                      child: Text(
+                        dataModel.mark.toString(),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -238,6 +245,5 @@ class BottomGridRow extends StatelessWidget {
         );
       },
     );
-    ;
   }
 }
