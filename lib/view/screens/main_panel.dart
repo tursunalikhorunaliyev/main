@@ -1,20 +1,32 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/cubits/slider/slider_cubit_cubit.dart';
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
-import 'package:napt_sklad/view/widgets/check_tabs_panel.dart.dart';
+import 'package:napt_sklad/view/widgets/top_panel.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
 import 'package:napt_sklad/view/widgets/search_panel.dart';
-import 'package:provider/provider.dart';
 
 class MainPanel extends StatelessWidget {
   const MainPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final selectorForTop = SelectorBloC();
+    final selectorForBottom = SelectorBloC();
+    ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
+      final key = keyEvent.logicalKey.keyLabel;
+
+      if (keyEvent is KeyDownEvent) {
+        print("Key down: $key");
+      } else if (keyEvent is KeyUpEvent) {
+        print("Key up: $key");
+      } else if (keyEvent is KeyRepeatEvent) {
+        print("Key repeat: $key");
+      }
+
+      return false;
+    });
     return Scaffold(
       body: Row(
         children: [
@@ -22,10 +34,16 @@ class MainPanel extends StatelessWidget {
             child: Column(
               children: [
                 Flexible(
-                    flex: 5,
-                    child: Provider(
-                        create: (context) => SliderCubit(),
-                        child: const CheckTabsPanel())),
+                  flex: 5,
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider<SelectorBloC>(
+                        create: (context) => selectorForTop,
+                      ),
+                    ],
+                    child: const TopPanel(),
+                  ),
+                ),
                 const SizedBox(
                   height: 40,
                   child: SearchPanel(),
@@ -33,7 +51,7 @@ class MainPanel extends StatelessWidget {
                 Flexible(
                   flex: 4,
                   child: BlocProvider(
-                    create: (context) => SelectorBloC(),
+                    create: (context) => selectorForBottom,
                     child: const BottomTable(),
                   ),
                 )
