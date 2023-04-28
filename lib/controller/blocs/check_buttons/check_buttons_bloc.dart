@@ -26,7 +26,11 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
           creationTime: DateTime.now(),
         ),
       );
+      emit(state);
     });
-    on<CheckButtonsRemove>((event, emit) {});
+    on<CheckButtonsRemove>((event, emit) {
+      state.customeTabButton.removeLast();
+      emit(state);
+    });
   }
 }

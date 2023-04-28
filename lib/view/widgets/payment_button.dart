@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 
 class PaymentButton extends StatelessWidget {
   final String imagePath;

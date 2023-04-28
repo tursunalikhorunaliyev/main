@@ -26,17 +26,13 @@ class TopPanel extends StatelessWidget {
           child: BlocBuilder<SellPanelBloc, SellPanelState>(
             bloc: sellPanelBloc,
             builder: (context, state) {
-              state as SellPanelData;
-              return Provider(
-                create: (context) => pageController,
-                child: PageView.builder(
-                  allowImplicitScrolling: true,
-                  controller: pageController,
-                  itemCount: state.sellPanel.length,
-                  itemBuilder: (context, index) {
-                    return state.sellPanel[index];
-                  },
-                ),
+              return PageView.builder(
+                allowImplicitScrolling: true,
+                controller: pageController,
+                itemCount: state.sellPanel.length,
+                itemBuilder: (context, index) {
+                  return state.sellPanel[index];
+                },
               );
             },
           ),
@@ -46,6 +42,7 @@ class TopPanel extends StatelessWidget {
           child: BlocBuilder<CheckButtonsBloc, CheckButtonsState>(
             bloc: checkButtonCubit,
             builder: (context, state) {
+              log("qurilibtashadi");
               state as CheckButtonsPanelData;
               return ListView.builder(
                 scrollDirection: Axis.horizontal,

@@ -32,6 +32,9 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
 
       emit(state);
     });
-    on<SellPanelRemove>((event, emit) {});
+    on<SellPanelRemove>((event, emit) {
+      state.sellPanel.removeAt(event.removeIndex);
+      emit(state);
+    });
   }
 }

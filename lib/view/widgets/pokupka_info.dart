@@ -3,11 +3,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 import 'package:napt_sklad/view/widgets/custome_clock.dart';
+import 'package:provider/provider.dart';
 
 class PokupokInfo extends StatelessWidget {
   final PaymentDetails paymentDetails;
@@ -18,6 +20,11 @@ class PokupokInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tabIndexCubit = BlocProvider.of<TabButtonIndexCubit>(context);
+    final topPanelBloC = BlocProvider.of<SellPanelBloc>(context);
+    final checkButtonsBloc = BlocProvider.of<CheckButtonsBloc>(context);
+    final pageController = Provider.of<PageController>(context);
+
     return ColoredBox(
       color: Colors.amber,
       child: SizedBox(
@@ -104,28 +111,45 @@ class PokupokInfo extends StatelessWidget {
                       vertical: 20,
                       horizontal: 5,
                     ),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 5,
-                        horizontal: 20,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.pink.shade100,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/cancel.png",
-                            width: 20,
-                            height: 20,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Text("Закрыть")
-                        ],
+                    child: InkWell(
+                      onTap: () {
+                        log("aaa");
+                        log(tabIndexCubit.state.slideIndex.toString());
+                        topPanelBloC.add(SellPanelRemove(
+                          removeIndex: tabIndexCubit.state.slideIndex,
+                        ));
+                        checkButtonsBloc.add(CheckButtonsRemove(
+                            removeIndex: tabIndexCubit.state.slideIndex));
+                        pageController.animateToPage(
+                            tabIndexCubit.state.slideIndex - 1,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.fastLinearToSlowEaseIn);
+                        tabIndexCubit.emit(TabButtonIndex(
+                            slideIndex: tabIndexCubit.state.slideIndex - 1));
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 5,
+                          horizontal: 20,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.pink.shade100,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/cancel.png",
+                              width: 20,
+                              height: 20,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Text("Закрыть")
+                          ],
+                        ),
                       ),
                     ),
                   ),
