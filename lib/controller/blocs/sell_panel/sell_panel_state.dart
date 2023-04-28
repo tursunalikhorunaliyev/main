@@ -3,6 +3,7 @@ part of 'sell_panel_bloc.dart';
 
 abstract class SellPanelState extends Equatable {
   final List<SellPanel> sellPanel;
+
   const SellPanelState({required this.sellPanel});
 
   @override

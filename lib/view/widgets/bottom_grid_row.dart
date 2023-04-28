@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
+import 'package:napt_sklad/view/widgets/sell_panel.dart';
+import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
 class BottomGridRow extends StatelessWidget {
   final Data dataModel;
@@ -14,7 +20,9 @@ class BottomGridRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectorCubit = BlocProvider.of<SelectorBloC>(context);
+    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
     final focusNode = FocusNode();
+    final tabButtonIndexBloC = BlocProvider.of<TabButtonIndexCubit>(context);
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
       bloc: selectorCubit,
       builder: (context, state) {
@@ -31,6 +39,29 @@ class BottomGridRow extends StatelessWidget {
             } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
               selectorCubit
                   .add(SelectorKeyUpEvent(currentIndex: state.currentIndex));
+            } else if (value.isKeyPressed(LogicalKeyboardKey.enter)) {
+              log(tabButtonIndexBloC.state.slideIndex.toString());
+              sellPanelBloC.state.sellPanel[tabButtonIndexBloC.state.slideIndex]
+                  .sellDataCubit
+                  .emit(
+                SellData(
+                  topDataGridRow: [
+                    TopTableGridRow(
+                      dataModel: SellDataModel(
+                        "polnoeNaimovaniye",
+                        3,
+                        1200,
+                        1200,
+                        "srokGod",
+                        "seriya",
+                        "mx",
+                        "ikpu",
+                        "mark",
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }
           },
           child: GestureDetector(

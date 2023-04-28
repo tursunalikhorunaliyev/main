@@ -1,25 +1,23 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
+import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:napt_sklad/view/widgets/top_table.dart';
 
 class SellPanel extends StatelessWidget {
-  final List<SellDataModel> sellDataModel;
   final PaymentDetails paymentDetails;
   final DateTime createdTime;
   final int index;
-  final SelectorBloC selectorCubit;
-  const SellPanel({
-    super.key,
-    required this.sellDataModel,
-    required this.paymentDetails,
-    required this.createdTime,
-    required this.index,
-    required this.selectorCubit,
-  });
+  final SellDataCubit sellDataCubit;
+
+  const SellPanel(
+      {super.key,
+      required this.paymentDetails,
+      required this.createdTime,
+      required this.index,
+      required this.sellDataCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,8 @@ class SellPanel extends StatelessWidget {
         children: [
           Expanded(
             child: TopTable(
-              selectorBloC: selectorCubit,
+              sellDataCubit: sellDataCubit,
+              tableIndex: index,
             ),
           ),
           SizedBox(

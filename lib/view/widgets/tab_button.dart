@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,7 @@ class CustomeTabButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabButtonIndex = BlocProvider.of<TabButtonIndexCubit>(context);
     final pageController = Provider.of<PageController>(context);
+    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: BlocBuilder<TabButtonIndexCubit, TabButtonIndexState>(
@@ -32,6 +34,9 @@ class CustomeTabButton extends StatelessWidget {
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.fastLinearToSlowEaseIn,
               );
+              /*  log(buttonIndex.toString());
+              log(sellPanelBloC.state.sellPanel[buttonIndex].sellDataCubit
+                  .toString()); */
             },
             child: Container(
               width: 120,

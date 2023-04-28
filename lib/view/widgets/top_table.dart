@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 
 class TopTable extends StatelessWidget {
-  final SelectorBloC selectorBloC;
-  const TopTable({
-    super.key,
-    required this.selectorBloC,
-  });
+  final int tableIndex;
+  final SellDataCubit sellDataCubit;
+  const TopTable(
+      {super.key, required this.tableIndex, required this.sellDataCubit});
 
   @override
   Widget build(BuildContext context) {
-    final sellDataCubit = SellDataCubit();
     return Column(
       children: [
         rowHeader(),

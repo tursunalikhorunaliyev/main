@@ -15,7 +15,7 @@ class TopPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sellPanelCubit = BlocProvider.of<SellPanelBloc>(context);
+    final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
     final pageController = Provider.of<PageController>(context);
     final checkButtonCubit = BlocProvider.of<CheckButtonsBloc>(context);
     return Column(
@@ -24,7 +24,7 @@ class TopPanel extends StatelessWidget {
       children: [
         Flexible(
           child: BlocBuilder<SellPanelBloc, SellPanelState>(
-            bloc: sellPanelCubit,
+            bloc: sellPanelBloc,
             builder: (context, state) {
               state as SellPanelData;
               return Provider(
