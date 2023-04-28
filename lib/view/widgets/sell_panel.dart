@@ -23,7 +23,7 @@ class SellPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("$index sell panel builded");
+    //log("$index sell panel builded");
     return Container(
       decoration: BoxDecoration(
           border: Border.all(

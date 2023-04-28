@@ -3,13 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:napt_sklad/controller/cubits/check_button/check_button_panel_cubit.dart';
-import 'package:napt_sklad/controller/cubits/sell_panel/sell_panel_cubit.dart';
-import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
-import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
+import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/view/widgets/noviy_check_button.dart';
-import 'package:napt_sklad/view/widgets/sell_panel.dart';
-import 'package:napt_sklad/view/widgets/tab_button.dart';
 import 'package:provider/provider.dart';
 
 class TopPanel extends StatelessWidget {
@@ -19,21 +15,22 @@ class TopPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sellPanelCubit = BlocProvider.of<SellPanelCubit>(context);
-    final pageController = PageController();
-    final checkButtonCubit = BlocProvider.of<CheckButtonPanelCubit>(context);
+    final sellPanelCubit = BlocProvider.of<SellPanelBloc>(context);
+    final pageController = Provider.of<PageController>(context);
+    final checkButtonCubit = BlocProvider.of<CheckButtonsBloc>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Flexible(
-          child: BlocBuilder<SellPanelCubit, SellPanelState>(
+          child: BlocBuilder<SellPanelBloc, SellPanelState>(
             bloc: sellPanelCubit,
             builder: (context, state) {
               state as SellPanelData;
               return Provider(
                 create: (context) => pageController,
                 child: PageView.builder(
+                  allowImplicitScrolling: true,
                   controller: pageController,
                   itemCount: state.sellPanel.length,
                   itemBuilder: (context, index) {
@@ -46,10 +43,10 @@ class TopPanel extends StatelessWidget {
         ),
         SizedBox(
           height: 40,
-          child: BlocBuilder<CheckButtonPanelCubit, CheckButtonPanelState>(
+          child: BlocBuilder<CheckButtonsBloc, CheckButtonsState>(
             bloc: checkButtonCubit,
             builder: (context, state) {
-              state as CheckButtonPanelData;
+              state as CheckButtonsPanelData;
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
                 addAutomaticKeepAlives: true,

@@ -1,6 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
+import 'package:provider/provider.dart';
 
 class CustomeTabButton extends StatelessWidget {
   final int buttonIndex;
@@ -10,26 +15,45 @@ class CustomeTabButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tabButtonIndex = BlocProvider.of<TabButtonIndexCubit>(context);
+    final pageController = Provider.of<PageController>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
-      child: Container(
-        width: 120,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-        alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          color: Colors.amber,
-          border: Border.symmetric(
-              vertical: BorderSide(
-            color: Colors.black,
-            width: 1,
-          )),
-        ),
-        child: Text(
-          creationTime.toString().split(" ")[1].split(".")[0],
-          style: const TextStyle(
-            color: Colors.black,
-          ),
-        ),
+      child: BlocBuilder<TabButtonIndexCubit, TabButtonIndexState>(
+        bloc: tabButtonIndex,
+        builder: (context, state) {
+          return InkWell(
+            onTap: () {
+              tabButtonIndex.emit(
+                TabButtonIndex(slideIndex: buttonIndex),
+              );
+              pageController.animateToPage(
+                buttonIndex,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.fastLinearToSlowEaseIn,
+              );
+            },
+            child: Container(
+              width: 120,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: buttonIndex == state.slideIndex ? Colors.amber : null,
+                border: const Border.symmetric(
+                    vertical: BorderSide(
+                  color: Colors.black,
+                  width: 1,
+                )),
+              ),
+              child: Text(
+                creationTime.toString().split(" ")[1].split(".")[0],
+                style: const TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
