@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:napt_sklad/controller/data/connection_data.dart';
 import 'package:napt_sklad/controller/data/model/auth/auth_data.dart';
+import 'package:napt_sklad/controller/data/model/check/check_creation_model.dart';
+import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 
 class FeathersService {
@@ -94,5 +97,19 @@ class FeathersService {
       "search": search
     });
     return SearchData.fromJson(response);
+  }
+
+  Future<CreatedCheckData> createCheckDoc(
+      CheckCreationModel checkCreationModel) async {
+    Map<String, dynamic> data = jsonDecode(checkCreationModelToJson(
+        CheckCreationModel(
+            createdAt: DateTime.now(), status: CheckStatus.draft)));
+    Map<String, dynamic> response = await Api.feathers()
+        .create(serviceName: "memories", data: data, params: {
+      "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
+      "ctx": const ['warehouse', 'dispatch', 'document'],
+    });
+
+    return CreatedCheckData.fromJson(response);
   }
 }

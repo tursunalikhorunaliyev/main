@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:napt_sklad/view/widgets/tab_button.dart';
 
 part 'check_buttons_event.dart';
@@ -14,7 +15,11 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
             customeTabButton: [
               CustomeTabButton(
                 buttonIndex: 0,
-                creationTime: DateTime.now(),
+                createdCheckData: CreatedCheckData(
+                    createdAt: DateTime.now(),
+                    status: "draft",
+                    id: "0",
+                    uuid: "0"),
               ),
             ],
           ),
@@ -23,7 +28,7 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
       state.customeTabButton.add(
         CustomeTabButton(
           buttonIndex: state.customeTabButton.length,
-          creationTime: DateTime.now(),
+          createdCheckData: event.createdCheckData,
         ),
       );
       emit(state);

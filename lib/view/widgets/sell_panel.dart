@@ -2,20 +2,21 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
+import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:napt_sklad/view/widgets/top_table.dart';
 
 class SellPanel extends StatelessWidget {
   final PaymentDetails paymentDetails;
-  final DateTime createdTime;
+  final CreatedCheckData createdCheckData;
   final int index;
   final SellDataCubit sellDataCubit;
 
   const SellPanel(
       {super.key,
       required this.paymentDetails,
-      required this.createdTime,
+      required this.createdCheckData,
       required this.index,
       required this.sellDataCubit});
 

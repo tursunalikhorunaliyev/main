@@ -8,7 +8,12 @@ abstract class CheckButtonsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class CheckButtonsAdd extends CheckButtonsEvent {}
+class CheckButtonsAdd extends CheckButtonsEvent {
+  final CreatedCheckData createdCheckData;
+  const CheckButtonsAdd({
+    required this.createdCheckData,
+  });
+}
 
 class CheckButtonsRemove extends CheckButtonsEvent {
   final int removeIndex;

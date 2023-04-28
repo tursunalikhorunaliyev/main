@@ -8,6 +8,7 @@ import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
+import 'package:napt_sklad/view/widgets/qty_panel.dart';
 import 'package:napt_sklad/view/widgets/sell_panel.dart';
 import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
@@ -61,6 +62,10 @@ class BottomGridRow extends StatelessWidget {
                     ),
                   ],
                 ),
+              );
+              showDialog(
+                context: context,
+                builder: (context) => const QtyPanel(),
               );
             }
           },
