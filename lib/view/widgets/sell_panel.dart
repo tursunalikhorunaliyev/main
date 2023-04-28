@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
-import 'package:napt_sklad/service/datagrid_content.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
 import 'package:napt_sklad/view/widgets/top_table.dart';
 
@@ -35,7 +34,6 @@ class SellPanel extends StatelessWidget {
         children: [
           Expanded(
             child: TopTable(
-              sellDataModel: sellDataModel,
               selectorBloC: selectorCubit,
             ),
           ),

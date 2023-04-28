@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-abstract class TabButtonIndexDartState {}
+abstract class TabButtonIndexState {}
 
-class TabButtonIndex extends TabButtonIndexDartState {
+class TabButtonIndex extends TabButtonIndexState {
   final int slideIndex;
 
   TabButtonIndex({required this.slideIndex});

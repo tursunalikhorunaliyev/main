@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
-import 'package:napt_sklad/view/widgets/top_grid_row.dart';
+import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 
 class TopTable extends StatelessWidget {
-  final List<SellDataModel> sellDataModel;
   final SelectorBloC selectorBloC;
   const TopTable({
     super.key,
-    required this.sellDataModel,
     required this.selectorBloC,
   });
 
   @override
   Widget build(BuildContext context) {
-    selectorBloC.changeDataLength(sellDataModel.length);
+    final sellDataCubit = SellDataCubit();
     return Column(
       children: [
         rowHeader(),
         Expanded(
-          child: ListView.builder(
-            addAutomaticKeepAlives: true,
-            scrollDirection: Axis.vertical,
-            itemCount: sellDataModel.length,
-            itemBuilder: (context, index) => TopTableGridRow(
-              dataModel: sellDataModel[index],
-              index: index,
-              selectorBloC: selectorBloC,
-            ),
+          child: BlocBuilder<SellDataCubit, SellDataState>(
+            bloc: sellDataCubit,
+            builder: (context, state) {
+              state as SellData;
+              return ListView.builder(
+                addAutomaticKeepAlives: true,
+                scrollDirection: Axis.vertical,
+                itemCount: state.topDataGridRow.length,
+                itemBuilder: (context, index) => state.topDataGridRow[index],
+              );
+            },
           ),
         )
       ],

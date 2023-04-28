@@ -18,10 +18,8 @@ class PokupokInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabButtonCubit =
-        BlocProvider.of<TabButtonIndexDartCubit>(context, listen: false);
     return ColoredBox(
-      color: const Color.fromARGB(255, 135, 33, 243),
+      color: Colors.amber,
       child: SizedBox(
         width: 250,
         child: Padding(
