@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:napt_sklad/controller/data/connection_data.dart';
 import 'package:napt_sklad/controller/data/model/auth/auth_data.dart';
 import 'package:napt_sklad/controller/data/model/check/check_creation_model.dart';
+import 'package:napt_sklad/controller/data/model/check/checks_data_model.dart';
 import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 
@@ -54,7 +55,7 @@ class FeathersService {
         params: {
           "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
           "ctx": const ['warehouse', 'dispatch'],
-          "filter": {
+          "filter": { 
             "document": docId,
           }
         });
@@ -111,5 +112,19 @@ class FeathersService {
     });
 
     return CreatedCheckData.fromJson(response);
+  }
+
+  Future<ChecksDataModel> listCheckDoc() async {
+    Map<String, dynamic> response =
+        await Api.feathers().find(serviceName: "memories", query: {
+      "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
+      "ctx": const ['warehouse', 'dispatch', 'document'],
+      // filter: {
+      //   "status": "draft"
+      // }
+    });
+    ChecksDataModel model = ChecksDataModel.fromJson(response);
+    log(model.data[0].createdAt.toString());
+    return ChecksDataModel.fromJson(response);
   }
 }

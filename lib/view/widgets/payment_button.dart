@@ -25,7 +25,9 @@ class PaymentButton extends StatelessWidget {
         message: buttonText,
         height: 20,
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            FeathersService().listCheckDoc();
+          },
           child: Container(
             width: double.infinity,
             decoration: const BoxDecoration(

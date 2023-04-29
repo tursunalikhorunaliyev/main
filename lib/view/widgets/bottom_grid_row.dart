@@ -20,6 +20,7 @@ class BottomGridRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final selectorCubit = BlocProvider.of<SelectorBloC>(context);
     final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
     final focusNode = FocusNode();
@@ -65,7 +66,16 @@ class BottomGridRow extends StatelessWidget {
               );
               showDialog(
                 context: context,
-                builder: (context) => const QtyPanel(),
+                builder: (context) => AlertDialog(
+                  content: QtyPanel(
+                    drugCompany: dataModel.manufacturer,
+                    drugName: dataModel.name,
+                    ostatok: 20,
+                    sena: "25000.00",
+                    seriya: "12345",
+                    srokGod: "01.02.2025",
+                  ),
+                ),
               );
             }
           },
