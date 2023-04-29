@@ -2,13 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
+import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 
 class TopTable extends StatelessWidget {
   final int tableIndex;
-  final SellDataCubit sellDataCubit;
+  final SellDataBloc sellDataBloc;
   const TopTable(
-      {super.key, required this.tableIndex, required this.sellDataCubit});
+      {super.key, required this.tableIndex, required this.sellDataBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +16,14 @@ class TopTable extends StatelessWidget {
       children: [
         rowHeader(),
         Expanded(
-          child: BlocBuilder<SellDataCubit, SellDataState>(
-            bloc: sellDataCubit,
+          child: BlocBuilder<SellDataBloc, SellDataState>(
+            bloc: sellDataBloc,
             builder: (context, state) {
-              log("message builded");
-              state as SellData;
               return ListView.builder(
                 addAutomaticKeepAlives: true,
                 scrollDirection: Axis.vertical,
-                itemCount: state.topDataGridRow.length,
-                itemBuilder: (context, index) => state.topDataGridRow[index],
+                itemCount: state.topTableGridRow.length,
+                itemBuilder: (context, index) => state.topTableGridRow[index],
               );
             },
           ),

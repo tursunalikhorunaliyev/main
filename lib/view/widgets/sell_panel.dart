@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
+import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 import 'package:napt_sklad/view/widgets/pokupka_info.dart';
@@ -11,18 +11,17 @@ class SellPanel extends StatelessWidget {
   final PaymentDetails paymentDetails;
   final CreatedCheckData createdCheckData;
   final int index;
-  final SellDataCubit sellDataCubit;
+  final SellDataBloc sellDataBloc;
 
   const SellPanel(
       {super.key,
       required this.paymentDetails,
       required this.createdCheckData,
       required this.index,
-      required this.sellDataCubit});
+      required this.sellDataBloc});
 
   @override
   Widget build(BuildContext context) {
-    //log("$index sell panel builded");
     return Container(
       decoration: BoxDecoration(
           border: Border.all(
@@ -33,7 +32,7 @@ class SellPanel extends StatelessWidget {
         children: [
           Expanded(
             child: TopTable(
-              sellDataCubit: sellDataCubit,
+              sellDataBloc: sellDataBloc,
               tableIndex: index,
             ),
           ),

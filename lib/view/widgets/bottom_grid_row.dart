@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
-import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
@@ -33,9 +32,9 @@ class BottomGridRow extends StatelessWidget {
         SearchCubitData searchCubitData = searchCubtit.state as SearchCubitData;
         SelectorBloCIndexState selector =
             selectorCubit.state as SelectorBloCIndexState;
-        log("o'zgardi");
+
         state as SelectorBloCIndexState;
-        log(state.currentIndex.toString());
+
         return RawKeyboardListener(
           focusNode: focusNode,
           autofocus: focusNode.hasFocus,

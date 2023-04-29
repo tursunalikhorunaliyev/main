@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
+import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 
 import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
@@ -22,7 +22,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
                       status: "draft",
                       id: "0",
                       uuid: "0"),
-                  sellDataCubit: SellDataCubit()),
+                  sellDataBloc: SellDataBloc()),
             ],
           ),
         ) {
@@ -31,7 +31,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
           index: state.sellPanel.length,
           paymentDetails: PaymentDetails(),
           createdCheckData: event.createdCheckData,
-          sellDataCubit: SellDataCubit()));
+          sellDataBloc: SellDataBloc()));
       emit(state);
     });
     on<SellPanelRemove>((event, emit) {

@@ -113,8 +113,6 @@ class PokupokInfo extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        log("aaa");
-                        log(tabIndexCubit.state.slideIndex.toString());
                         topPanelBloC.add(SellPanelRemove(
                           removeIndex: tabIndexCubit.state.slideIndex,
                         ));

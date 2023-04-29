@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
-import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/view/widgets/top_grid_row.dart';
@@ -33,7 +33,6 @@ class QtyPanel extends StatelessWidget {
     var summaTextController = TextEditingController(text: "0.00");
     final focusNode = FocusNode();
     focusNode.requestFocus();
-    log("eeeeeeeeeeeeeeeeeeeeee");
     return SizedBox(
       height: 325,
       child: Column(
@@ -183,25 +182,15 @@ class QtyPanel extends StatelessWidget {
                     focusNode: focusNode,
                     controller: kolichestvoTextController,
                     onSubmitted: (value) {
-                      log(tabButtonIndexBloC.state.slideIndex.toString());
                       sellPanelBloC
                           .state
                           .sellPanel[tabButtonIndexBloC.state.slideIndex]
-                          .sellDataCubit
-                          .emit(
-                        SellData(
-                          topDataGridRow: [
-                            TopTableGridRow(dataModel: data),
-                          ],
-                        ),
-                      );
+                          .sellDataBloc
+                          .add(SellDataAdd(data: data));
                     },
                     onChanged: (value) {
                       int a = (int.parse(value)) *
                           int.parse(sena.substring(0, sena.length - 3));
-                      log(a.toString());
-                      summaTextController.value =
-                          TextEditingValue(text: a.toString());
                     },
                     cursorColor: const Color(0xFFD9D9D9),
                     style: const TextStyle(
