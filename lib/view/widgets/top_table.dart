@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
@@ -17,6 +19,7 @@ class TopTable extends StatelessWidget {
           child: BlocBuilder<SellDataCubit, SellDataState>(
             bloc: sellDataCubit,
             builder: (context, state) {
+              log("message builded");
               state as SellData;
               return ListView.builder(
                 addAutomaticKeepAlives: true,

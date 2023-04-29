@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
@@ -20,14 +21,18 @@ class BottomGridRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final selectorCubit = BlocProvider.of<SelectorBloC>(context);
     final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
     final focusNode = FocusNode();
     final tabButtonIndexBloC = BlocProvider.of<TabButtonIndexCubit>(context);
+
+    final searchCubtit = BlocProvider.of<SearchCubit>(context);
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
       bloc: selectorCubit,
       builder: (context, state) {
+        SearchCubitData searchCubitData = searchCubtit.state as SearchCubitData;
+        SelectorBloCIndexState selector =
+            selectorCubit.state as SelectorBloCIndexState;
         log("o'zgardi");
         state as SelectorBloCIndexState;
         log(state.currentIndex.toString());
@@ -42,41 +47,20 @@ class BottomGridRow extends StatelessWidget {
               selectorCubit
                   .add(SelectorKeyUpEvent(currentIndex: state.currentIndex));
             } else if (value.isKeyPressed(LogicalKeyboardKey.enter)) {
-              log(tabButtonIndexBloC.state.slideIndex.toString());
-              sellPanelBloC.state.sellPanel[tabButtonIndexBloC.state.slideIndex]
-                  .sellDataCubit
-                  .emit(
-                SellData(
-                  topDataGridRow: [
-                    TopTableGridRow(
-                      dataModel: SellDataModel(
-                        "polnoeNaimovaniye",
-                        3,
-                        1200,
-                        1200,
-                        "srokGod",
-                        "seriya",
-                        "mx",
-                        "ikpu",
-                        "mark",
-                      ),
-                    ),
-                  ],
-                ),
-              );
               showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  content: QtyPanel(
-                    drugCompany: dataModel.manufacturer,
-                    drugName: dataModel.name,
-                    ostatok: 20,
-                    sena: "25000.00",
-                    seriya: "12345",
-                    srokGod: "01.02.2025",
-                  ),
-                ),
-              );
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: QtyPanel(
+                        data: searchCubitData
+                            .searchData!.data[selector.currentIndex],
+                        ostatok: 20,
+                        sena: "25000.00",
+                        seriya: "12345",
+                        srokGod: "01.02.2025",
+                      ),
+                    );
+                  });
             }
           },
           child: GestureDetector(

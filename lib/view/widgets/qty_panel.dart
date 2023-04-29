@@ -2,18 +2,22 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/sell_data/sell_data_cubit.dart';
+import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
+import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
 class QtyPanel extends StatelessWidget {
-  final String drugName;
-  final String drugCompany;
+  final Data data;
   final String sena;
   final String seriya;
   final String srokGod;
   final int ostatok;
   const QtyPanel({
     super.key,
-    required this.drugName,
-    required this.drugCompany,
+    required this.data,
     required this.sena,
     required this.seriya,
     required this.srokGod,
@@ -22,8 +26,13 @@ class QtyPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
+    final tabButtonIndexBloC = BlocProvider.of<TabButtonIndexCubit>(context);
+
     final kolichestvoTextController = TextEditingController();
     var summaTextController = TextEditingController(text: "0.00");
+    final focusNode = FocusNode();
+    focusNode.requestFocus();
     log("eeeeeeeeeeeeeeeeeeeeee");
     return SizedBox(
       height: 325,
@@ -38,7 +47,7 @@ class QtyPanel extends StatelessWidget {
                   SizedBox(
                     width: 400,
                     child: Text(
-                      drugName,
+                      data.name,
                       style: const TextStyle(
                         fontSize: 24,
                         color: Color(0xFF0E0631),
@@ -47,7 +56,7 @@ class QtyPanel extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    drugCompany,
+                    data.manufacturer,
                     style: const TextStyle(
                       fontSize: 18,
                       color: Color(0xFF0E0631),
@@ -171,7 +180,22 @@ class QtyPanel extends StatelessWidget {
                     }
                   },
                   child: TextField(
+                    focusNode: focusNode,
                     controller: kolichestvoTextController,
+                    onSubmitted: (value) {
+                      log(tabButtonIndexBloC.state.slideIndex.toString());
+                      sellPanelBloC
+                          .state
+                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                          .sellDataCubit
+                          .emit(
+                        SellData(
+                          topDataGridRow: [
+                            TopTableGridRow(dataModel: data),
+                          ],
+                        ),
+                      );
+                    },
                     onChanged: (value) {
                       int a = (int.parse(value)) *
                           int.parse(sena.substring(0, sena.length - 3));
@@ -257,6 +281,41 @@ class QtyPanel extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 100,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      color: Colors.red.shade400,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: const Text("Cancel"),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 100,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      color: Colors.greenAccent.shade400,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: const Text("OK"),
                 ),
               ),
             ],

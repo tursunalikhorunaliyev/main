@@ -1,10 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
+import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 
 class TopTableGridRow extends StatelessWidget {
-  final SellDataModel dataModel;
+  final Data dataModel;
 
   const TopTableGridRow({
     super.key,
@@ -30,7 +30,7 @@ class TopTableGridRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.polnoeNaimovaniye,
+                dataModel.name,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -48,7 +48,7 @@ class TopTableGridRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.kolichestvo.toString(),
+                dataModel.manufacturer,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -65,9 +65,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.sena.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -83,9 +83,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.summa.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -101,9 +101,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.srokGod.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -119,9 +119,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.seriya.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -137,9 +137,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.mx.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -155,9 +155,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.ikpu.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -173,9 +173,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: Text(
-                dataModel.mark.toString(),
-                style: const TextStyle(
+              child: const Text(
+                "",
+                style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
