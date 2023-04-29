@@ -28,7 +28,7 @@ class _TestPageState extends State<TestPage> {
         autofocus: focusNode.hasFocus,
         focusNode: focusNode,
         onKey: (value) {
-          log(value.toString());
+         
         },
         child: GestureDetector(
           onTap: () {

@@ -12,7 +12,7 @@ class SearchPanel extends StatelessWidget {
     final searchCubit = BlocProvider.of<SearchCubit>(context);
     return TextField(
       onChanged: (value) {
-        log(value);
+      
         searchCubit.getData(value);
       },
       decoration: InputDecoration(

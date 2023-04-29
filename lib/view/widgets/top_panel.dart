@@ -42,7 +42,7 @@ class TopPanel extends StatelessWidget {
           child: BlocBuilder<CheckButtonsBloc, CheckButtonsState>(
             bloc: checkButtonCubit,
             builder: (context, state) {
-              log("qurilibtashadi");
+             
               state as CheckButtonsPanelData;
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
