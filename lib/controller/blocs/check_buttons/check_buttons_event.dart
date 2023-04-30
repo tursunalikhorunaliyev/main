@@ -9,10 +9,7 @@ abstract class CheckButtonsEvent extends Equatable {
 }
 
 class CheckButtonsAdd extends CheckButtonsEvent {
-  final CreatedCheckData createdCheckData;
-  const CheckButtonsAdd({
-    required this.createdCheckData,
-  });
+  const CheckButtonsAdd();
 }
 
 class CheckButtonsRemove extends CheckButtonsEvent {

@@ -1,11 +1,10 @@
 part of 'sell_data_bloc.dart';
 
-abstract class SellDataState extends Equatable {
+abstract class SellDataState {
   final List<TopTableGridRow> topTableGridRow;
-  const SellDataState({required this.topTableGridRow});
-
-  @override
-  List<Object> get props => [topTableGridRow];
+  const SellDataState({
+    required this.topTableGridRow,
+  });
 }
 
 class SellStateData extends SellDataState {

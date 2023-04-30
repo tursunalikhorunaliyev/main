@@ -11,15 +11,10 @@ part 'check_buttons_state.dart';
 class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
   CheckButtonsBloc()
       : super(
-          CheckButtonsPanelData(
+          const CheckButtonsPanelData(
             customeTabButton: [
               CustomeTabButton(
                 buttonIndex: 0,
-                createdCheckData: CreatedCheckData(
-                    createdAt: DateTime.now(),
-                    status: "draft",
-                    id: "0",
-                    uuid: "0"),
               ),
             ],
           ),
@@ -28,7 +23,6 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
       state.customeTabButton.add(
         CustomeTabButton(
           buttonIndex: state.customeTabButton.length,
-          createdCheckData: event.createdCheckData,
         ),
       );
       emit(state);

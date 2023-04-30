@@ -16,8 +16,5 @@ class SellPanelRemove extends SellPanelEvent {
 }
 
 class SellPanelAdd extends SellPanelEvent {
-  final CreatedCheckData createdCheckData;
-  const SellPanelAdd({
-    required this.createdCheckData,
-  });
+  const SellPanelAdd();
 }

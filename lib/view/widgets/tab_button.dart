@@ -5,24 +5,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
-import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
 import 'package:provider/provider.dart';
 
 class CustomeTabButton extends StatelessWidget {
   final int buttonIndex;
 
-  final CreatedCheckData createdCheckData;
   const CustomeTabButton({
     super.key,
     required this.buttonIndex,
-    required this.createdCheckData,
   });
 
   @override
   Widget build(BuildContext context) {
     final tabButtonIndex = BlocProvider.of<TabButtonIndexCubit>(context);
     final pageController = Provider.of<PageController>(context);
-    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: BlocBuilder<TabButtonIndexCubit, TabButtonIndexState>(
@@ -52,10 +49,7 @@ class CustomeTabButton extends StatelessWidget {
                 )),
               ),
               child: Text(
-                createdCheckData.createdAt
-                    .toString()
-                    .split(" ")[1]
-                    .split(".")[0],
+                DateTime.now().toString().split(" ")[1].split(".")[0],
                 style: const TextStyle(
                   color: Colors.black,
                 ),

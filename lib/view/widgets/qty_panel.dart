@@ -182,15 +182,22 @@ class QtyPanel extends StatelessWidget {
                     focusNode: focusNode,
                     controller: kolichestvoTextController,
                     onSubmitted: (value) {
-                      sellPanelBloC
-                          .state
-                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
-                          .sellDataBloc
-                          .add(SellDataAdd(data: data));
+                      if (kolichestvoTextController.text.isNotEmpty) {
+                        sellPanelBloC
+                            .state
+                            .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                            .sellDataBloc
+                            .add(
+                          SellDataAdd(data: data),
+                        );
+                        Navigator.pop(context);
+                      }
                     },
                     onChanged: (value) {
                       int a = (int.parse(value)) *
                           int.parse(sena.substring(0, sena.length - 3));
+                      summaTextController.value =
+                          TextEditingValue(text: a.toString());
                     },
                     cursorColor: const Color(0xFFD9D9D9),
                     style: const TextStyle(
@@ -296,7 +303,18 @@ class QtyPanel extends StatelessWidget {
                 width: 10,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  if (kolichestvoTextController.text.isNotEmpty) {
+                    sellPanelBloC
+                        .state
+                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                        .sellDataBloc
+                        .add(
+                      SellDataAdd(data: data),
+                    );
+                    Navigator.pop(context);
+                  }
+                },
                 child: Container(
                   alignment: Alignment.center,
                   width: 100,

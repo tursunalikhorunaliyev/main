@@ -17,11 +17,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
               SellPanel(
                   index: 0,
                   paymentDetails: PaymentDetails(),
-                  createdCheckData: CreatedCheckData(
-                      createdAt: DateTime.now(),
-                      status: "draft",
-                      id: "0",
-                      uuid: "0"),
+                 
                   sellDataBloc: SellDataBloc()),
             ],
           ),
@@ -30,7 +26,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
       state.sellPanel.add(SellPanel(
           index: state.sellPanel.length,
           paymentDetails: PaymentDetails(),
-          createdCheckData: event.createdCheckData,
+         
           sellDataBloc: SellDataBloc()));
       emit(state);
     });

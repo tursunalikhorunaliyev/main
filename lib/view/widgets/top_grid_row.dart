@@ -13,8 +13,6 @@ class TopTableGridRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final focusNode = FocusNode();
-
     return SizedBox(
       height: 40,
       child: Row(

@@ -31,8 +31,8 @@ class NoviyCheckButton extends StatelessWidget {
                 createdAt: DateTime.now(), status: CheckStatus.draft),
           )
               .then((value) {
-            sellPanelBloc.add(SellPanelAdd(createdCheckData: value));
-            checkPanelsBloc.add(CheckButtonsAdd(createdCheckData: value));
+            sellPanelBloc.add(SellPanelAdd());
+            checkPanelsBloc.add(CheckButtonsAdd());
             tabButtonIndexCubit.emit(
               TabButtonIndex(
                   slideIndex: checkPanelsBloc.state.customeTabButton.length),
