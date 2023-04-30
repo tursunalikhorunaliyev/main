@@ -33,6 +33,19 @@ class FeathersService {
         });
     return response;
   }
+  List<Map<String, dynamic>> findCheckLine(String docId, Map<String, dynamic> data) async {
+    Map<String, dynamic> response = await Api.feathers().create(
+        serviceName: "memories",
+        data: data,
+        params: {
+          "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
+          "ctx": const ['warehouse', 'dispatch'],
+          "filter": { 
+            "document": docId,
+          }
+        });
+    return response;
+  }
 
   // status = draft | payed | deleted
   // data = {created_at: "iso-date-time", status: "draft"}
@@ -48,24 +61,13 @@ class FeathersService {
     return response;
   }
 
-  List<Map<String, dynamic>> findCheckLine(String docId, Map<String, dynamic> data) async {
-    Map<String, dynamic> response = await Api.feathers().create(
-        serviceName: "memories",
-        data: data,
-        params: {
-          "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
-          "ctx": const ['warehouse', 'dispatch'],
-          "filter": { 
-            "document": docId,
-          }
-        });
-    return response;
-  }
+ 
 
   // goods = {"_id": "...", "_uuid": "...", name: "...", uom: {"_id": "...", "_uuid": "...", name: "..."}}
 
   // status = | "deleted"
-  // data = {status: "deleted", "document": checkDoc["_uuid"], "goods": goods["_uuid"], "qty": {number: 123, uom: goods["uom"]["_uuid"]}, price: {number: 1, currency: "UZS"}, cost: {number: 1, currency: "UZS"}}
+  // data = {status: "deleted", "document": checkDoc["_uuid"], "goods": goods["_uuid"], 
+  //"qty": {number: 123, uom: goods["uom"]["_uuid"]}, price: {number: 1, currency: "UZS"}, cost: {number: 1, currency: "UZS"}}
   List<Map<String, dynamic>> createCheckLine(Map<String, dynamic> data) async {
     Map<String, dynamic> response = await Api.feathers().create(
         serviceName: "memories",

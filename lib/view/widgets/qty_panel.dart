@@ -33,217 +33,170 @@ class QtyPanel extends StatelessWidget {
     var summaTextController = TextEditingController(text: "0.00");
     final focusNode = FocusNode();
     focusNode.requestFocus();
-    return SizedBox(
-      height: 325,
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 400,
-                    child: Text(
-                      data.name,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        color: Color(0xFF0E0631),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    data.manufacturer,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFF0E0631),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 100,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Sena",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Color(0xFF0E0631),
-                    ),
-                  ),
-                  Text(
-                    sena,
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 400,
+                  child: Text(
+                    data.name,
                     style: const TextStyle(
                       fontSize: 24,
                       color: Color(0xFF0E0631),
                       fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 35,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Seriya",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF0E0631),
-                    ),
-                  ),
-                  Text(
-                    seriya,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: Color(0xFF0E0631),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Srok godnost",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF0E0631),
-                    ),
-                  ),
-                  Text(
-                    srokGod,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: Color(0xFF0E0631),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Ostatok",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF0E0631),
-                    ),
-                  ),
-                  Text(
-                    ostatok.toString(),
-                    style: const TextStyle(
-                      fontSize: 24,
-                      color: Color(0xFF0E0631),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 50,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: 150,
-                child: RawKeyboardListener(
-                  focusNode: FocusNode(),
-                  autofocus: true,
-                  onKey: (value) {
-                    if (value.isKeyPressed(LogicalKeyboardKey.backspace) &&
-                        kolichestvoTextController.text.length == 1) {
-                      summaTextController.value =
-                          const TextEditingValue(text: "0.00");
-                    }
-                  },
-                  child: TextField(
-                    focusNode: focusNode,
-                    controller: kolichestvoTextController,
-                    onSubmitted: (value) {
-                      if (kolichestvoTextController.text.isNotEmpty) {
-                        sellPanelBloC
-                            .state
-                            .sellPanel[tabButtonIndexBloC.state.slideIndex]
-                            .sellDataBloc
-                            .add(
-                          SellDataAdd(data: data),
-                        );
-                        Navigator.pop(context);
-                      }
-                    },
-                    onChanged: (value) {
-                      int a = (int.parse(value)) *
-                          int.parse(sena.substring(0, sena.length - 3));
-                      summaTextController.value =
-                          TextEditingValue(text: a.toString());
-                    },
-                    cursorColor: const Color(0xFFD9D9D9),
-                    style: const TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF0E0631),
-                    ),
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      hintText: "0",
-                      hintStyle: TextStyle(
-                        fontSize: 40,
-                      ),
-                      labelText: "Kolichestvo",
-                      labelStyle: TextStyle(
-                        fontSize: 20,
-                      ),
-                      contentPadding: EdgeInsets.only(bottom: 10),
-                      floatingLabelAlignment: FloatingLabelAlignment.start,
-                      floatingLabelStyle: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF0E0631),
-                        fontWeight: FontWeight.w300,
-                      ),
-                      border: UnderlineInputBorder(),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFD9D9D9),
-                          width: 3,
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFFD9D9D9),
-                          width: 3,
-                        ),
-                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 300,
+                Text(
+                  data.manufacturer,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF0E0631),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 100,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Sena",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF0E0631),
+                  ),
+                ),
+                Text(
+                  sena,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    color: Color(0xFF0E0631),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 35,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Seriya",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF0E0631),
+                  ),
+                ),
+                Text(
+                  seriya,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    color: Color(0xFF0E0631),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Srok godnost",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF0E0631),
+                  ),
+                ),
+                Text(
+                  srokGod,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    color: Color(0xFF0E0631),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Ostatok",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF0E0631),
+                  ),
+                ),
+                Text(
+                  ostatok.toString(),
+                  style: const TextStyle(
+                    fontSize: 24,
+                    color: Color(0xFF0E0631),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              width: 50,
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: 150,
+              child: RawKeyboardListener(
+                focusNode: FocusNode(),
+                autofocus: true,
+                onKey: (value) {
+                  if (value.isKeyPressed(LogicalKeyboardKey.backspace) &&
+                      kolichestvoTextController.text.length == 1) {
+                    summaTextController.value =
+                        const TextEditingValue(text: "0.00");
+                  }
+                },
                 child: TextField(
-                  controller: summaTextController,
-                  textDirection: TextDirection.rtl,
+                  focusNode: focusNode,
+                  controller: kolichestvoTextController,
+                  onSubmitted: (value) {
+                    if (kolichestvoTextController.text.isNotEmpty) {
+                      sellPanelBloC
+                          .state
+                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                          .sellDataBloc
+                          .add(
+                        SellDataAdd(data: data),
+                      );
+                      Navigator.pop(context);
+                    }
+                  },
+                  onChanged: (value) {
+                    int a = (int.parse(value)) *
+                        int.parse(sena.substring(0, sena.length - 3));
+                    summaTextController.value =
+                        TextEditingValue(text: a.toString());
+                  },
                   cursorColor: const Color(0xFFD9D9D9),
                   style: const TextStyle(
                     fontSize: 40,
@@ -252,7 +205,11 @@ class QtyPanel extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    labelText: "Summa",
+                    hintText: "0",
+                    hintStyle: TextStyle(
+                      fontSize: 40,
+                    ),
+                    labelText: "Kolichestvo",
                     labelStyle: TextStyle(
                       fontSize: 20,
                     ),
@@ -279,56 +236,96 @@ class QtyPanel extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              InkWell(
-                onTap: () {
+            ),
+            SizedBox(
+              width: 300,
+              child: TextField(
+                controller: summaTextController,
+                textDirection: TextDirection.rtl,
+                cursorColor: const Color(0xFFD9D9D9),
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF0E0631),
+                ),
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: "Summa",
+                  labelStyle: TextStyle(
+                    fontSize: 20,
+                  ),
+                  contentPadding: EdgeInsets.only(bottom: 10),
+                  floatingLabelAlignment: FloatingLabelAlignment.start,
+                  floatingLabelStyle: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFF0E0631),
+                    fontWeight: FontWeight.w300,
+                  ),
+                  border: UnderlineInputBorder(),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFD9D9D9),
+                      width: 3,
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFFD9D9D9),
+                      width: 3,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const Spacer(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: 100,
+                height: 30,
+                decoration: BoxDecoration(
+                    color: Colors.red.shade400,
+                    borderRadius: BorderRadius.circular(5)),
+                child: const Text("Cancel"),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            InkWell(
+              onTap: () {
+                if (kolichestvoTextController.text.isNotEmpty) {
+                  sellPanelBloC
+                      .state
+                      .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                      .sellDataBloc
+                      .add(
+                    SellDataAdd(data: data),
+                  );
                   Navigator.pop(context);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 100,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: Colors.red.shade400,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: const Text("Cancel"),
-                ),
+                }
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: 100,
+                height: 30,
+                decoration: BoxDecoration(
+                    color: Colors.greenAccent.shade400,
+                    borderRadius: BorderRadius.circular(5)),
+                child: const Text("OK"),
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  if (kolichestvoTextController.text.isNotEmpty) {
-                    sellPanelBloC
-                        .state
-                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
-                        .sellDataBloc
-                        .add(
-                      SellDataAdd(data: data),
-                    );
-                    Navigator.pop(context);
-                  }
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 100,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: Colors.greenAccent.shade400,
-                      borderRadius: BorderRadius.circular(5)),
-                  child: const Text("OK"),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
