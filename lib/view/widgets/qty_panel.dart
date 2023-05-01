@@ -198,7 +198,7 @@ class QtyPanel extends StatelessWidget {
                             .then((value) {
                           TableLine tabLine = TableLine(
                             document: value.uuid,
-                            goods: data.id,
+                            goods: data.uuid,
                             qty: Qty(
                                 number:
                                     int.parse(kolichestvoTextController.text),
@@ -374,7 +374,7 @@ class QtyPanel extends StatelessWidget {
                         .then((value) {
                       TableLine tabLine = TableLine(
                         document: value.uuid,
-                        goods: data.id,
+                        goods: data.uuid,
                         qty: Qty(
                             number: int.parse(kolichestvoTextController.text),
                             uom: "pkg"),
