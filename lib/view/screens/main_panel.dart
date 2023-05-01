@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
+import 'package:napt_sklad/controller/data/connection_data.dart';
+import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
 import 'package:napt_sklad/view/widgets/top_panel.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
@@ -12,6 +14,18 @@ class MainPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<SearchData> getSearchData(String search) async {
+      Map<String, dynamic> response =
+          await Api.feathers().find(serviceName: "memories", query: {
+        "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
+        "ctx": const ['drugs'],
+        "search": "a"
+      });
+      print(response.toString());
+      return SearchData.fromJson(response);
+    }
+
+    getSearchData("a");
     final selectorForTop = SelectorBloC();
     final selectorForBottom = SelectorBloC();
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {

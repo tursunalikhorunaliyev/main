@@ -6,7 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
+import 'package:napt_sklad/controller/data/model/check/check_creation_model.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/data/model/table/table_line.dart';
+import 'package:napt_sklad/controller/data/service/feathers.dart';
 import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
 class QtyPanel extends StatelessWidget {
@@ -181,13 +184,67 @@ class QtyPanel extends StatelessWidget {
                   controller: kolichestvoTextController,
                   onSubmitted: (value) {
                     if (kolichestvoTextController.text.isNotEmpty) {
-                      sellPanelBloC
+                      if (sellPanelBloC
                           .state
                           .sellPanel[tabButtonIndexBloC.state.slideIndex]
                           .sellDataBloc
-                          .add(
-                        SellDataAdd(data: data),
-                      );
+                          .state
+                          .topTableGridRow
+                          .isEmpty) {
+                        FeathersService()
+                            .createCheckDoc(CheckCreationModel(
+                                createdAt: DateTime.now(),
+                                status: CheckStatus.draft))
+                            .then((value) {
+                          TableLine tabLine = TableLine(
+                            document: value.uuid,
+                            goods: value.id,
+                            qty: Qty(
+                                number:
+                                    int.parse(kolichestvoTextController.text),
+                                uom: "pkg"),
+                            price: Cost(number: 25000, currency: "UZS"),
+                            cost: Cost(
+                                number: int.parse(summaTextController.text),
+                                currency: "UZS"),
+                          );
+                          FeathersService().createCheckLine(tabLine.toJson());
+
+                          sellPanelBloC
+                              .state
+                              .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                              .sellDataBloc
+                              .add(
+                            SellDataAdd(data: data, tableLine: tabLine),
+                          );
+                        });
+                      } else {
+                        sellPanelBloC
+                            .state
+                            .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                            .sellDataBloc
+                            .add(
+                          SellDataAdd(
+                            data: data,
+                            tableLine: TableLine(
+                              document: sellPanelBloC
+                                  .state
+                                  .sellPanel[
+                                      tabButtonIndexBloC.state.slideIndex]
+                                  .createdCheckData!
+                                  .uuid,
+                              goods: data.uuid,
+                              qty: Qty(
+                                  number: kolichestvoTextController.text as int,
+                                  uom: "pkg"),
+                              price: Cost(number: 25000, currency: "UZS"),
+                              cost: Cost(
+                                  number: summaTextController.text as int,
+                                  currency: "UZS"),
+                            ),
+                          ),
+                        );
+                      }
                       Navigator.pop(context);
                     }
                   },
@@ -303,13 +360,59 @@ class QtyPanel extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (kolichestvoTextController.text.isNotEmpty) {
-                  sellPanelBloC
+                  if (sellPanelBloC
                       .state
                       .sellPanel[tabButtonIndexBloC.state.slideIndex]
                       .sellDataBloc
-                      .add(
-                    SellDataAdd(data: data),
-                  );
+                      .state
+                      .topTableGridRow
+                      .isEmpty) {
+                    sellPanelBloC
+                        .state
+                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                        .sellDataBloc
+                        .add(
+                      SellDataAdd(
+                        data: data,
+                        tableLine: TableLine(
+                          document: "first",
+                          goods: data.uuid,
+                          qty: Qty(
+                              number: kolichestvoTextController.text as int,
+                              uom: "pkg"),
+                          price: Cost(number: 25000, currency: "UZS"),
+                          cost: Cost(
+                              number: summaTextController.text as int,
+                              currency: "UZS"),
+                        ),
+                      ),
+                    );
+                  } else {
+                    sellPanelBloC
+                        .state
+                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                        .sellDataBloc
+                        .add(
+                      SellDataAdd(
+                        data: data,
+                        tableLine: TableLine(
+                          document: sellPanelBloC
+                              .state
+                              .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                              .createdCheckData!
+                              .uuid,
+                          goods: data.uuid,
+                          qty: Qty(
+                              number: kolichestvoTextController.text as int,
+                              uom: "pkg"),
+                          price: Cost(number: 25000, currency: "UZS"),
+                          cost: Cost(
+                              number: summaTextController.text as int,
+                              currency: "UZS"),
+                        ),
+                      ),
+                    );
+                  }
                   Navigator.pop(context);
                 }
               },

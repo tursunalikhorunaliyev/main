@@ -66,8 +66,7 @@ class FeathersService {
   // goods = {"_id": "...", "_uuid": "...", name: "...", uom: {"_id": "...", "_uuid": "...", name: "..."}}
 
   // status = | "deleted"
-  // data = {status: "deleted", "document": checkDoc["_uuid"], "goods": goods["_uuid"], 
-  //"qty": {number: 123, uom: goods["uom"]["_uuid"]}, price: {number: 1, currency: "UZS"}, cost: {number: 1, currency: "UZS"}}
+  // data = {status: "deleted", "document": checkDoc["_uuid"], "goods": goods["_uuid"], "qty": {number: 123, uom: goods["uom"]["_uuid"]}, price: {number: 1, currency: "UZS"}, cost: {number: 1, currency: "UZS"}}
   List<Map<String, dynamic>> createCheckLine(Map<String, dynamic> data) async {
     Map<String, dynamic> response = await Api.feathers().create(
         serviceName: "memories",
@@ -128,5 +127,15 @@ class FeathersService {
     ChecksDataModel model = ChecksDataModel.fromJson(response);
     log(model.data[0].createdAt.toString());
     return ChecksDataModel.fromJson(response);
+  }
+
+  createCheckLine(Map<String, dynamic> data) async {
+    log("aaaaaa");
+    Map<String, dynamic> response = await Api.feathers()
+        .create(serviceName: "memories", data: data, params: {
+      "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
+      "ctx": const ['warehouse', 'dispatch'],
+    });
+    print(response.toString());
   }
 }

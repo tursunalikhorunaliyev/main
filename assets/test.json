@@ -1,0 +1,17 @@
+{
+    "status": "deleted",
+    "document": "uuid",
+    "goods": "goods",
+    "qty": {
+        "number": 123,
+        "uom": "pkg"
+    },
+    "price": {
+        "number": 1,
+        "currency": "UZS"
+    },
+    "cost": {
+        "number": 1,
+        "currency": "UZS"
+    }
+}
