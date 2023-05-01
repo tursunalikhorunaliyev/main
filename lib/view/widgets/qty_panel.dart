@@ -198,7 +198,7 @@ class QtyPanel extends StatelessWidget {
                             .then((value) {
                           TableLine tabLine = TableLine(
                             document: value.uuid,
-                            goods: value.id,
+                            goods: data.id,
                             qty: Qty(
                                 number:
                                     int.parse(kolichestvoTextController.text),
@@ -367,26 +367,32 @@ class QtyPanel extends StatelessWidget {
                       .state
                       .topTableGridRow
                       .isEmpty) {
-                    sellPanelBloC
-                        .state
-                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
-                        .sellDataBloc
-                        .add(
-                      SellDataAdd(
-                        data: data,
-                        tableLine: TableLine(
-                          document: "first",
-                          goods: data.uuid,
-                          qty: Qty(
-                              number: kolichestvoTextController.text as int,
-                              uom: "pkg"),
-                          price: Cost(number: 25000, currency: "UZS"),
-                          cost: Cost(
-                              number: summaTextController.text as int,
-                              currency: "UZS"),
-                        ),
-                      ),
-                    );
+                    FeathersService()
+                        .createCheckDoc(CheckCreationModel(
+                            createdAt: DateTime.now(),
+                            status: CheckStatus.draft))
+                        .then((value) {
+                      TableLine tabLine = TableLine(
+                        document: value.uuid,
+                        goods: data.id,
+                        qty: Qty(
+                            number: int.parse(kolichestvoTextController.text),
+                            uom: "pkg"),
+                        price: Cost(number: 25000, currency: "UZS"),
+                        cost: Cost(
+                            number: int.parse(summaTextController.text),
+                            currency: "UZS"),
+                      );
+                      FeathersService().createCheckLine(tabLine.toJson());
+
+                      sellPanelBloC
+                          .state
+                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                          .sellDataBloc
+                          .add(
+                        SellDataAdd(data: data, tableLine: tabLine),
+                      );
+                    });
                   } else {
                     sellPanelBloC
                         .state

@@ -14,18 +14,6 @@ class MainPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<SearchData> getSearchData(String search) async {
-      Map<String, dynamic> response =
-          await Api.feathers().find(serviceName: "memories", query: {
-        "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
-        "ctx": const ['drugs'],
-        "search": "a"
-      });
-      print(response.toString());
-      return SearchData.fromJson(response);
-    }
-
-    getSearchData("a");
     final selectorForTop = SelectorBloC();
     final selectorForBottom = SelectorBloC();
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
