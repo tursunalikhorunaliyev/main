@@ -8,6 +8,8 @@ abstract class CheckButtonsEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class CheckButtonOnLoad extends CheckButtonsEvent {}
+
 class CheckButtonsAdd extends CheckButtonsEvent {
   const CheckButtonsAdd();
 }

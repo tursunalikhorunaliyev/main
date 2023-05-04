@@ -1,17 +1,64 @@
 {
-    "status": "deleted",
-    "document": "uuid",
-    "goods": "goods",
-    "qty": {
-        "number": 123,
-        "uom": "pkg"
-    },
-    "price": {
-        "number": 1,
-        "currency": "UZS"
-    },
-    "cost": {
-        "number": 1,
-        "currency": "UZS"
-    }
+    "data": [
+        {
+            "status": null,
+            "document": "4d0b35b7-c86e-41d1-8dc9-9b811533c0b9",
+            "goods": {
+                "name": "ТЕСТ-ПОЛОСКИ ДЛЯ ГЛЮКОМЕТРА GLUCODR AUTO A №50, manufacturer: ALL MEDICUS CO. LTD, ЮЖНАЯ КОРЕЯ",
+                "_id": "drugs/2023-04-18T07:12:52.009Z",
+                "_uuid": "0e31b0bc-31ab-4e41-97af-fb0af5cb9cfb"
+            },
+            "qty": {
+                "number": 1,
+                "uom": {
+                    "_id": "pkg",
+                    "_status": "not_found"
+                }
+            },
+            "price": {
+                "number": 1,
+                "currency": "UZB",
+                "per": {
+                    "number": 1,
+                    "uom": "pkg"
+                }
+            },
+            "cost": {
+                "number": 1,
+                "currency": "UZB"
+            },
+            "_id": "warehouse/dispatch/2023-05-02T19:27:19.778Z",
+            "_uuid": "463fde81-f467-428e-9dc4-f37350d06269"
+        },
+        {
+            "status": "deleted",
+            "document": "4d0b35b7-c86e-41d1-8dc9-9b811533c0b9",
+            "goods": {
+                "name": "ТЕСТ-ПОЛОСКИ ДЛЯ ГЛЮКОМЕТРА GLUCODR AUTO A №50, manufacturer: ALL MEDICUS CO. LTD, ЮЖНАЯ КОРЕЯ",
+                "_id": "drugs/2023-04-18T07:12:52.009Z",
+                "_uuid": "0e31b0bc-31ab-4e41-97af-fb0af5cb9cfb"
+            },
+            "qty": {
+                "number": 1,
+                "uom": {
+                    "_id": "pkg",
+                    "_status": "not_found"
+                }
+            },
+            "price": {
+                "number": 1,
+                "currency": "UZB",
+                "per": {
+                    "number": 1,
+                    "uom": "pkg"
+                }
+            },
+            "cost": {
+                "number": 1,
+                "currency": "UZB"
+            },
+            "_id": "warehouse/dispatch/2023-05-02T19:27:19.778Z",
+            "_uuid": "463fde81-f467-428e-9dc4-f37350d06269"
+        }
+    ]
 }

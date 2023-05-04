@@ -18,3 +18,7 @@ class SellPanelRemove extends SellPanelEvent {
 class SellPanelAdd extends SellPanelEvent {
   const SellPanelAdd();
 }
+
+class SellPanelOnLoad extends SellPanelEvent {
+  const SellPanelOnLoad();
+}

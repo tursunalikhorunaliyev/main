@@ -1,6 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:napt_sklad/controller/data/model/check/check_creation_model.dart';
+import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
+import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/data/model/table/table_line.dart';
+import 'package:napt_sklad/controller/data/service/feathers.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});
@@ -23,24 +28,52 @@ class _TestPageState extends State<TestPage> {
   Widget build(BuildContext context) {
     final focusNode = FocusNode();
     return Scaffold(
-        body: Center(
-      child: RawKeyboardListener(
-        autofocus: focusNode.hasFocus,
-        focusNode: focusNode,
-        onKey: (value) {
-         
-        },
-        child: GestureDetector(
-          onTap: () {
-            focusNode.requestFocus();
-          },
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Colors.amber,
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+            onPressed: () async {
+              SearchData searchData =
+                  await FeathersService().getSearchData("a");
+              log(searchData.data[0].uuid.toString());
+            },
+            child: const Text("Get search"),
           ),
-        ),
-      ),
-    ));
+          ElevatedButton(
+            onPressed: () async {
+              CreatedCheckData createdCheckData = await FeathersService()
+                  .createCheckDoc(CheckCreationModel(
+                      createdAt: DateTime.now(), status: CheckStatus.draft));
+              log(createdCheckData.id.toString());
+              log(createdCheckData.uuid.toString());
+            },
+            child: const Text("Create doc"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              FeathersService().createCheckLine(TableLine(
+                goods: "0e31b0bc-31ab-4e41-97af-fb0af5cb9cfb",
+                document: "4d0b35b7-c86e-41d1-8dc9-9b811533c0b9",
+                price: Price(
+                    number: 1,
+                    currency: "UZB",
+                    per: Qty(number: 1, uom: "pkg")),
+                qty: Qty(number: 1, uom: "pkg"),
+                cost: Cost(number: 1, currency: "UZB"),
+              ).toJson());
+            },
+            child: const Text("AddLine to check"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              FeathersService()
+                  .findCheckLine("4d0b35b7-c86e-41d1-8dc9-9b811533c0b9");
+            },
+            child: const Text("Retrive added check line"),
+          )
+        ],
+      )),
+    );
   }
 }

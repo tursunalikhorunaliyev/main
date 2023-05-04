@@ -6,7 +6,9 @@ import 'package:napt_sklad/controller/data/model/auth/auth_data.dart';
 import 'package:napt_sklad/controller/data/model/check/check_creation_model.dart';
 import 'package:napt_sklad/controller/data/model/check/checks_data_model.dart';
 import 'package:napt_sklad/controller/data/model/check/created_check_model.dart';
+import 'package:napt_sklad/controller/data/model/check/doc_checks_data_model.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/data/model/table/docs_model.dart';
 
 class FeathersService {
   Future<AuthData> auth() async {
@@ -115,7 +117,7 @@ class FeathersService {
     return CreatedCheckData.fromJson(response);
   }
 
-  Future<ChecksDataModel> listCheckDoc() async {
+  Future<Docs> listCheckDoc() async {
     Map<String, dynamic> response =
         await Api.feathers().find(serviceName: "memories", query: {
       "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
@@ -126,7 +128,7 @@ class FeathersService {
     });
     ChecksDataModel model = ChecksDataModel.fromJson(response);
     log(model.data[0].createdAt.toString());
-    return ChecksDataModel.fromJson(response);
+    return Docs.fromJson(response);
   }
 
   createCheckLine(Map<String, dynamic> data) async {
@@ -137,5 +139,16 @@ class FeathersService {
       "ctx": const ['warehouse', 'dispatch'],
     });
     print(response.toString());
+  }
+
+  Future<DocChecksData> findCheckLine(String docId) async {
+    var response = await Api.feathers().find(serviceName: "memories", query: {
+      "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
+      "ctx": const ['warehouse', 'dispatch'],
+      "filter": {
+        "document": docId,
+      }
+    });
+    return DocChecksData.fromJson(response);
   }
 }

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
+import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/data/connection_data.dart';
-import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/data/service/feathers.dart';
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
 import 'package:napt_sklad/view/widgets/top_panel.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
@@ -14,8 +16,14 @@ class MainPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final checkButtonsBloC = BlocProvider.of<CheckButtonsBloc>(context);
+    final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
+    sellPanelBloc.add(const SellPanelOnLoad());
+    checkButtonsBloC.add(CheckButtonOnLoad());
+
     final selectorForTop = SelectorBloC();
     final selectorForBottom = SelectorBloC();
+
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
       final key = keyEvent.logicalKey.keyLabel;
 

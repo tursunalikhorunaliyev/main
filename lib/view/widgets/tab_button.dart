@@ -5,15 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
+import 'package:napt_sklad/controller/data/model/table/docs_model.dart';
 import 'package:provider/provider.dart';
 
 class CustomeTabButton extends StatelessWidget {
   final int buttonIndex;
+  final DocData? docData;
 
-  const CustomeTabButton({
-    super.key,
-    required this.buttonIndex,
-  });
+  const CustomeTabButton({super.key, required this.buttonIndex, this.docData});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,9 @@ class CustomeTabButton extends StatelessWidget {
                 )),
               ),
               child: Text(
-                DateTime.now().toString().split(" ")[1].split(".")[0],
+                docData != null
+                    ? docData!.createdAt.toString().split(" ")[1].split(".")[0]
+                    : DateTime.now().toString().split(" ")[1].split(".")[0],
                 style: const TextStyle(
                   color: Colors.black,
                 ),

@@ -55,7 +55,7 @@ class BottomGridRow extends StatelessWidget {
                         data: searchCubitData
                             .searchData!.data[selector.currentIndex],
                         ostatok: 20,
-                        sena: "25000.00",
+                        sena: "25000",
                         seriya: "12345",
                         srokGod: "01.02.2025",
                       ),
