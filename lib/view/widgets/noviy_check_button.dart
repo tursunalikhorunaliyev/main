@@ -25,25 +25,17 @@ class NoviyCheckButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
         onTap: () async {
-          CreatedCheckData data = await FeathersService()
-              .createCheckDoc(
-            CheckCreationModel(
-                createdAt: DateTime.now(), status: CheckStatus.draft),
-          )
-              .then((value) {
-            sellPanelBloc.add(const SellPanelAdd());
-            checkPanelsBloc.add(const CheckButtonsAdd());
-            tabButtonIndexCubit.emit(
-              TabButtonIndex(
-                  slideIndex: checkPanelsBloc.state.customeTabButton.length),
-            );
-            pageController.animateToPage(
-              sellPanelBloc.state.sellPanel.length,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.fastLinearToSlowEaseIn,
-            );
-            return value;
-          });
+          sellPanelBloc.add(const SellPanelAdd());
+          checkPanelsBloc.add(const CheckButtonsAdd());
+          tabButtonIndexCubit.emit(
+            TabButtonIndex(
+                slideIndex: checkPanelsBloc.state.customeTabButton.length),
+          );
+          pageController.animateToPage(
+            sellPanelBloc.state.sellPanel.length,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.fastLinearToSlowEaseIn,
+          );
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),

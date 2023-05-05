@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
@@ -18,18 +20,30 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
         ) {
     on<SellPanelOnLoad>((event, emit) async {
       Docs docs = await FeathersService().listCheckDoc();
-      List<SellPanel> sellPanels = docs.data
-          .map(
-            (e) => SellPanel(
+      if (docs.data.isEmpty) {
+        log("start");
+        emit(SellPanelData(sellPanel: [
+          SellPanel(
               paymentDetails: PaymentDetails(),
-              index: docs.data.indexOf(e),
-              sellDataBloc: SellDataBloc(),
-            ),
-          )
-          .toList();
-      emit(
-        SellPanelData(sellPanel: sellPanels),
-      );
+              index: 0,
+              sellDataBloc: SellDataBloc())
+        ]));
+        log("emmittted");
+      } else {
+        List<SellPanel> sellPanels = docs.data
+            .map(
+              (e) => SellPanel(
+                paymentDetails: PaymentDetails(),
+                index: docs.data.indexOf(e),
+                sellDataBloc: SellDataBloc(),
+              ),
+            )
+            .toList();
+
+        emit(
+          SellPanelData(sellPanel: sellPanels),
+        );
+      }
     });
     on<SellPanelAdd>((event, emit) {
       state.sellPanel.add(SellPanel(

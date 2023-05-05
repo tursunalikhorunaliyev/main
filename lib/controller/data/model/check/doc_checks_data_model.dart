@@ -29,7 +29,7 @@ class RowData {
   final String? status;
   final String document;
   final Goods goods;
-  final Qty qty;
+  final DocQty qty;
   final Price price;
   final Cost cost;
   final String id;
@@ -50,7 +50,7 @@ class RowData {
         status: json["status"],
         document: json["document"],
         goods: Goods.fromJson(json["goods"]),
-        qty: Qty.fromJson(json["qty"]),
+        qty: DocQty.fromJson(json["qty"]),
         price: Price.fromJson(json["price"]),
         cost: Cost.fromJson(json["cost"]),
         id: json["_id"],
@@ -157,18 +157,18 @@ class Per {
       };
 }
 
-class Qty {
+class DocQty {
   final int number;
-  final Uom uom;
+  final DocUom uom;
 
-  Qty({
+  DocQty({
     required this.number,
     required this.uom,
   });
 
-  factory Qty.fromJson(Map<String, dynamic> json) => Qty(
+  factory DocQty.fromJson(Map<String, dynamic> json) => DocQty(
         number: json["number"],
-        uom: Uom.fromJson(json["uom"]),
+        uom: DocUom.fromJson(json["uom"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -177,16 +177,16 @@ class Qty {
       };
 }
 
-class Uom {
+class DocUom {
   final String id;
   final String status;
 
-  Uom({
+  DocUom({
     required this.id,
     required this.status,
   });
 
-  factory Uom.fromJson(Map<String, dynamic> json) => Uom(
+  factory DocUom.fromJson(Map<String, dynamic> json) => DocUom(
         id: json["_id"],
         status: json["_status"],
       );

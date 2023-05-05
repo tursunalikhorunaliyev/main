@@ -33,15 +33,22 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
       emit(state);
     });
     on<CheckButtonOnLoad>((event, emit) async {
+      log("boshlandi");
       Docs docs = await FeathersService().listCheckDoc();
-      List<CustomeTabButton> buttons = docs.data
-          .map((e) => CustomeTabButton(
-                buttonIndex: docs.data.indexOf(e),
-                docData: docs.data[docs.data.indexOf(e)],
-              ))
-          .toList();
+      log("turgadi");
+      if (docs.data.isEmpty) {
+        emit(const CheckButtonsPanelData(
+            customeTabButton: [CustomeTabButton(buttonIndex: 0)]));
+      } else {
+        List<CustomeTabButton> buttons = docs.data
+            .map((e) => CustomeTabButton(
+                  buttonIndex: docs.data.indexOf(e),
+                  docData: docs.data[docs.data.indexOf(e)],
+                ))
+            .toList();
 
-      emit(CheckButtonsPanelData(customeTabButton: buttons));
+        emit(CheckButtonsPanelData(customeTabButton: buttons));
+      }
     });
   }
 }
