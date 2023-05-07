@@ -52,6 +52,8 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
                   buttonIndex: docs.data.indexOf(e),
                   docData: docs.data[docs.data.indexOf(e)],
                 ))
+            .toList()
+            .reversed
             .toList();
 
         emit(CheckButtonsPanelData(customeTabButton: buttons));

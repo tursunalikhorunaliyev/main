@@ -39,6 +39,8 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
                 sellDataBloc: SellDataBloc(),
               ),
             )
+            .toList()
+            .reversed
             .toList();
 
         emit(
@@ -51,6 +53,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
           index: state.sellPanel.length,
           paymentDetails: PaymentDetailsBloc(),
           sellDataBloc: SellDataBloc()));
+      state.sellPanel.reversed.toList();
       emit(state);
     });
     on<SellPanelRemove>((event, emit) {

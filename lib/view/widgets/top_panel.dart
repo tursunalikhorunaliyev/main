@@ -31,6 +31,7 @@ class TopPanel extends StatelessWidget {
             builder: (context, state) {
               return PageView.builder(
                 allowImplicitScrolling: true,
+                reverse: true,
                 controller: pageController,
                 itemCount: state.sellPanel.length,
                 itemBuilder: (context, index) {
@@ -43,6 +44,21 @@ class TopPanel extends StatelessWidget {
         SizedBox(
           height: 40,
           child: BlocBuilder<CheckButtonsBloc, CheckButtonsState>(
+            buildWhen: (previous, current) {
+              if (previous.customeTabButton.length !=
+                  current.customeTabButton.length) {
+                WidgetsBinding.instance.addPostFrameCallback((_) => {
+                      scrollController.animateTo(
+                        scrollController.position.maxScrollExtent,
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.fastLinearToSlowEaseIn,
+                      )
+                    });
+                return true;
+              } else {
+                return false;
+              }
+            },
             bloc: checkButtonCubit,
             builder: (context, state) {
               state as CheckButtonsPanelData;
@@ -53,13 +69,6 @@ class TopPanel extends StatelessWidget {
                 addAutomaticKeepAlives: true,
                 itemCount: state.customeTabButton.length + 1,
                 itemBuilder: (context, index) {
-                  WidgetsBinding.instance.addPostFrameCallback((_) => {
-                        scrollController.animateTo(
-                          scrollController.position.maxScrollExtent,
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                        )
-                      });
                   return index == state.customeTabButton.length
                       ? const NoviyCheckButton()
                       : state.customeTabButton[index];
