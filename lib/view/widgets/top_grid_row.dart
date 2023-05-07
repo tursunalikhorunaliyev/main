@@ -28,7 +28,7 @@ class TopTableGridRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.name,
+                tableLine.goods,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,7 +46,7 @@ class TopTableGridRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                dataModel.manufacturer,
+                tableLine.qty.number.toString(),
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -63,9 +63,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: const Text(
-                "",
-                style: TextStyle(
+              child: Text(
+                tableLine.price.number.toString(),
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -81,9 +81,9 @@ class TopTableGridRow extends StatelessWidget {
                   width: 0.5,
                 ),
               ),
-              child: const Text(
-                "",
-                style: TextStyle(
+              child: Text(
+                tableLine.cost.number.toString(),
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),

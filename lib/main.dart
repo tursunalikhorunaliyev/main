@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
@@ -14,6 +15,9 @@ void main(List<String> args) {
 
   runApp(MultiProvider(
     providers: [
+      BlocProvider(
+        create: (context) => SelectorBloC(),
+      ),
       BlocProvider<SellPanelBloc>(
         create: (context) => SellPanelBloc(),
       ),
@@ -33,6 +37,7 @@ void main(List<String> args) {
         create: (context) => FocusNodesProvider(
           focusNodeQtyPanel: FocusNode(),
           focusNodeSearchBox: FocusNode(),
+          focusNodeBottomPanel: FocusNode(),
         ),
       ),
     ],

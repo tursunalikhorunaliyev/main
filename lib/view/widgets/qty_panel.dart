@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
@@ -174,6 +175,7 @@ class QtyPanel extends StatelessWidget {
             SizedBox(
               width: 150,
               child: TextField(
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 autofocus: true,
                 focusNode: focusNodes.focusNodeQtyPanel,
                 controller: kolichestvoTextController,
@@ -186,7 +188,6 @@ class QtyPanel extends StatelessWidget {
                         .state
                         .topTableGridRow
                         .isEmpty) {
-                      log("birinchisi");
                       FeathersService()
                           .createCheckDoc(CheckCreationModel(
                               createdAt: DateTime.now(),

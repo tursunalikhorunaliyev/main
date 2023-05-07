@@ -43,7 +43,7 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
                 tableLine: tl.TableLine(
                   document: e.document,
                   goods: e.goods.name,
-                  qty: tl.Qty(number: 1, uom: e.qty.uom.id),
+                  qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
                   price: tl.Price(
                     number: e.price.number,
                     currency: e.price.currency,
@@ -61,6 +61,8 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
                     id: e.id,
                     uuid: e.uuid),
               ))
+          .toList()
+          .reversed
           .toList();
       emit(SellStateData(topTableGridRow: rows));
     });

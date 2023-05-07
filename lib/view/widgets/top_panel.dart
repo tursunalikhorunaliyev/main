@@ -15,9 +15,12 @@ class TopPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("top panel qurildi");
     final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
     final pageController = Provider.of<PageController>(context);
     final checkButtonCubit = BlocProvider.of<CheckButtonsBloc>(context);
+
+    final scrollController = ScrollController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -42,13 +45,21 @@ class TopPanel extends StatelessWidget {
           child: BlocBuilder<CheckButtonsBloc, CheckButtonsState>(
             bloc: checkButtonCubit,
             builder: (context, state) {
-             
               state as CheckButtonsPanelData;
+
               return ListView.builder(
+                controller: scrollController,
                 scrollDirection: Axis.horizontal,
                 addAutomaticKeepAlives: true,
                 itemCount: state.customeTabButton.length + 1,
                 itemBuilder: (context, index) {
+                  WidgetsBinding.instance.addPostFrameCallback((_) => {
+                        scrollController.animateTo(
+                          scrollController.position.maxScrollExtent,
+                          duration: const Duration(milliseconds: 200),
+                          curve: Curves.fastLinearToSlowEaseIn,
+                        )
+                      });
                   return index == state.customeTabButton.length
                       ? const NoviyCheckButton()
                       : state.customeTabButton[index];

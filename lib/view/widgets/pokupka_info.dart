@@ -21,7 +21,7 @@ class PokupokInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tabIndexCubit = BlocProvider.of<TabButtonIndexCubit>(context);
-    final topPanelBloC = BlocProvider.of<SellPanelBloc>(context);
+    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
     final checkButtonsBloc = BlocProvider.of<CheckButtonsBloc>(context);
     final pageController = Provider.of<PageController>(context);
 
@@ -113,7 +113,7 @@ class PokupokInfo extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        topPanelBloC.add(SellPanelRemove(
+                        sellPanelBloC.add(SellPanelRemove(
                           removeIndex: tabIndexCubit.state.slideIndex,
                         ));
                         checkButtonsBloc.add(CheckButtonsRemove(

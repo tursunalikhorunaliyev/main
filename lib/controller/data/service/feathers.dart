@@ -149,6 +149,7 @@ class FeathersService {
         "document": docId,
       }
     });
+    print(response.toString());
     return DocChecksData.fromJson(response);
   }
 }

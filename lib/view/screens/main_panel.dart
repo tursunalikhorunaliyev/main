@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
@@ -20,43 +23,49 @@ class MainPanel extends StatelessWidget {
     final checkButtonsBloC = BlocProvider.of<CheckButtonsBloc>(context);
     final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
     final focusNodes = Provider.of<FocusNodesProvider>(context);
+    final selectorBloC = BlocProvider.of<SelectorBloC>(context);
 
     sellPanelBloc.add(const SellPanelOnLoad());
     checkButtonsBloC.add(CheckButtonOnLoad());
-
-    final selectorForTop = SelectorBloC();
-    final selectorForBottom = SelectorBloC();
-
+    SelectorBloCIndexState selectorBloCIndexState =
+        selectorBloC.state as SelectorBloCIndexState;
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
-      if (!focusNodes.focusNodeQtyPanel.hasFocus) {
-        focusNodes.focusNodeSearchBox.requestFocus();
-      }
+      if (RegExp("[0-9a-zA-Z]").hasMatch(
+              keyEvent.character == null ? "" : keyEvent.character!) &&
+          keyEvent is KeyDownEvent) {
+        if (!focusNodes.focusNodeQtyPanel.hasFocus) {
+          focusNodes.focusNodeSearchBox.requestFocus();
+          return false;
+        }
+      } /* else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowDown &&
+          keyEvent is KeyDownEvent) {
+        focusNodes.focusNodeSearchBox.unfocus();
+        log("${selectorBloCIndexState.currentIndex}" "xxx");
+/* 
+        selectorBloC.add(SelectorKeyDownEvent(
+            currentIndex: selectorBloCIndexState.currentIndex)); */
+
+        return false;
+      } */
       return false;
     });
-
     return Scaffold(
       body: Row(
         children: [
           Expanded(
             child: Column(
-              children: [
+              children: const [
                 Flexible(
                   flex: 5,
-                  child: BlocProvider<SelectorBloC>(
-                    create: (context) => selectorForTop,
-                    child: const TopPanel(),
-                  ),
+                  child: TopPanel(),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 40,
                   child: SearchPanel(),
                 ),
                 Flexible(
                   flex: 4,
-                  child: BlocProvider(
-                    create: (context) => selectorForBottom,
-                    child: const BottomTable(),
-                  ),
+                  child: BottomTable(),
                 )
               ],
             ),

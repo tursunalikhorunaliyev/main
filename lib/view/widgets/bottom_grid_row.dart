@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
-import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
-import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 import 'package:napt_sklad/view/widgets/qty_panel.dart';
 import 'package:provider/provider.dart';
 
@@ -23,9 +20,8 @@ class BottomGridRow extends StatelessWidget {
 
     final focusNode = FocusNode();
 
-    final focusNodes = Provider.of<FocusNodesProvider>(context);
-
     final searchCubtit = BlocProvider.of<SearchCubit>(context);
+
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
       bloc: selectorCubit,
       builder: (context, state) {
@@ -37,7 +33,7 @@ class BottomGridRow extends StatelessWidget {
 
         return RawKeyboardListener(
           focusNode: focusNode,
-          autofocus: focusNode.hasFocus,
+          autofocus: true,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
               selectorCubit
@@ -49,8 +45,6 @@ class BottomGridRow extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (context) {
-                    log("opening");
-                    focusNodes.focusNodeQtyPanel.requestFocus();
                     return AlertDialog(
                       content: QtyPanel(
                         data: searchCubitData

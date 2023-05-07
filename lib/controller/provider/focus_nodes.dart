@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 class FocusNodesProvider extends ChangeNotifier {
   final FocusNode focusNodeSearchBox;
   final FocusNode focusNodeQtyPanel;
+  final FocusNode focusNodeBottomPanel;
   FocusNodesProvider({
     required this.focusNodeSearchBox,
     required this.focusNodeQtyPanel,
+    required this.focusNodeBottomPanel,
   });
-  
 }

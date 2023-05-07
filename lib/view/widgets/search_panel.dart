@@ -15,6 +15,7 @@ class SearchPanel extends StatelessWidget {
     final focusNodes = Provider.of<FocusNodesProvider>(context);
 
     return TextField(
+      autofocus: focusNodes.focusNodeSearchBox.hasFocus,
       focusNode: focusNodes.focusNodeSearchBox,
       onChanged: (value) {
         searchCubit.getData(value);
