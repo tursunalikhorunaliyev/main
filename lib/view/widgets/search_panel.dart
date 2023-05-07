@@ -13,6 +13,7 @@ class SearchPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final searchCubit = BlocProvider.of<SearchCubit>(context);
     final focusNodes = Provider.of<FocusNodesProvider>(context);
+
     return TextField(
       focusNode: focusNodes.focusNodeSearchBox,
       onChanged: (value) {

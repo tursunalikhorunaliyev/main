@@ -7,7 +7,10 @@ import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 import 'package:napt_sklad/view/widgets/qty_panel.dart';
+import 'package:provider/provider.dart';
+
 class BottomGridRow extends StatelessWidget {
   final Data dataModel;
   final int index;
@@ -17,9 +20,10 @@ class BottomGridRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectorCubit = BlocProvider.of<SelectorBloC>(context);
-    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
+
     final focusNode = FocusNode();
-    final tabButtonIndexBloC = BlocProvider.of<TabButtonIndexCubit>(context);
+
+    final focusNodes = Provider.of<FocusNodesProvider>(context);
 
     final searchCubtit = BlocProvider.of<SearchCubit>(context);
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
@@ -45,6 +49,8 @@ class BottomGridRow extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (context) {
+                    log("opening");
+                    focusNodes.focusNodeQtyPanel.requestFocus();
                     return AlertDialog(
                       content: QtyPanel(
                         data: searchCubitData

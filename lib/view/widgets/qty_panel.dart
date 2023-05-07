@@ -39,7 +39,6 @@ class QtyPanel extends StatelessWidget {
     var summaTextController = TextEditingController(text: "0.00");
 
     focusNodes.focusNodeQtyPanel.requestFocus();
-    focusNodes.focusNodeSearchBox.unfocus();
 
     return Column(
       children: [
@@ -175,6 +174,7 @@ class QtyPanel extends StatelessWidget {
             SizedBox(
               width: 150,
               child: TextField(
+                autofocus: true,
                 focusNode: focusNodes.focusNodeQtyPanel,
                 controller: kolichestvoTextController,
                 onSubmitted: (value) {

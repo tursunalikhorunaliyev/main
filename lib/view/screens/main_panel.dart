@@ -28,12 +28,12 @@ class MainPanel extends StatelessWidget {
     final selectorForBottom = SelectorBloC();
 
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
-      final key = keyEvent.logicalKey.keyLabel;
-
-      // focusNodes.focusNodeSearchBox.requestFocus();
-
+      if (!focusNodes.focusNodeQtyPanel.hasFocus) {
+        focusNodes.focusNodeSearchBox.requestFocus();
+      }
       return false;
     });
+
     return Scaffold(
       body: Row(
         children: [
@@ -42,12 +42,8 @@ class MainPanel extends StatelessWidget {
               children: [
                 Flexible(
                   flex: 5,
-                  child: MultiBlocProvider(
-                    providers: [
-                      BlocProvider<SelectorBloC>(
-                        create: (context) => selectorForTop,
-                      ),
-                    ],
+                  child: BlocProvider<SelectorBloC>(
+                    create: (context) => selectorForTop,
                     child: const TopPanel(),
                   ),
                 ),
