@@ -13,32 +13,39 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
   CheckButtonsBloc()
       : super(
           const CheckButtonsPanelData(
-            customeTabButton: [
-              CustomeTabButton(
-                buttonIndex: 0,
-              ),
-            ],
+            customeTabButton: [],
           ),
         ) {
     on<CheckButtonsAdd>((event, emit) {
-      state.customeTabButton.add(
-        CustomeTabButton(
-          buttonIndex: state.customeTabButton.length,
-        ),
-      );
-      emit(state);
+      List<CustomeTabButton> from = List.from(state.customeTabButton)
+        ..add(
+          CustomeTabButton(
+            buttonIndex: state.customeTabButton.length,
+            docData: DocData(createdAt: DateTime.now()),
+          ),
+        );
+      emit(CheckButtonsPanelData(customeTabButton: from));
     });
+
     on<CheckButtonsRemove>((event, emit) {
       state.customeTabButton.removeLast();
       emit(state);
     });
     on<CheckButtonOnLoad>((event, emit) async {
-      log("boshlandi");
       Docs docs = await FeathersService().listCheckDoc();
-      log("turgadi");
       if (docs.data.isEmpty) {
-        emit(const CheckButtonsPanelData(
-            customeTabButton: [CustomeTabButton(buttonIndex: 0)]));
+        emit(
+          CheckButtonsPanelData(
+            customeTabButton: [
+              CustomeTabButton(
+                buttonIndex: 0,
+                docData: DocData(
+                  createdAt: DateTime.now(),
+                ),
+              ),
+            ],
+          ),
+        );
       } else {
         List<CustomeTabButton> buttons = docs.data
             .map((e) => CustomeTabButton(

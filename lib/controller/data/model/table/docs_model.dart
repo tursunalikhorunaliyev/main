@@ -34,15 +34,15 @@ class Docs {
 
 class DocData {
   final DateTime createdAt;
-  final String status;
-  final String id;
-  final String uuid;
+  final String? status;
+  final String? id;
+  final String? uuid;
 
   DocData({
     required this.createdAt,
-    required this.status,
-    required this.id,
-    required this.uuid,
+    this.status,
+    this.id,
+    this.uuid,
   });
 
   factory DocData.fromJson(Map<String, dynamic> json) => DocData(

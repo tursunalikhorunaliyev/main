@@ -127,7 +127,7 @@ class FeathersService {
       // }
     });
     ChecksDataModel model = ChecksDataModel.fromJson(response);
-    log(model.data[0].createdAt.toString());
+
     return Docs.fromJson(response);
   }
 

@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
-import 'package:napt_sklad/controller/data/connection_data.dart';
-import 'package:napt_sklad/controller/data/service/feathers.dart';
+import 'package:napt_sklad/controller/provider/focus_nodes.dart';
+
 import 'package:napt_sklad/view/widgets/bottom_table.dart';
 import 'package:napt_sklad/view/widgets/top_panel.dart';
 import 'package:napt_sklad/view/widgets/payment_panel.dart';
 import 'package:napt_sklad/view/widgets/search_panel.dart';
+import 'package:provider/provider.dart';
 
 class MainPanel extends StatelessWidget {
   const MainPanel({super.key});
@@ -18,6 +19,8 @@ class MainPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final checkButtonsBloC = BlocProvider.of<CheckButtonsBloc>(context);
     final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
+    final focusNodes = Provider.of<FocusNodesProvider>(context);
+
     sellPanelBloc.add(const SellPanelOnLoad());
     checkButtonsBloC.add(CheckButtonOnLoad());
 
@@ -27,13 +30,7 @@ class MainPanel extends StatelessWidget {
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
       final key = keyEvent.logicalKey.keyLabel;
 
-      if (keyEvent is KeyDownEvent) {
-        print("Key down: $key");
-      } else if (keyEvent is KeyUpEvent) {
-        print("Key up: $key");
-      } else if (keyEvent is KeyRepeatEvent) {
-        print("Key repeat: $key");
-      }
+      // focusNodes.focusNodeSearchBox.requestFocus();
 
       return false;
     });

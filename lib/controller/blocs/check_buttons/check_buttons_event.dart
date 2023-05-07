@@ -20,3 +20,12 @@ class CheckButtonsRemove extends CheckButtonsEvent {
     required this.removeIndex,
   });
 }
+
+class CheckButtonChange extends CheckButtonsEvent {
+  final String uuid;
+  final int index;
+  const CheckButtonChange({
+    required this.uuid,
+    required this.index,
+  });
+}

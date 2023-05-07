@@ -35,3 +35,16 @@ class SellDataRemove extends SellDataEvent {
   @override
   List<Object?> get props => [removeIndex];
 }
+
+class SellDataChange extends SellDataEvent {
+  final String uuid;
+  final int index;
+  const SellDataChange({
+    required this.uuid,
+    required this.index,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
+}

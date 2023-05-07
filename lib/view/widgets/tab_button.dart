@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
@@ -20,6 +21,7 @@ class CustomeTabButton extends StatelessWidget {
     final tabButtonIndex = BlocProvider.of<TabButtonIndexCubit>(context);
     final pageController = Provider.of<PageController>(context);
     final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
+    final checkButtonsBloC = BlocProvider.of<CheckButtonsBloc>(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
@@ -32,13 +34,18 @@ class CustomeTabButton extends StatelessWidget {
               tabButtonIndex.emit(
                 TabButtonIndex(slideIndex: buttonIndex),
               );
-              sellPanelBloC.state.sellPanel[buttonIndex].sellDataBloc
-                  .add(SellDataFromServer(docId: docData!.uuid));
               pageController.animateToPage(
                 buttonIndex,
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.fastLinearToSlowEaseIn,
               );
+
+              if (checkButtonsBloC
+                      .state.customeTabButton[buttonIndex].docData!.uuid !=
+                  null) {
+                sellPanelBloC.state.sellPanel[buttonIndex].sellDataBloc
+                    .add(SellDataFromServer(docId: docData!.uuid!));
+              }
             },
             child: Container(
               width: 120,

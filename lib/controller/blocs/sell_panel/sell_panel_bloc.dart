@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:napt_sklad/controller/blocs/payment_details/payment_details_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/data/model/table/docs_model.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
@@ -24,7 +25,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
         log("start");
         emit(SellPanelData(sellPanel: [
           SellPanel(
-              paymentDetails: PaymentDetails(),
+              paymentDetails: PaymentDetailsBloc(),
               index: 0,
               sellDataBloc: SellDataBloc())
         ]));
@@ -33,7 +34,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
         List<SellPanel> sellPanels = docs.data
             .map(
               (e) => SellPanel(
-                paymentDetails: PaymentDetails(),
+                paymentDetails: PaymentDetailsBloc(),
                 index: docs.data.indexOf(e),
                 sellDataBloc: SellDataBloc(),
               ),
@@ -48,7 +49,7 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
     on<SellPanelAdd>((event, emit) {
       state.sellPanel.add(SellPanel(
           index: state.sellPanel.length,
-          paymentDetails: PaymentDetails(),
+          paymentDetails: PaymentDetailsBloc(),
           sellDataBloc: SellDataBloc()));
       emit(state);
     });
