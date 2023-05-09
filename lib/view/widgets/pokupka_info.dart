@@ -42,9 +42,9 @@ class PokupokInfo extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.bottomRight,
-                child: const Text(
-                  "0.00",
-                  style: TextStyle(
+                child: Text(
+                  paymentDetails.oplata.toString(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                   ),
@@ -60,9 +60,9 @@ class PokupokInfo extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.bottomRight,
-                child: const Text(
-                  "0.00",
-                  style: TextStyle(
+                child: Text(
+                  paymentDetails.skidka.toString(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                   ),
@@ -80,9 +80,9 @@ class PokupokInfo extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.bottomRight,
-                child: const Text(
-                  "0.00",
-                  style: TextStyle(
+                child: Text(
+                  paymentDetails.summa.toString(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                   ),

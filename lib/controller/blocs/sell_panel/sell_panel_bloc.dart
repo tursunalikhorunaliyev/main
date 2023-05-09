@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:napt_sklad/controller/blocs/payment_details/payment_details_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/data/model/table/docs_model.dart';
-import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 import 'package:napt_sklad/controller/data/service/feathers.dart';
 import 'package:napt_sklad/view/widgets/sell_panel.dart';
 
@@ -23,24 +21,17 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
       Docs docs = await FeathersService().listCheckDoc();
       if (docs.data.isEmpty) {
         log("start");
-        emit(SellPanelData(sellPanel: [
-          SellPanel(
-              paymentDetails: PaymentDetailsBloc(),
-              index: 0,
-              sellDataBloc: SellDataBloc())
-        ]));
+        emit(SellPanelData(
+            sellPanel: [SellPanel(index: 0, sellDataBloc: SellDataBloc())]));
         log("emmittted");
       } else {
         List<SellPanel> sellPanels = docs.data
             .map(
               (e) => SellPanel(
-                paymentDetails: PaymentDetailsBloc(),
                 index: docs.data.indexOf(e),
                 sellDataBloc: SellDataBloc(),
               ),
             )
-            .toList()
-            .reversed
             .toList();
 
         emit(
@@ -50,10 +41,8 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
     });
     on<SellPanelAdd>((event, emit) {
       state.sellPanel.add(SellPanel(
-          index: state.sellPanel.length,
-          paymentDetails: PaymentDetailsBloc(),
-          sellDataBloc: SellDataBloc()));
-      state.sellPanel.reversed.toList();
+          index: state.sellPanel.length, sellDataBloc: SellDataBloc()));
+
       emit(state);
     });
     on<SellPanelRemove>((event, emit) {

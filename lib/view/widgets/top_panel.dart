@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/view/widgets/noviy_check_button.dart';
 import 'package:provider/provider.dart';
@@ -69,6 +70,12 @@ class TopPanel extends StatelessWidget {
                 addAutomaticKeepAlives: true,
                 itemCount: state.customeTabButton.length + 1,
                 itemBuilder: (context, index) {
+                  if (index == 0 && state.customeTabButton.isNotEmpty) {
+                    sellPanelBloc.state.sellPanel[index].sellDataBloc.add(
+                      SellDataFromServer(
+                          docId: state.customeTabButton[index].docData!.uuid!),
+                    );
+                  }
                   return index == state.customeTabButton.length
                       ? const NoviyCheckButton()
                       : state.customeTabButton[index];
