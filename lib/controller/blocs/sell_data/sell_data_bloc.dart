@@ -25,15 +25,19 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
             topTableGridRow: [
               TopTableGridRow(
                 tableLine: event.tableLine,
+                goods: event.goods,
               )
             ],
-            paymentDetails: PaymentDetails(),
+            paymentDetails: PaymentDetails(
+              oplata: state.paymentDetails.oplata + event.tableLine.cost.number,
+              summa: state.paymentDetails.summa + event.tableLine.cost.number,
+              skidka: 0,
+            ),
           ),
         );
       } else {
-        state.topTableGridRow.add(TopTableGridRow(
-          tableLine: event.tableLine,
-        ));
+        state.topTableGridRow.add(
+            TopTableGridRow(tableLine: event.tableLine, goods: event.goods));
 
         emit(
           SellStateData(
@@ -60,21 +64,22 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
             amount += e.cost.number;
             summa += e.cost.number;
             return TopTableGridRow(
-              tableLine: tl.TableLine(
-                document: e.document,
-                goods: e.goods.name,
-                qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
-                price: tl.Price(
-                  number: e.price.number,
-                  currency: e.price.currency,
-                  per: tl.Qty(
+                tableLine: tl.TableLine(
+                  document: e.document,
+                  goods: e.goods.name,
+                  qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
+                  price: tl.Price(
                     number: e.price.number,
-                    uom: e.price.per.uom,
+                    currency: e.price.currency,
+                    per: tl.Qty(
+                      number: e.price.number,
+                      uom: e.price.per.uom,
+                    ),
                   ),
+                  cost:
+                      tl.Cost(currency: e.cost.currency, number: e.cost.number),
                 ),
-                cost: tl.Cost(currency: e.cost.currency, number: e.cost.number),
-              ),
-            );
+                goods: e.goods.name);
           })
           .toList()
           .reversed

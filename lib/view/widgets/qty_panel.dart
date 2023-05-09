@@ -195,7 +195,7 @@ class QtyPanel extends StatelessWidget {
                           .then((value) {
                         TableLine tabLine = TableLine(
                           document: value.uuid,
-                          goods: data.name,
+                          goods: data.uuid,
                           qty: Qty(
                               number: int.parse(kolichestvoTextController.text),
                               uom: "pkg"),
@@ -215,7 +215,7 @@ class QtyPanel extends StatelessWidget {
                             .sellPanel[tabButtonIndexBloC.state.slideIndex]
                             .sellDataBloc
                             .add(
-                          SellDataAdd(tableLine: tabLine),
+                          SellDataAdd(tableLine: tabLine, goods: data.name),
                         );
                       });
                     } else {
@@ -228,7 +228,7 @@ class QtyPanel extends StatelessWidget {
                             .topTableGridRow[0]
                             .tableLine
                             .document,
-                        goods: data.name,
+                        goods: data.uuid,
                         qty: Qty(
                           number: int.parse(kolichestvoTextController.text),
                           uom: "pkg",
@@ -251,7 +251,8 @@ class QtyPanel extends StatelessWidget {
                           .state
                           .sellPanel[tabButtonIndexBloC.state.slideIndex]
                           .sellDataBloc
-                          .add(SellDataAdd(tableLine: tableLine));
+                          .add(SellDataAdd(
+                              tableLine: tableLine, goods: data.name));
                       log("creating");
                       FeathersService().createCheckLine(tableLine.toJson());
                       log("created");
@@ -385,7 +386,7 @@ class QtyPanel extends StatelessWidget {
                         .then((value) {
                       TableLine tabLine = TableLine(
                         document: value.uuid,
-                        goods: data.name,
+                        goods: data.uuid,
                         qty: Qty(
                             number: int.parse(kolichestvoTextController.text),
                             uom: "pkg"),
@@ -405,7 +406,7 @@ class QtyPanel extends StatelessWidget {
                           .sellPanel[tabButtonIndexBloC.state.slideIndex]
                           .sellDataBloc
                           .add(
-                        SellDataAdd(tableLine: tabLine),
+                        SellDataAdd(tableLine: tabLine, goods: data.name),
                       );
                     });
                   } else {
@@ -418,7 +419,7 @@ class QtyPanel extends StatelessWidget {
                           .topTableGridRow[0]
                           .tableLine
                           .document,
-                      goods: data.name,
+                      goods: data.uuid,
                       qty: Qty(
                         number: int.parse(kolichestvoTextController.text),
                         uom: "pkg",
@@ -441,7 +442,8 @@ class QtyPanel extends StatelessWidget {
                         .state
                         .sellPanel[tabButtonIndexBloC.state.slideIndex]
                         .sellDataBloc
-                        .add(SellDataAdd(tableLine: tableLine));
+                        .add(SellDataAdd(
+                            tableLine: tableLine, goods: data.name));
                     log("creating");
                     FeathersService().createCheckLine(tableLine.toJson());
                     log("created");

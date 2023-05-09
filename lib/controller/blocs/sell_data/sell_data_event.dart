@@ -7,8 +7,10 @@ abstract class SellDataEvent extends Equatable {
 
 class SellDataAdd extends SellDataEvent {
   final tl.TableLine tableLine;
+  final String goods;
   const SellDataAdd({
     required this.tableLine,
+    required this.goods,
   });
 
   @override

@@ -70,7 +70,9 @@ class TopPanel extends StatelessWidget {
                 addAutomaticKeepAlives: true,
                 itemCount: state.customeTabButton.length + 1,
                 itemBuilder: (context, index) {
-                  if (index == 0 && state.customeTabButton.isNotEmpty) {
+                  if (index == 0 &&
+                      state.customeTabButton.isNotEmpty &&
+                      !state.isFirstDraft) {
                     sellPanelBloc.state.sellPanel[index].sellDataBloc.add(
                       SellDataFromServer(
                           docId: state.customeTabButton[index].docData!.uuid!),

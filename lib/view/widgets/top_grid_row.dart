@@ -5,8 +5,10 @@ import 'package:napt_sklad/controller/data/model/table/table_line.dart';
 
 class TopTableGridRow extends StatelessWidget {
   final TableLine tableLine;
+  final String goods;
 
-  const TopTableGridRow({super.key, required this.tableLine});
+  const TopTableGridRow(
+      {super.key, required this.tableLine, required this.goods});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class TopTableGridRow extends StatelessWidget {
                 ),
               ),
               child: Text(
-                tableLine.goods,
+                goods,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

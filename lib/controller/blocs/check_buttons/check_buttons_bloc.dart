@@ -12,9 +12,7 @@ part 'check_buttons_state.dart';
 class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
   CheckButtonsBloc()
       : super(
-          const CheckButtonsPanelData(
-            customeTabButton: [],
-          ),
+          const CheckButtonsPanelData(customeTabButton: [], isFirstDraft: true),
         ) {
     on<CheckButtonsAdd>((event, emit) {
       List<CustomeTabButton> from = List.from(state.customeTabButton)
@@ -24,7 +22,7 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
             docData: DocData(createdAt: DateTime.now()),
           ),
         );
-      emit(CheckButtonsPanelData(customeTabButton: from));
+      emit(CheckButtonsPanelData(customeTabButton: from, isFirstDraft: true));
     });
 
     on<CheckButtonsRemove>((event, emit) {
@@ -35,16 +33,14 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
       Docs docs = await FeathersService().listCheckDoc();
       if (docs.data.isEmpty) {
         emit(
-          CheckButtonsPanelData(
-            customeTabButton: [
-              CustomeTabButton(
-                buttonIndex: 0,
-                docData: DocData(
-                  createdAt: DateTime.now(),
-                ),
+          CheckButtonsPanelData(customeTabButton: [
+            CustomeTabButton(
+              buttonIndex: 0,
+              docData: DocData(
+                createdAt: DateTime.now(),
               ),
-            ],
-          ),
+            ),
+          ], isFirstDraft: true),
         );
       } else {
         List<CustomeTabButton> buttons = docs.data
@@ -54,7 +50,8 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
                 ))
             .toList();
 
-        emit(CheckButtonsPanelData(customeTabButton: buttons));
+        emit(CheckButtonsPanelData(
+            customeTabButton: buttons, isFirstDraft: false));
       }
     });
   }

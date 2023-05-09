@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'check_buttons_bloc.dart';
 
 abstract class CheckButtonsState {
@@ -6,5 +7,9 @@ abstract class CheckButtonsState {
 }
 
 class CheckButtonsPanelData extends CheckButtonsState {
-  const CheckButtonsPanelData({required super.customeTabButton});
+  final bool isFirstDraft;
+  const CheckButtonsPanelData({
+    required this.isFirstDraft,
+    required super.customeTabButton,
+  });
 }
