@@ -18,15 +18,13 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
       : super(SellStateData(
             topTableGridRow: [], paymentDetails: PaymentDetails())) {
     on<SellDataAdd>((event, emit) {
-      log("prepariiiing");
-      log(state.topTableGridRow.length.toString());
+      log(event.tableLine.goods);
       if (state.topTableGridRow.isEmpty) {
         emit(
           SellStateData(
             topTableGridRow: [
               TopTableGridRow(
                 tableLine: event.tableLine,
-                dataModel: event.data,
               )
             ],
             paymentDetails: PaymentDetails(),
@@ -35,7 +33,6 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
       } else {
         state.topTableGridRow.add(TopTableGridRow(
           tableLine: event.tableLine,
-          dataModel: event.data,
         ));
 
         emit(
@@ -50,8 +47,6 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
           ),
         );
       }
-
-      log("emmmmmitted");
     });
 
     on<SellDataFromServer>((event, emit) async {
@@ -79,11 +74,6 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
                 ),
                 cost: tl.Cost(currency: e.cost.currency, number: e.cost.number),
               ),
-              dataModel: Data(
-                  name: e.goods.name,
-                  manufacturer: e.goods.name,
-                  id: e.id,
-                  uuid: e.uuid),
             );
           })
           .toList()

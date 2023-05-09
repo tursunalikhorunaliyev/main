@@ -7,14 +7,12 @@ abstract class SellDataEvent extends Equatable {
 
 class SellDataAdd extends SellDataEvent {
   final tl.TableLine tableLine;
-  final Data data;
   const SellDataAdd({
     required this.tableLine,
-    required this.data,
   });
 
   @override
-  List<Object?> get props => [data, tableLine];
+  List<Object?> get props => [tableLine];
 }
 
 class SellDataFromServer extends SellDataEvent {
@@ -45,6 +43,5 @@ class SellDataChange extends SellDataEvent {
   });
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [uuid, index];
 }

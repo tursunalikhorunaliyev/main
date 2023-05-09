@@ -1,15 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/controller/data/model/table/table_line.dart';
 
 class TopTableGridRow extends StatelessWidget {
   final TableLine tableLine;
-  final Data dataModel;
 
-  const TopTableGridRow(
-      {super.key, required this.tableLine, required this.dataModel});
+  const TopTableGridRow({super.key, required this.tableLine});
 
   @override
   Widget build(BuildContext context) {
