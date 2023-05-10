@@ -30,10 +30,14 @@ class TopTableGridRow extends StatelessWidget {
           focusNode: focusNode,
           autofocus: true,
           onKey: (value) {
-            if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
+            if (value.isKeyPressed(LogicalKeyboardKey.arrowDown) &&
+                value is RawKeyDownEvent) {
+              log(state.nextIndex.toString());
               topSelectorBloC
                   .add(TopSelectionDown(currentIndex: state.nextIndex));
-            } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
+            } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp) &&
+                value is RawKeyDownEvent) {
+              log(state.nextIndex.toString());
               topSelectorBloC
                   .add(TopSelectionUp(currentIndex: state.nextIndex));
             }

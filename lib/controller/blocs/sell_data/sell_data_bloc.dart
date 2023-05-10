@@ -43,7 +43,7 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
 
         emit(
           SellStateData(
-            topTableGridRow: state.topTableGridRow,
+            topTableGridRow: state.topTableGridRow.toList(),
             paymentDetails: PaymentDetails(
                 oplata:
                     state.paymentDetails.oplata + event.tableLine.cost.number,
@@ -61,32 +61,29 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
       int summa = 0;
       DocChecksData docChecksData =
           await FeathersService().findCheckLine(event.docId);
-      List<TopTableGridRow> rows = docChecksData.data
-          .map((e) {
-            amount += e.cost.number;
-            summa += e.cost.number;
-            return TopTableGridRow(
-              tableLine: tl.TableLine(
-                document: e.document,
-                goods: e.goods.name,
-                qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
-                price: tl.Price(
-                  number: e.price.number,
-                  currency: e.price.currency,
-                  per: tl.Qty(
-                    number: e.price.number,
-                    uom: e.price.per.uom,
-                  ),
-                ),
-                cost: tl.Cost(currency: e.cost.currency, number: e.cost.number),
+
+      List<TopTableGridRow> rows = docChecksData.data.map((e) {
+        amount += e.cost.number;
+        summa += e.cost.number;
+        return TopTableGridRow(
+          tableLine: tl.TableLine(
+            document: e.document,
+            goods: e.goods.name,
+            qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
+            price: tl.Price(
+              number: e.price.number,
+              currency: e.price.currency,
+              per: tl.Qty(
+                number: e.price.number,
+                uom: e.price.per.uom,
               ),
-              goods: e.goods.name,
-              index: docChecksData.data.indexOf(e),
-            );
-          })
-          .toList()
-          .reversed
-          .toList();
+            ),
+            cost: tl.Cost(currency: e.cost.currency, number: e.cost.number),
+          ),
+          goods: e.goods.name,
+          index: docChecksData.data.indexOf(e),
+        );
+      }).toList();
       emit(
         SellStateData(
           topTableGridRow: rows,

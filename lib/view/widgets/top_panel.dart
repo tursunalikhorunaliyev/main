@@ -31,7 +31,6 @@ class TopPanel extends StatelessWidget {
             builder: (context, state) {
               return PageView.builder(
                 allowImplicitScrolling: true,
-                reverse: true,
                 controller: pageController,
                 itemCount: state.sellPanel.length,
                 itemBuilder: (context, index) {

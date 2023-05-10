@@ -22,12 +22,15 @@ class TopTable extends StatelessWidget {
             bloc: sellDataBloc,
             builder: (context, state) {
               topSelectionBloc.changeDataLength(state.topTableGridRow.length);
-
+              log(topSelectionBloc.dataLength.toString() + "+++++++++");
               return ListView.builder(
                 addAutomaticKeepAlives: true,
                 scrollDirection: Axis.vertical,
                 itemCount: state.topTableGridRow.length,
-                itemBuilder: (context, index) => state.topTableGridRow[index],
+                itemBuilder: (context, index) {
+                  log(index.toString());
+                  return state.topTableGridRow[index];
+                },
               );
             },
           ),

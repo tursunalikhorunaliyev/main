@@ -13,7 +13,7 @@ class SearchCubit extends Cubit<SearchCubitState> {
   getData(String text) async {
     final feathers = FeathersService();
     final searchData = await feathers.getSearchData(text);
-    print(searchData.data.length);
+
     emit(SearchCubitData(searchData: searchData));
   }
 }
