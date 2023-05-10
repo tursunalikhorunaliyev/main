@@ -246,16 +246,15 @@ class QtyPanel extends StatelessWidget {
                           currency: "UZS",
                         ),
                       );
-                      log("tableline ready");
+
                       sellPanelBloC
                           .state
                           .sellPanel[tabButtonIndexBloC.state.slideIndex]
                           .sellDataBloc
                           .add(SellDataAdd(
                               tableLine: tableLine, goods: data.name));
-                      log("creating");
+
                       FeathersService().createCheckLine(tableLine.toJson());
-                      log("created");
                     }
 
                     Navigator.pop(context);
@@ -265,7 +264,6 @@ class QtyPanel extends StatelessWidget {
                   int a = (int.parse(value)) * int.parse(sena);
                   summaTextController.value =
                       TextEditingValue(text: a.toString());
-                  log(a.toString());
                 },
                 cursorColor: const Color(0xFFD9D9D9),
                 style: const TextStyle(
@@ -437,16 +435,15 @@ class QtyPanel extends StatelessWidget {
                         currency: "UZS",
                       ),
                     );
-                    log("tableline ready");
+
                     sellPanelBloC
                         .state
                         .sellPanel[tabButtonIndexBloC.state.slideIndex]
                         .sellDataBloc
                         .add(SellDataAdd(
                             tableLine: tableLine, goods: data.name));
-                    log("creating");
+
                     FeathersService().createCheckLine(tableLine.toJson());
-                    log("created");
                   }
 
                   Navigator.pop(context);

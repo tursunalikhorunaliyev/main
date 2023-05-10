@@ -36,7 +36,6 @@ class _TestPageState extends State<TestPage> {
             onPressed: () async {
               SearchData searchData =
                   await FeathersService().getSearchData("a");
-              log(searchData.data[0].uuid.toString());
             },
             child: const Text("Get search"),
           ),
@@ -45,8 +44,6 @@ class _TestPageState extends State<TestPage> {
               CreatedCheckData createdCheckData = await FeathersService()
                   .createCheckDoc(CheckCreationModel(
                       createdAt: DateTime.now(), status: CheckStatus.draft));
-              log(createdCheckData.id.toString());
-              log(createdCheckData.uuid.toString());
             },
             child: const Text("Create doc"),
           ),

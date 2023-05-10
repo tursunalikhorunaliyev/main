@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:napt_sklad/controller/data/model/check/doc_checks_data_model.dart';
-import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
 import 'package:napt_sklad/controller/data/service/feathers.dart';
 import 'package:napt_sklad/view/widgets/top_grid_row.dart';
@@ -18,7 +17,6 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
       : super(SellStateData(
             topTableGridRow: [], paymentDetails: PaymentDetails())) {
     on<SellDataAdd>((event, emit) {
-      log(event.tableLine.goods);
       if (state.topTableGridRow.isEmpty) {
         emit(
           SellStateData(
@@ -26,6 +24,7 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
               TopTableGridRow(
                 tableLine: event.tableLine,
                 goods: event.goods,
+                index: 0,
               )
             ],
             paymentDetails: PaymentDetails(
@@ -36,8 +35,11 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
           ),
         );
       } else {
-        state.topTableGridRow.add(
-            TopTableGridRow(tableLine: event.tableLine, goods: event.goods));
+        state.topTableGridRow.add(TopTableGridRow(
+          tableLine: event.tableLine,
+          goods: event.goods,
+          index: state.topTableGridRow.length,
+        ));
 
         emit(
           SellStateData(
@@ -64,22 +66,23 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
             amount += e.cost.number;
             summa += e.cost.number;
             return TopTableGridRow(
-                tableLine: tl.TableLine(
-                  document: e.document,
-                  goods: e.goods.name,
-                  qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
-                  price: tl.Price(
+              tableLine: tl.TableLine(
+                document: e.document,
+                goods: e.goods.name,
+                qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
+                price: tl.Price(
+                  number: e.price.number,
+                  currency: e.price.currency,
+                  per: tl.Qty(
                     number: e.price.number,
-                    currency: e.price.currency,
-                    per: tl.Qty(
-                      number: e.price.number,
-                      uom: e.price.per.uom,
-                    ),
+                    uom: e.price.per.uom,
                   ),
-                  cost:
-                      tl.Cost(currency: e.cost.currency, number: e.cost.number),
                 ),
-                goods: e.goods.name);
+                cost: tl.Cost(currency: e.cost.currency, number: e.cost.number),
+              ),
+              goods: e.goods.name,
+              index: docChecksData.data.indexOf(e),
+            );
           })
           .toList()
           .reversed

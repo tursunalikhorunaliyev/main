@@ -4,6 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
@@ -17,6 +18,9 @@ void main(List<String> args) {
     providers: [
       BlocProvider(
         create: (context) => SelectorBloC(),
+      ),
+      BlocProvider(
+        create: (context) => TopSelectionBloc(),
       ),
       BlocProvider<SellPanelBloc>(
         create: (context) => SellPanelBloc(),

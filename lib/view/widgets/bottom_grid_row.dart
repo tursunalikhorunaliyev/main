@@ -62,200 +62,178 @@ class BottomGridRow extends StatelessWidget {
               selectorCubit.add(SelectorClickEvent(currentIndex: index));
               focusNode.requestFocus();
             },
-            child: SizedBox(
-              height: 40,
-              child: Row(
-                children: [
-                  Flexible(
-                    flex: 18,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+            child: ColoredBox(
+              color: state.currentIndex == index
+                  ? Colors.blue
+                  : Colors.transparent,
+              child: SizedBox(
+                height: 40,
+                child: Row(
+                  children: [
+                    Flexible(
+                      flex: 18,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        dataModel.name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
-                      child: Text(
-                        dataModel.manufacturer,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: Text(
+                          dataModel.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 6,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: Text(
+                          dataModel.manufacturer,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 6,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 6,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 6,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 2,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 2,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: state.currentIndex == index
-                            ? const Color.fromARGB(255, 0, 131, 175)
-                            : null,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+                    Flexible(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: const Text(
-                        "",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Flexible(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
+                        ),
+                        child: const Text(
+                          "",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

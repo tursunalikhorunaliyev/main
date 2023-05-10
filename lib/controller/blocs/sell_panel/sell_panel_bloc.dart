@@ -20,10 +20,8 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
     on<SellPanelOnLoad>((event, emit) async {
       Docs docs = await FeathersService().listCheckDoc();
       if (docs.data.isEmpty) {
-        log("start");
         emit(SellPanelData(
             sellPanel: [SellPanel(index: 0, sellDataBloc: SellDataBloc())]));
-        log("emmittted");
       } else {
         List<SellPanel> sellPanels = docs.data
             .map(

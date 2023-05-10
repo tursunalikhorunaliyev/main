@@ -132,7 +132,6 @@ class FeathersService {
   }
 
   createCheckLine(Map<String, dynamic> data) async {
-    log("aaaaaa");
     Map<String, dynamic> response = await Api.feathers()
         .create(serviceName: "memories", data: data, params: {
       "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",

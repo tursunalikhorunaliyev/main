@@ -20,7 +20,6 @@ class SelectorBloC extends Bloc<SelectorBloCEvent, SelectorBloCState> {
       }
     });
     on<SelectorKeyDownEvent>((event, emit) {
-      log(length.toString());
       if (event.currentIndex != length - 1) {
         emit(SelectorBloCIndexState(currentIndex: event.currentIndex + 1));
       }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
+import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 
 class TopTable extends StatelessWidget {
   final int tableIndex;
@@ -12,6 +13,7 @@ class TopTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topSelectionBloc = BlocProvider.of<TopSelectionBloc>(context);
     return Column(
       children: [
         rowHeader(),
@@ -19,6 +21,8 @@ class TopTable extends StatelessWidget {
           child: BlocBuilder<SellDataBloc, SellDataState>(
             bloc: sellDataBloc,
             builder: (context, state) {
+              topSelectionBloc.changeDataLength(state.topTableGridRow.length);
+
               return ListView.builder(
                 addAutomaticKeepAlives: true,
                 scrollDirection: Axis.vertical,

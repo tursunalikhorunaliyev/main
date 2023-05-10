@@ -16,7 +16,6 @@ class TopPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("top panel qurildi");
     final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
     final pageController = Provider.of<PageController>(context);
     final checkButtonCubit = BlocProvider.of<CheckButtonsBloc>(context);
