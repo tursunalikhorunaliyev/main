@@ -42,6 +42,7 @@ void main(List<String> args) {
           focusNodeQtyPanel: FocusNode(),
           focusNodeSearchBox: FocusNode(),
           focusNodeBottomPanel: FocusNode(),
+          focusNodeTopPanel: FocusNode(),
         ),
       ),
     ],

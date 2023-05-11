@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 import 'package:napt_sklad/controller/data/model/table/table_line.dart';
+import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 
 class TopTableGridRow extends StatelessWidget {
   final TableLine tableLine;
@@ -21,13 +22,12 @@ class TopTableGridRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final topSelectorBloC = BlocProvider.of<TopSelectionBloc>(context);
-    final focusNode = FocusNode();
 
     return BlocBuilder<TopSelectionBloc, TopSelectionState>(
       bloc: topSelectorBloC,
       builder: (context, state) {
         return RawKeyboardListener(
-          focusNode: focusNode,
+          focusNode: context.read<FocusNodesProvider>().focusNodeTopPanel,
           autofocus: true,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown) &&
@@ -45,7 +45,10 @@ class TopTableGridRow extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               topSelectorBloC.add(TopSelectionOnClick(currentIndex: index));
-              focusNode.requestFocus();
+              context
+                  .read<FocusNodesProvider>()
+                  .focusNodeTopPanel
+                  .requestFocus();
             },
             child: ColoredBox(
               color:

@@ -34,10 +34,8 @@ class CustomeTabButton extends StatelessWidget {
               tabButtonIndex.emit(
                 TabButtonIndex(slideIndex: buttonIndex),
               );
-              pageController.animateToPage(
+              pageController.jumpToPage(
                 buttonIndex,
-                duration: const Duration(milliseconds: 500),
-                curve: Curves.fastLinearToSlowEaseIn,
               );
 
               if (checkButtonsBloC

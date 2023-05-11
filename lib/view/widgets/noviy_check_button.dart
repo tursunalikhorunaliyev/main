@@ -26,10 +26,8 @@ class NoviyCheckButton extends StatelessWidget {
             TabButtonIndex(
                 slideIndex: checkPanelsBloc.state.customeTabButton.length),
           );
-          pageController.animateToPage(
+          pageController.jumpToPage(
             sellPanelBloc.state.sellPanel.length,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.fastLinearToSlowEaseIn,
           );
         },
         child: Container(

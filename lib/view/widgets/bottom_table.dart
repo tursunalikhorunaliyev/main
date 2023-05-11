@@ -25,6 +25,7 @@ class BottomTable extends StatelessWidget {
               return const SizedBox();
             }
             selectorBloC.changeDataLength(state.searchData!.data.length);
+
             return Expanded(
               child: ListView.builder(
                 scrollDirection: Axis.vertical,

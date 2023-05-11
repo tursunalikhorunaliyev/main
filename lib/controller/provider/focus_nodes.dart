@@ -5,9 +5,11 @@ class FocusNodesProvider extends ChangeNotifier {
   final FocusNode focusNodeSearchBox;
   final FocusNode focusNodeQtyPanel;
   final FocusNode focusNodeBottomPanel;
+  final FocusNode focusNodeTopPanel;
   FocusNodesProvider({
     required this.focusNodeSearchBox,
     required this.focusNodeQtyPanel,
     required this.focusNodeBottomPanel,
+    required this.focusNodeTopPanel,
   });
 }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
+import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 import 'package:napt_sklad/view/widgets/qty_panel.dart';
 
 class BottomGridRow extends StatelessWidget {
@@ -16,8 +17,6 @@ class BottomGridRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectorCubit = BlocProvider.of<SelectorBloC>(context);
-
-    final focusNode = FocusNode();
 
     final searchCubtit = BlocProvider.of<SearchCubit>(context);
 
@@ -31,7 +30,7 @@ class BottomGridRow extends StatelessWidget {
         state as SelectorBloCIndexState;
 
         return RawKeyboardListener(
-          focusNode: focusNode,
+          focusNode: context.read<FocusNodesProvider>().focusNodeBottomPanel,
           autofocus: true,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
@@ -60,7 +59,10 @@ class BottomGridRow extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               selectorCubit.add(SelectorClickEvent(currentIndex: index));
-              focusNode.requestFocus();
+              context
+                  .read<FocusNodesProvider>()
+                  .focusNodeBottomPanel
+                  .requestFocus();
             },
             child: ColoredBox(
               color: state.currentIndex == index
