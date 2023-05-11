@@ -17,13 +17,9 @@ class BottomGridRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectorCubit = BlocProvider.of<SelectorBloC>(context);
-
-    final searchCubtit = BlocProvider.of<SearchCubit>(context);
-
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
       bloc: selectorCubit,
       builder: (context, state) {
-        SearchCubitData searchCubitData = searchCubtit.state as SearchCubitData;
         SelectorBloCIndexState selector =
             selectorCubit.state as SelectorBloCIndexState;
 
@@ -31,7 +27,8 @@ class BottomGridRow extends StatelessWidget {
 
         return RawKeyboardListener(
           focusNode: context.read<FocusNodesProvider>().focusNodeBottomPanel,
-          autofocus: true,
+          autofocus:
+              context.read<FocusNodesProvider>().focusNodeBottomPanel.hasFocus,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
               selectorCubit
@@ -39,21 +36,6 @@ class BottomGridRow extends StatelessWidget {
             } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
               selectorCubit
                   .add(SelectorKeyUpEvent(currentIndex: state.currentIndex));
-            } else if (value.isKeyPressed(LogicalKeyboardKey.enter)) {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: QtyPanel(
-                        data: searchCubitData
-                            .searchData!.data[selector.currentIndex],
-                        ostatok: 20,
-                        sena: "25000",
-                        seriya: "12345",
-                        srokGod: "01.02.2025",
-                      ),
-                    );
-                  });
             }
           },
           child: GestureDetector(

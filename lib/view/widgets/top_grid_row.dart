@@ -21,10 +21,7 @@ class TopTableGridRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topSelectorBloC = BlocProvider.of<TopSelectionBloc>(context);
-
     return BlocBuilder<TopSelectionBloc, TopSelectionState>(
-      bloc: topSelectorBloC,
       builder: (context, state) {
         return RawKeyboardListener(
           focusNode: context.read<FocusNodesProvider>().focusNodeTopPanel,
@@ -33,18 +30,21 @@ class TopTableGridRow extends StatelessWidget {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown) &&
                 value is RawKeyDownEvent) {
               log(state.nextIndex.toString());
-              topSelectorBloC
+              context
+                  .read<TopSelectionBloc>()
                   .add(TopSelectionDown(currentIndex: state.nextIndex));
             } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp) &&
                 value is RawKeyDownEvent) {
-              log(state.nextIndex.toString());
-              topSelectorBloC
+              context
+                  .read<TopSelectionBloc>()
                   .add(TopSelectionUp(currentIndex: state.nextIndex));
             }
           },
           child: GestureDetector(
             onTap: () {
-              topSelectorBloC.add(TopSelectionOnClick(currentIndex: index));
+              context
+                  .read<TopSelectionBloc>()
+                  .add(TopSelectionOnClick(currentIndex: index));
               context
                   .read<FocusNodesProvider>()
                   .focusNodeTopPanel

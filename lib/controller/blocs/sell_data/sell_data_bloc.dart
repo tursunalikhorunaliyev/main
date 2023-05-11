@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:napt_sklad/controller/data/model/check/doc_checks_data_model.dart';
@@ -35,11 +33,13 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
           ),
         );
       } else {
-        state.topTableGridRow.add(TopTableGridRow(
-          tableLine: event.tableLine,
-          goods: event.goods,
-          index: state.topTableGridRow.length,
-        ));
+        state.topTableGridRow.insert(
+            0,
+            TopTableGridRow(
+              tableLine: event.tableLine,
+              goods: event.goods,
+              index: state.topTableGridRow.length,
+            ));
 
         emit(
           SellStateData(

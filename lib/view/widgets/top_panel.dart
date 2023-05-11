@@ -46,13 +46,6 @@ class TopPanel extends StatelessWidget {
             buildWhen: (previous, current) {
               if (previous.customeTabButton.length !=
                   current.customeTabButton.length) {
-                WidgetsBinding.instance.addPostFrameCallback((_) => {
-                      scrollController.animateTo(
-                        scrollController.position.maxScrollExtent,
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.fastLinearToSlowEaseIn,
-                      )
-                    });
                 return true;
               } else {
                 return false;

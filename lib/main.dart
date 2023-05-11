@@ -38,6 +38,9 @@ void main(List<String> args) {
         create: (context) => TabButtonIndexCubit(),
       ),
       ChangeNotifierProvider(
+        create: (context) => ScrollController(),
+      ),
+      ChangeNotifierProvider(
         create: (context) => FocusNodesProvider(
           focusNodeQtyPanel: FocusNode(),
           focusNodeSearchBox: FocusNode(),

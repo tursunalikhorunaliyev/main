@@ -10,7 +10,7 @@ part 'selector_blo_c_state.dart';
 class SelectorBloC extends Bloc<SelectorBloCEvent, SelectorBloCState> {
   int length = 0;
   SelectorBloC({this.length = 0})
-      : super(SelectorBloCIndexState(currentIndex: 0)) {
+      : super(const SelectorBloCIndexState(currentIndex: -1)) {
     on<SelectorClickEvent>((event, emit) {
       emit(SelectorBloCIndexState(currentIndex: event.currentIndex));
     });

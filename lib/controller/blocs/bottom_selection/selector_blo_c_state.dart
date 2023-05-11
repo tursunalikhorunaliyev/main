@@ -2,11 +2,13 @@
 part of 'selector_blo_c_bloc.dart';
 
 @immutable
-abstract class SelectorBloCState {}
-
-class SelectorBloCIndexState extends SelectorBloCState {
+abstract class SelectorBloCState {
   final int currentIndex;
-  SelectorBloCIndexState({
+  const SelectorBloCState({
     required this.currentIndex,
   });
+}
+
+class SelectorBloCIndexState extends SelectorBloCState {
+  const SelectorBloCIndexState({required super.currentIndex});
 }

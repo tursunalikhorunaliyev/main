@@ -28,7 +28,6 @@ class CustomeTabButton extends StatelessWidget {
       child: BlocBuilder<TabButtonIndexCubit, TabButtonIndexState>(
         bloc: tabButtonIndex,
         builder: (context, state) {
-          print(tabButtonIndex.state.slideIndex);
           return InkWell(
             onTap: () {
               tabButtonIndex.emit(

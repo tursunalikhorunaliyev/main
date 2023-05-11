@@ -7,7 +7,6 @@ import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc
 import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
-import 'package:provider/provider.dart';
 
 class SearchPanel extends StatelessWidget {
   const SearchPanel({super.key});
@@ -27,13 +26,12 @@ class SearchPanel extends StatelessWidget {
           context.read<FocusNodesProvider>().focusNodeTopPanel.unfocus();
           context
               .read<SelectorBloC>()
-              .add(const SelectorKeyDownEvent(currentIndex: 0));
+              .add(const SelectorKeyDownEvent(currentIndex: -1));
         } else if (value.logicalKey == LogicalKeyboardKey.arrowUp) {
           context.read<FocusNodesProvider>().focusNodeBottomPanel.unfocus();
           context.read<FocusNodesProvider>().focusNodeTopPanel.requestFocus();
-          context
-              .read<TopSelectionBloc>()
-              .add(const TopSelectionUp(currentIndex: 0));
+          context.read<TopSelectionBloc>().add(TopSelectionUp(
+              currentIndex: context.read<TopSelectionBloc>().dataLength));
         }
       },
       child: TextField(
@@ -44,7 +42,7 @@ class SearchPanel extends StatelessWidget {
           searchCubit.getData(value);
           context
               .read<SelectorBloC>()
-              .add(const SelectorClickEvent(currentIndex: 0));
+              .add(const SelectorClickEvent(currentIndex: -1));
         },
         decoration: InputDecoration(
           hintText: "Поиск",

@@ -2,11 +2,13 @@
 part of 'search_cubit_cubit.dart';
 
 @immutable
-abstract class SearchCubitState {}
-
-class SearchCubitData extends SearchCubitState {
+abstract class SearchCubitState {
   final SearchData? searchData;
-  SearchCubitData({
+  const SearchCubitState({
     required this.searchData,
   });
+}
+
+class SearchCubitData extends SearchCubitState {
+  const SearchCubitData({required super.searchData});
 }
