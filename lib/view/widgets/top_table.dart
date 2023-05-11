@@ -22,7 +22,7 @@ class TopTable extends StatelessWidget {
             bloc: sellDataBloc,
             builder: (context, state) {
               topSelectionBloc.changeDataLength(state.topTableGridRow.length);
-              log(topSelectionBloc.dataLength.toString() + "+++++++++");
+
               return ListView.builder(
                 addAutomaticKeepAlives: true,
                 scrollDirection: Axis.vertical,
