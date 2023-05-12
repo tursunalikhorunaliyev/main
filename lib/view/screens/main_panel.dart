@@ -66,8 +66,81 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowLeft &&
           keyEvent is KeyDownEvent) {
-      } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowLeft &&
-          keyEvent is KeyDownEvent) {}
+        if (context.read<TabButtonIndexCubit>().state.slideIndex != 0) {
+          context.read<TabButtonIndexCubit>().emit(
+                TabButtonIndex(
+                    slideIndex:
+                        context.read<TabButtonIndexCubit>().state.slideIndex -
+                            1),
+              );
+          context.read<PageController>().jumpToPage(
+                context.read<TabButtonIndexCubit>().state.slideIndex,
+              );
+
+          if (checkButtonsBloC
+                  .state
+                  .customeTabButton[
+                      context.read<TabButtonIndexCubit>().state.slideIndex]
+                  .docData!
+                  .uuid !=
+              null) {
+            context
+                .read<SellPanelBloc>()
+                .state
+                .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                .sellDataBloc
+                .add(SellDataFromServer(
+                    docId: context
+                        .read<CheckButtonsBloc>()
+                        .state
+                        .customeTabButton[context
+                            .read<TabButtonIndexCubit>()
+                            .state
+                            .slideIndex]
+                        .docData!
+                        .uuid!));
+          }
+        }
+      } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowRight &&
+          keyEvent is KeyDownEvent) {
+        if (context.read<TabButtonIndexCubit>().state.slideIndex !=
+            context.read<CheckButtonsBloc>().state.customeTabButton.length -
+                1) {
+          context.read<TabButtonIndexCubit>().emit(
+                TabButtonIndex(
+                    slideIndex:
+                        context.read<TabButtonIndexCubit>().state.slideIndex +
+                            1),
+              );
+          context.read<PageController>().jumpToPage(
+                context.read<TabButtonIndexCubit>().state.slideIndex,
+              );
+
+          if (checkButtonsBloC
+                  .state
+                  .customeTabButton[
+                      context.read<TabButtonIndexCubit>().state.slideIndex]
+                  .docData!
+                  .uuid !=
+              null) {
+            context
+                .read<SellPanelBloc>()
+                .state
+                .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                .sellDataBloc
+                .add(SellDataFromServer(
+                    docId: context
+                        .read<CheckButtonsBloc>()
+                        .state
+                        .customeTabButton[context
+                            .read<TabButtonIndexCubit>()
+                            .state
+                            .slideIndex]
+                        .docData!
+                        .uuid!));
+          }
+        }
+      }
       return false;
     });
     return Scaffold(
