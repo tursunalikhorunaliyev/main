@@ -34,7 +34,8 @@ class _TestPageState extends State<TestPage> {
           ElevatedButton(
             onPressed: () async {
               SearchData searchData =
-                  await FeathersService().getSearchData("a");
+                  await FeathersService().getSearchData("a", 10);
+                
             },
             child: const Text("Get search"),
           ),

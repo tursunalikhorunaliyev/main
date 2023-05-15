@@ -10,9 +10,9 @@ part 'search_cubit_state.dart';
 class SearchCubit extends Cubit<SearchCubitState> {
   SearchCubit() : super(SearchCubitData(searchData: null));
 
-  getData(String text) async {
+  getData(String text, int offset) async {
     final feathers = FeathersService();
-    final searchData = await feathers.getSearchData(text);
+    final searchData = await feathers.getSearchData(text, offset);
 
     emit(SearchCubitData(searchData: searchData));
   }

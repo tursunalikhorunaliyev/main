@@ -93,13 +93,16 @@ class FeathersService {
     return response;
   }
 */
-  Future<SearchData> getSearchData(String search) async {
+  Future<SearchData> getSearchData(String search, int offset) async {
     Map<String, dynamic> response =
         await Api.feathers().find(serviceName: "memories", query: {
       "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
       "ctx": const ['drugs'],
-      "search": search
+      "search": search,
+      "\u0024skip": offset
     });
+    print("SEARCH DATAAAAAAA");
+    print(response);
     return SearchData.fromJson(response);
   }
 

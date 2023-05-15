@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,7 +35,7 @@ class SearchPanel extends StatelessWidget {
         autofocus:
             context.read<FocusNodesProvider>().focusNodeSearchBox.hasFocus,
         onChanged: (value) {
-          context.read<SearchCubit>().getData(value);
+          context.read<SearchCubit>().getData(value, 10);
           context
               .read<SelectorBloC>()
               .add(const SelectorClickEvent(currentIndex: -1));

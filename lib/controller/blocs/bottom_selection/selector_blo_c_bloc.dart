@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 part 'selector_blo_c_event.dart';
 part 'selector_blo_c_state.dart';
-//bottom selection is implemented
 class SelectorBloC extends Bloc<SelectorBloCEvent, SelectorBloCState> {
   int length = 0;
   SelectorBloC({this.length = 0})
