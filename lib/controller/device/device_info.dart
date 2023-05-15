@@ -2,7 +2,7 @@ import 'package:napt_sklad/controller/device/device_resolution.dart';
 import 'package:napt_sklad/controller/device/device_type.dart';
 
 abstract class DeviceInfo {
-  //a
+  //aa
   static List<DeviceResolution> resolutionList = [
     DeviceResolution(width: 1280, height: 720, deviceType: DeviceType.hd),
     DeviceResolution(
