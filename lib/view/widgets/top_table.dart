@@ -28,7 +28,6 @@ class TopTable extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: state.topTableGridRow.length,
                 itemBuilder: (context, index) {
-                  log(index.toString());
                   return state.topTableGridRow[index];
                 },
               );

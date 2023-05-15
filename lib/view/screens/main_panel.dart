@@ -30,8 +30,10 @@ class MainPanel extends StatelessWidget {
     checkButtonsBloC.add(CheckButtonOnLoad());
 
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
-      if (RegExp("[0-9a-zA-Z]").hasMatch(
-              keyEvent.character == null ? "" : keyEvent.character!) &&
+      if ((RegExp("[0-9a-zA-Z]").hasMatch(
+                  keyEvent.character == null ? "" : keyEvent.character!) ||
+              RegExp("[0-9а-яА-Я]").hasMatch(
+                  keyEvent.character == null ? "" : keyEvent.character!)) &&
           keyEvent is KeyDownEvent) {
         if (!focusNodes.focusNodeQtyPanel.hasFocus) {
           focusNodes.focusNodeSearchBox.requestFocus();

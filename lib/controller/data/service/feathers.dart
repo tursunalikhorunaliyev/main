@@ -137,7 +137,6 @@ class FeathersService {
       "oid": "yjmgJUmDo_kn9uxVi8s9Mj9mgGRJISxRt63wT46NyTQ",
       "ctx": const ['warehouse', 'dispatch'],
     });
-    print(response.toString());
   }
 
   Future<DocChecksData> findCheckLine(String docId) async {
@@ -148,7 +147,7 @@ class FeathersService {
         "document": docId,
       }
     });
-    print(response.toString());
+
     return DocChecksData.fromJson(response);
   }
 }
