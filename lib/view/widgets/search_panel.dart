@@ -35,7 +35,7 @@ class SearchPanel extends StatelessWidget {
         autofocus:
             context.read<FocusNodesProvider>().focusNodeSearchBox.hasFocus,
         onChanged: (value) {
-          context.read<SearchCubit>().getData(value, 10);
+          context.read<SearchCubit>().getData(value, 0);
           context
               .read<SelectorBloC>()
               .add(const SelectorClickEvent(currentIndex: -1));
