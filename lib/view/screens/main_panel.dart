@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
+import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
@@ -22,23 +24,35 @@ class MainPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final checkButtonsBloC = BlocProvider.of<CheckButtonsBloc>(context);
-    final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
     final focusNodes = Provider.of<FocusNodesProvider>(context);
 
-    sellPanelBloc.add(const SellPanelOnLoad());
-    checkButtonsBloC.add(CheckButtonOnLoad());
+    context.read<SellPanelBloc>().add(const SellPanelOnLoad());
+    context.read<CheckButtonsBloc>().add(CheckButtonOnLoad());
+    //
 
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
-      if ((RegExp("[0-9a-zA-Z]").hasMatch(
-                  keyEvent.character == null ? "" : keyEvent.character!) ||
-              RegExp("[0-9а-яА-Я]").hasMatch(
-                  keyEvent.character == null ? "" : keyEvent.character!)) &&
+      if ((RegExp("[0-9a-zA-Zа-яА-Я]").hasMatch(keyEvent.character ?? "")) &&
           keyEvent is KeyDownEvent) {
         if (!focusNodes.focusNodeQtyPanel.hasFocus) {
           focusNodes.focusNodeSearchBox.requestFocus();
           return false;
         }
+      } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowUp &&
+          keyEvent is KeyDownEvent &&
+          !focusNodes.focusNodeBottomPanel.hasFocus) {
+        context.read<SellPanelBloc>()
+            .state
+            .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+            .topSelectionBloc
+            .add(TopSelectionUp());
+      } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowDown &&
+          keyEvent is KeyDownEvent &&
+          !focusNodes.focusNodeBottomPanel.hasFocus) {
+        context.read<SellPanelBloc>()
+            .state
+            .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+            .topSelectionBloc
+            .add(TopSelectionDown());
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.enter &&
           keyEvent is KeyDownEvent) {
         if (focusNodes.focusNodeBottomPanel.hasFocus) {
@@ -68,6 +82,7 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowLeft &&
           keyEvent is KeyDownEvent) {
+        focusNodes.focusNodeBottomPanel.unfocus();
         if (context.read<TabButtonIndexCubit>().state.slideIndex != 0) {
           context.read<TabButtonIndexCubit>().emit(
                 TabButtonIndex(
@@ -79,7 +94,7 @@ class MainPanel extends StatelessWidget {
                 context.read<TabButtonIndexCubit>().state.slideIndex,
               );
 
-          if (checkButtonsBloC
+          if (context.read<CheckButtonsBloc>()
                   .state
                   .customeTabButton[
                       context.read<TabButtonIndexCubit>().state.slideIndex]
@@ -105,6 +120,8 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowRight &&
           keyEvent is KeyDownEvent) {
+        focusNodes.focusNodeBottomPanel.unfocus();
+
         if (context.read<TabButtonIndexCubit>().state.slideIndex !=
             context.read<CheckButtonsBloc>().state.customeTabButton.length -
                 1) {
@@ -118,7 +135,7 @@ class MainPanel extends StatelessWidget {
                 context.read<TabButtonIndexCubit>().state.slideIndex,
               );
 
-          if (checkButtonsBloC
+          if (context.read<CheckButtonsBloc>()
                   .state
                   .customeTabButton[
                       context.read<TabButtonIndexCubit>().state.slideIndex]

@@ -11,24 +11,23 @@ class NoviyCheckButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageController = Provider.of<PageController>(context);
-    final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
-    final checkPanelsBloc = BlocProvider.of<CheckButtonsBloc>(context);
-    final tabButtonIndexCubit = BlocProvider.of<TabButtonIndexCubit>(context);
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
         onTap: () async {
-          sellPanelBloc.add(const SellPanelAdd());
-          checkPanelsBloc.add(const CheckButtonsAdd());
-          tabButtonIndexCubit.emit(
-            TabButtonIndex(
-                slideIndex: checkPanelsBloc.state.customeTabButton.length),
-          );
-          pageController.jumpToPage(
-            sellPanelBloc.state.sellPanel.length,
-          );
+          context.read<SellPanelBloc>().add(const SellPanelAdd());
+          context.read<CheckButtonsBloc>().add(const CheckButtonsAdd());
+          context.read<TabButtonIndexCubit>().emit(
+                TabButtonIndex(
+                    slideIndex: context
+                        .read<CheckButtonsBloc>()
+                        .state
+                        .customeTabButton
+                        .length),
+              );
+          context.read<PageController>().jumpToPage(
+                context.read<SellPanelBloc>().state.sellPanel.length,
+              );
         },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),

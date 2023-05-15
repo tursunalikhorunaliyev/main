@@ -1,19 +1,25 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
+import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 
 class TopTable extends StatelessWidget {
   final int tableIndex;
   final SellDataBloc sellDataBloc;
-  const TopTable(
-      {super.key, required this.tableIndex, required this.sellDataBloc});
+  final TopSelectionBloc topSelectionBloc;
+  const TopTable({
+    super.key,
+    required this.tableIndex,
+    required this.sellDataBloc,
+    required this.topSelectionBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final topSelectionBloc = BlocProvider.of<TopSelectionBloc>(context);
     return Column(
       children: [
         rowHeader(),
@@ -22,14 +28,16 @@ class TopTable extends StatelessWidget {
             bloc: sellDataBloc,
             builder: (context, state) {
               topSelectionBloc.changeDataLength(state.topTableGridRow.length);
-
-              return ListView.builder(
-                addAutomaticKeepAlives: true,
-                scrollDirection: Axis.vertical,
-                itemCount: state.topTableGridRow.length,
-                itemBuilder: (context, index) {
-                  return state.topTableGridRow[index];
-                },
+              return BlocProvider(
+                create: (context) => topSelectionBloc,
+                child: ListView.builder(
+                  addAutomaticKeepAlives: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: state.topTableGridRow.length,
+                  itemBuilder: (context, index) {
+                    return state.topTableGridRow[index];
+                  },
+                ),
               );
             },
           ),

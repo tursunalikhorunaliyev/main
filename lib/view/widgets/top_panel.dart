@@ -16,9 +16,6 @@ class TopPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sellPanelBloc = BlocProvider.of<SellPanelBloc>(context);
-    final pageController = Provider.of<PageController>(context);
-    final checkButtonCubit = BlocProvider.of<CheckButtonsBloc>(context);
 
     final scrollController = ScrollController();
     return Column(
@@ -27,11 +24,11 @@ class TopPanel extends StatelessWidget {
       children: [
         Flexible(
           child: BlocBuilder<SellPanelBloc, SellPanelState>(
-            bloc: sellPanelBloc,
+            bloc: context.read<SellPanelBloc>(),
             builder: (context, state) {
               return PageView.builder(
                 allowImplicitScrolling: true,
-                controller: pageController,
+                controller: context.read<PageController>(),
                 itemCount: state.sellPanel.length,
                 itemBuilder: (context, index) {
                   return state.sellPanel[index];
@@ -51,7 +48,6 @@ class TopPanel extends StatelessWidget {
                 return false;
               }
             },
-            bloc: checkButtonCubit,
             builder: (context, state) {
               state as CheckButtonsPanelData;
 
@@ -64,7 +60,7 @@ class TopPanel extends StatelessWidget {
                   if (index == 0 &&
                       state.customeTabButton.isNotEmpty &&
                       !state.isFirstDraft) {
-                    sellPanelBloc.state.sellPanel[index].sellDataBloc.add(
+                    context.read<SellPanelBloc>().state.sellPanel[index].sellDataBloc.add(
                       SellDataFromServer(
                           docId: state.customeTabButton[index].docData!.uuid!),
                     );

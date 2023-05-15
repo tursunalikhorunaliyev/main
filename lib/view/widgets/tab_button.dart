@@ -19,29 +19,26 @@ class CustomeTabButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabButtonIndex = BlocProvider.of<TabButtonIndexCubit>(context);
-    final pageController = Provider.of<PageController>(context);
-    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
-    final checkButtonsBloC = BlocProvider.of<CheckButtonsBloc>(context);
+   
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: BlocBuilder<TabButtonIndexCubit, TabButtonIndexState>(
-        bloc: tabButtonIndex,
+       
         builder: (context, state) {
           return InkWell(
             onTap: () {
-              tabButtonIndex.emit(
+              context.read<TabButtonIndexCubit>().emit(
                 TabButtonIndex(slideIndex: buttonIndex),
               );
-              pageController.jumpToPage(
+              context.read<PageController>().jumpToPage(
                 buttonIndex,
               );
 
-              if (checkButtonsBloC
+              if (context.read<CheckButtonsBloc>()
                       .state.customeTabButton[buttonIndex].docData!.uuid !=
                   null) {
-                sellPanelBloC.state.sellPanel[buttonIndex].sellDataBloc
+                context.read<SellPanelBloc>().state.sellPanel[buttonIndex].sellDataBloc
                     .add(SellDataFromServer(docId: docData!.uuid!));
               }
             },

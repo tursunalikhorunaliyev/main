@@ -2,23 +2,20 @@
 part of 'top_selection_bloc.dart';
 
 abstract class TopSelectionEvent extends Equatable {
-  final int currentIndex;
-  const TopSelectionEvent({
-    required this.currentIndex,
-  });
 
-  @override
-  List<Object> get props => [currentIndex];
+@override
+List<Object?> get props => throw UnimplementedError();
 }
 
 class TopSelectionUp extends TopSelectionEvent {
-  const TopSelectionUp({required super.currentIndex});
 }
 
 class TopSelectionDown extends TopSelectionEvent {
-  const TopSelectionDown({required super.currentIndex});
 }
 
 class TopSelectionOnClick extends TopSelectionEvent {
-  const TopSelectionOnClick({required super.currentIndex});
+    final int currentIndex;
+
+  TopSelectionOnClick({required this.currentIndex});
+ 
 }

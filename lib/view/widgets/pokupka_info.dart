@@ -20,10 +20,6 @@ class PokupokInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabIndexCubit = BlocProvider.of<TabButtonIndexCubit>(context);
-    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
-    final checkButtonsBloc = BlocProvider.of<CheckButtonsBloc>(context);
-    final pageController = Provider.of<PageController>(context);
 
     return ColoredBox(
       color: Colors.amber,
@@ -113,17 +109,17 @@ class PokupokInfo extends StatelessWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        sellPanelBloC.add(SellPanelRemove(
-                          removeIndex: tabIndexCubit.state.slideIndex,
+                        context.read<SellPanelBloc>().add(SellPanelRemove(
+                          removeIndex: context.read<TabButtonIndexCubit>().state.slideIndex,
                         ));
-                        checkButtonsBloc.add(CheckButtonsRemove(
-                            removeIndex: tabIndexCubit.state.slideIndex));
-                        pageController.animateToPage(
-                            tabIndexCubit.state.slideIndex - 1,
+                        context.read<CheckButtonsBloc>().add(CheckButtonsRemove(
+                            removeIndex:  context.read<TabButtonIndexCubit>().state.slideIndex));
+                        context.read<PageController>().animateToPage(
+                             context.read<TabButtonIndexCubit>().state.slideIndex - 1,
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.fastLinearToSlowEaseIn);
-                        tabIndexCubit.emit(TabButtonIndex(
-                            slideIndex: tabIndexCubit.state.slideIndex - 1));
+                         context.read<TabButtonIndexCubit>().emit(TabButtonIndex(
+                            slideIndex:  context.read<TabButtonIndexCubit>().state.slideIndex - 1));
                       },
                       child: Container(
                         padding: const EdgeInsets.symmetric(

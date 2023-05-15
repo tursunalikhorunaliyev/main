@@ -12,19 +12,17 @@ class BottomTable extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final searchCubti = BlocProvider.of<SearchCubit>(context);
-    final selectorBloC = BlocProvider.of<SelectorBloC>(context);
     return Column(
       children: [
         rowHeader(),
         BlocBuilder<SearchCubit, SearchCubitState>(
-          bloc: searchCubti,
+       
           builder: (context, state) {
             state as SearchCubitData;
             if (state.searchData == null) {
               return const SizedBox();
             }
-            selectorBloC.changeDataLength(state.searchData!.data.length);
+           context.read<SelectorBloC>().changeDataLength(state.searchData!.data.length);
 
             return Expanded(
               child: ListView.builder(

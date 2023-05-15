@@ -31,15 +31,12 @@ class QtyPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sellPanelBloC = BlocProvider.of<SellPanelBloc>(context);
-    final tabButtonIndexBloC = BlocProvider.of<TabButtonIndexCubit>(context);
 
-    final focusNodes = Provider.of<FocusNodesProvider>(context);
 
     final kolichestvoTextController = TextEditingController();
     var summaTextController = TextEditingController(text: "0.00");
 
-    focusNodes.focusNodeQtyPanel.requestFocus();
+    context.read<FocusNodesProvider>().focusNodeQtyPanel.requestFocus();
 
     return Column(
       children: [
@@ -177,13 +174,14 @@ class QtyPanel extends StatelessWidget {
               child: TextField(
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 autofocus: true,
-                focusNode: focusNodes.focusNodeQtyPanel,
+                focusNode: context.read<FocusNodesProvider>().focusNodeQtyPanel,
                 controller: kolichestvoTextController,
                 onSubmitted: (value) {
                   if (kolichestvoTextController.text.isNotEmpty) {
-                    if (sellPanelBloC
+                    if (context
+                        .read<SellPanelBloc>()
                         .state
-                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                        .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                         .sellDataBloc
                         .state
                         .topTableGridRow
@@ -210,19 +208,21 @@ class QtyPanel extends StatelessWidget {
 
                         FeathersService().createCheckLine(tabLine.toJson());
 
-                        sellPanelBloC
+                        context
+                            .read<SellPanelBloc>()
                             .state
-                            .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                            .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                             .sellDataBloc
                             .add(
-                          SellDataAdd(tableLine: tabLine, goods: data.name),
-                        );
+                              SellDataAdd(tableLine: tabLine, goods: data.name),
+                            );
                       });
                     } else {
                       TableLine tableLine = TableLine(
-                        document: sellPanelBloC
+                        document: context
+                            .read<SellPanelBloc>()
                             .state
-                            .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                            .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                             .sellDataBloc
                             .state
                             .topTableGridRow[0]
@@ -247,9 +247,10 @@ class QtyPanel extends StatelessWidget {
                         ),
                       );
 
-                      sellPanelBloC
+                      context
+                          .read<SellPanelBloc>()
                           .state
-                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                          .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                           .sellDataBloc
                           .add(SellDataAdd(
                               tableLine: tableLine, goods: data.name));
@@ -370,9 +371,10 @@ class QtyPanel extends StatelessWidget {
             InkWell(
               onTap: () {
                 if (kolichestvoTextController.text.isNotEmpty) {
-                  if (sellPanelBloC
+                  if (context
+                      .read<SellPanelBloc>()
                       .state
-                      .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                      .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                       .sellDataBloc
                       .state
                       .topTableGridRow
@@ -399,19 +401,21 @@ class QtyPanel extends StatelessWidget {
 
                       FeathersService().createCheckLine(tabLine.toJson());
 
-                      sellPanelBloC
+                      context
+                          .read<SellPanelBloc>()
                           .state
-                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                          .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                           .sellDataBloc
                           .add(
-                        SellDataAdd(tableLine: tabLine, goods: data.name),
-                      );
+                            SellDataAdd(tableLine: tabLine, goods: data.name),
+                          );
                     });
                   } else {
                     TableLine tableLine = TableLine(
-                      document: sellPanelBloC
+                      document: context
+                          .read<SellPanelBloc>()
                           .state
-                          .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                          .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                           .sellDataBloc
                           .state
                           .topTableGridRow[0]
@@ -436,9 +440,10 @@ class QtyPanel extends StatelessWidget {
                       ),
                     );
 
-                    sellPanelBloC
+                    context
+                        .read<SellPanelBloc>()
                         .state
-                        .sellPanel[tabButtonIndexBloC.state.slideIndex]
+                        .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
                         .sellDataBloc
                         .add(SellDataAdd(
                             tableLine: tableLine, goods: data.name));

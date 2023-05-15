@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 import 'package:napt_sklad/controller/data/model/table/table_line.dart';
@@ -23,204 +22,184 @@ class TopTableGridRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TopSelectionBloc, TopSelectionState>(
       builder: (context, state) {
-        return RawKeyboardListener(
-          focusNode: context.read<FocusNodesProvider>().focusNodeTopPanel,
-          autofocus: true,
-          onKey: (value) {
-            if (value.isKeyPressed(LogicalKeyboardKey.arrowDown) &&
-                value is RawKeyDownEvent) {
-              log(state.nextIndex.toString());
-              context
-                  .read<TopSelectionBloc>()
-                  .add(TopSelectionDown(currentIndex: state.nextIndex));
-            } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp) &&
-                value is RawKeyDownEvent) {
-              context
-                  .read<TopSelectionBloc>()
-                  .add(TopSelectionUp(currentIndex: state.nextIndex));
-            }
+        log(state.nextIndex.toString());
+        return GestureDetector(
+          onTap: () {
+            context.read<FocusNodesProvider>().focusNodeBottomPanel.unfocus();
+            context
+                .read<TopSelectionBloc>()
+                .add(TopSelectionOnClick(currentIndex: index));
+            context.read<FocusNodesProvider>().focusNodeTopPanel.requestFocus();
           },
-          child: GestureDetector(
-            onTap: () {
-              context
-                  .read<TopSelectionBloc>()
-                  .add(TopSelectionOnClick(currentIndex: index));
-              context
-                  .read<FocusNodesProvider>()
-                  .focusNodeTopPanel
-                  .requestFocus();
-            },
-            child: ColoredBox(
-              color:
-                  state.nextIndex == index ? Colors.blue : Colors.transparent,
-              child: SizedBox(
-                height: 40,
-                child: Row(
-                  children: [
-                    Flexible(
-                      flex: 18,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+          child: ColoredBox(
+            color: state.nextIndex == index ? Colors.blue : Colors.transparent,
+            child: SizedBox(
+              height: 40,
+              child: Row(
+                children: [
+                  Flexible(
+                    flex: 18,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: Text(
-                          goods,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: Text(
+                        goods,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 4,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 4,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: Text(
-                          tableLine.qty.number.toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: Text(
+                        tableLine.qty.number.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 6,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 6,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: Text(
-                          tableLine.price.number.toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: Text(
+                        tableLine.price.number.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 6,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 6,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: Text(
-                          tableLine.cost.number.toString(),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: Text(
+                        tableLine.cost.number.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 5,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: const Text(
-                          "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: const Text(
+                        "",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 5,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: const Text(
-                          "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: const Text(
+                        "",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 2,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 2,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: const Text(
-                          "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: const Text(
+                        "",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 5,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: const Text(
-                          "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: const Text(
+                        "",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    Flexible(
-                      flex: 5,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0.5,
-                          ),
+                  ),
+                  Flexible(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
                         ),
-                        child: const Text(
-                          "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      child: const Text(
+                        "",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

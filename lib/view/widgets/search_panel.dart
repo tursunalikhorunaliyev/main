@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
 import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 
@@ -13,7 +12,6 @@ class SearchPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final searchCubit = BlocProvider.of<SearchCubit>(context);
 
     return RawKeyboardListener(
       focusNode: FocusNode(),
@@ -30,8 +28,6 @@ class SearchPanel extends StatelessWidget {
         } else if (value.logicalKey == LogicalKeyboardKey.arrowUp) {
           context.read<FocusNodesProvider>().focusNodeBottomPanel.unfocus();
           context.read<FocusNodesProvider>().focusNodeTopPanel.requestFocus();
-          context.read<TopSelectionBloc>().add(TopSelectionUp(
-              currentIndex: context.read<TopSelectionBloc>().dataLength));
         }
       },
       child: TextField(
@@ -39,7 +35,7 @@ class SearchPanel extends StatelessWidget {
         autofocus:
             context.read<FocusNodesProvider>().focusNodeSearchBox.hasFocus,
         onChanged: (value) {
-          searchCubit.getData(value);
+          context.read<SearchCubit>().getData(value);
           context
               .read<SelectorBloC>()
               .add(const SelectorClickEvent(currentIndex: -1));

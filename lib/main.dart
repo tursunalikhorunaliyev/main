@@ -19,9 +19,7 @@ void main(List<String> args) {
       BlocProvider(
         create: (context) => SelectorBloC(),
       ),
-      BlocProvider(
-        create: (context) => TopSelectionBloc(),
-      ),
+  
       BlocProvider<SellPanelBloc>(
         create: (context) => SellPanelBloc(),
       ),

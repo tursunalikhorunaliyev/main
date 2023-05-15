@@ -26,7 +26,6 @@ class _TestPageState extends State<TestPage> {
 
   @override
   Widget build(BuildContext context) {
-    final focusNode = FocusNode();
     return Scaffold(
       body: Center(
           child: Column(

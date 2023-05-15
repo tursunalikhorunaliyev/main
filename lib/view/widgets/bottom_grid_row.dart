@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/data/model/search/search_data.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
-import 'package:napt_sklad/view/widgets/qty_panel.dart';
 
 class BottomGridRow extends StatelessWidget {
   final Data dataModel;
@@ -16,14 +14,13 @@ class BottomGridRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectorCubit = BlocProvider.of<SelectorBloC>(context);
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
-      bloc: selectorCubit,
+    
       builder: (context, state) {
         SelectorBloCIndexState selector =
-            selectorCubit.state as SelectorBloCIndexState;
+            state as SelectorBloCIndexState;
 
-        state as SelectorBloCIndexState;
+     
 
         return RawKeyboardListener(
           focusNode: context.read<FocusNodesProvider>().focusNodeBottomPanel,
@@ -31,16 +28,16 @@ class BottomGridRow extends StatelessWidget {
               context.read<FocusNodesProvider>().focusNodeBottomPanel.hasFocus,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
-              selectorCubit
+         context.read<SelectorBloC>()    
                   .add(SelectorKeyDownEvent(currentIndex: state.currentIndex));
             } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
-              selectorCubit
+               context.read<SelectorBloC>()
                   .add(SelectorKeyUpEvent(currentIndex: state.currentIndex));
             }
           },
           child: GestureDetector(
             onTap: () {
-              selectorCubit.add(SelectorClickEvent(currentIndex: index));
+             context.read<SelectorBloC>().add(SelectorClickEvent(currentIndex: index));
               context
                   .read<FocusNodesProvider>()
                   .focusNodeBottomPanel
