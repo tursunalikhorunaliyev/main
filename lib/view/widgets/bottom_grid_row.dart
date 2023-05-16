@@ -38,10 +38,15 @@ class BottomGridRow extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
              context.read<SelectorBloC>().add(SelectorClickEvent(currentIndex: index));
+             context
+                  .read<FocusNodesProvider>()
+                  .focusNodeTopPanel
+                  .unfocus();
               context
                   .read<FocusNodesProvider>()
                   .focusNodeBottomPanel
                   .requestFocus();
+                  
             },
             child: ColoredBox(
               color: state.currentIndex == index

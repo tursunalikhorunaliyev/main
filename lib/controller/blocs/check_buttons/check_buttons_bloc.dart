@@ -19,7 +19,7 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
         ..add(
           CustomeTabButton(
             buttonIndex: state.customeTabButton.length,
-            docData: DocData(createdAt: DateTime.now()),
+           
           ),
         );
       emit(CheckButtonsPanelData(customeTabButton: from, isFirstDraft: true));
@@ -33,12 +33,10 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
       Docs docs = await FeathersService().listCheckDoc();
       if (docs.data.isEmpty) {
         emit(
-          CheckButtonsPanelData(customeTabButton: [
+          const CheckButtonsPanelData(customeTabButton: [
             CustomeTabButton(
               buttonIndex: 0,
-              docData: DocData(
-                createdAt: DateTime.now(),
-              ),
+             
             ),
           ], isFirstDraft: true),
         );

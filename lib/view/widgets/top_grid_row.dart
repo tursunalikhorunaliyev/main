@@ -22,7 +22,6 @@ class TopTableGridRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TopSelectionBloc, TopSelectionState>(
       builder: (context, state) {
-        log(state.nextIndex.toString());
         return GestureDetector(
           onTap: () {
             context.read<FocusNodesProvider>().focusNodeBottomPanel.unfocus();

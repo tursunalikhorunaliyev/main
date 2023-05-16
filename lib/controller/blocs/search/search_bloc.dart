@@ -22,7 +22,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(SearchDataState(searchData: searchData));
     });
     on<SearchSkippedEvent>((event, emit) async {
-      log("skipga tushdi");
+      
       skipNumber+=10;
       final feathers = FeathersService();
       final searchData =

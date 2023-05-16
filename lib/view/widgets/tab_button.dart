@@ -9,7 +9,6 @@ import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
 import 'package:napt_sklad/controller/data/model/table/docs_model.dart';
-import 'package:provider/provider.dart';
 
 class CustomeTabButton extends StatelessWidget {
   final int buttonIndex;
@@ -28,16 +27,17 @@ class CustomeTabButton extends StatelessWidget {
         builder: (context, state) {
           return InkWell(
             onTap: () {
+              log("button index$buttonIndex");
               context.read<TabButtonIndexCubit>().emit(
                 TabButtonIndex(slideIndex: buttonIndex),
               );
               context.read<PageController>().jumpToPage(
                 buttonIndex,
               );
-
               if (context.read<CheckButtonsBloc>()
-                      .state.customeTabButton[buttonIndex].docData!.uuid !=
+                      .state.customeTabButton[buttonIndex].docData !=
                   null) {
+                    log("nullga teng emas"+"button index $buttonIndex");
                 context.read<SellPanelBloc>().state.sellPanel[buttonIndex].sellDataBloc
                     .add(SellDataFromServer(docId: docData!.uuid!));
               }
