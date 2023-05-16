@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:napt_sklad/controller/data/service/feathers.dart';
 

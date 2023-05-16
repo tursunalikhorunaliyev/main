@@ -31,9 +31,12 @@ class SearchPanel extends StatelessWidget {
       },
       child: TextField(
         focusNode: context.read<FocusNodesProvider>().focusNodeSearchBox,
-        autofocus:
+        autofocus:  
             context.read<FocusNodesProvider>().focusNodeSearchBox.hasFocus,
         onChanged: (value) {
+          context.read<FocusNodesProvider>().focusNodeBottomPanel.requestFocus();
+          context.read<FocusNodesProvider>().focusNodeTopPanel.unfocus();
+
           context.read<SearchWordProvider>().setSearchWord(value.trim());
           context
               .read<SearchBloc>()

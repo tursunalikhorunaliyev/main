@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
@@ -24,7 +22,7 @@ class BottomTable extends StatelessWidget {
             }
             context
                 .read<SelectorBloC>()
-                .changeDataLength(state.searchData!.data.length);
+                .changeDataLength(state.searchData.data.length);
             return Expanded(
               child: ListView.builder(
                 controller: context.read<ScrollController>(),

@@ -39,16 +39,18 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowUp &&
           keyEvent is KeyDownEvent &&
-          focusNodes.focusNodeTopPanel.hasFocus) {
-        context.read<SellPanelBloc>()
+          !focusNodes.focusNodeBottomPanel.hasFocus) {
+        context
+            .read<SellPanelBloc>()
             .state
             .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
             .topSelectionBloc
             .add(TopSelectionUp());
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowDown &&
           keyEvent is KeyDownEvent &&
-          focusNodes.focusNodeTopPanel.hasFocus) {
-        context.read<SellPanelBloc>()
+          !focusNodes.focusNodeBottomPanel.hasFocus) {
+        context
+            .read<SellPanelBloc>()
             .state
             .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
             .topSelectionBloc
@@ -82,7 +84,10 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowLeft &&
           keyEvent is KeyDownEvent) {
+       
+        focusNodes.focusNodeTopPanel.requestFocus();
         focusNodes.focusNodeBottomPanel.unfocus();
+
         if (context.read<TabButtonIndexCubit>().state.slideIndex != 0) {
           context.read<TabButtonIndexCubit>().emit(
                 TabButtonIndex(
@@ -94,7 +99,8 @@ class MainPanel extends StatelessWidget {
                 context.read<TabButtonIndexCubit>().state.slideIndex,
               );
 
-          if (context.read<CheckButtonsBloc>()
+          if (context
+                  .read<CheckButtonsBloc>()
                   .state
                   .customeTabButton[
                       context.read<TabButtonIndexCubit>().state.slideIndex]
@@ -120,6 +126,8 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowRight &&
           keyEvent is KeyDownEvent) {
+          
+        focusNodes.focusNodeTopPanel.requestFocus();
         focusNodes.focusNodeBottomPanel.unfocus();
 
         if (context.read<TabButtonIndexCubit>().state.slideIndex !=
@@ -135,7 +143,8 @@ class MainPanel extends StatelessWidget {
                 context.read<TabButtonIndexCubit>().state.slideIndex,
               );
 
-          if (context.read<CheckButtonsBloc>()
+          if (context
+                  .read<CheckButtonsBloc>()
                   .state
                   .customeTabButton[
                       context.read<TabButtonIndexCubit>().state.slideIndex]
