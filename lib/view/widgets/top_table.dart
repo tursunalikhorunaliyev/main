@@ -27,7 +27,6 @@ class TopTable extends StatelessWidget {
           child: BlocBuilder<SellDataBloc, SellDataState>(
             bloc: sellDataBloc,
             builder: (context, state) {
-              log(state.topTableGridRow.length.toString()+"asdasdadasdadsasd");
               topSelectionBloc.changeDataLength(state.topTableGridRow.length);
               return BlocProvider(
                 create: (context) => topSelectionBloc,

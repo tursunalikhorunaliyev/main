@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
@@ -15,6 +17,7 @@ class NoviyCheckButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: InkWell(
         onTap: () async {
+          
           context.read<SellPanelBloc>().add(const SellPanelAdd());
           context.read<CheckButtonsBloc>().add(const CheckButtonsAdd());
           context.read<TabButtonIndexCubit>().emit(

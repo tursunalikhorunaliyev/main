@@ -27,12 +27,13 @@ class CustomeTabButton extends StatelessWidget {
         builder: (context, state) {
           return InkWell(
             onTap: () {
+
+              
+              context.read<PageController>().jumpToPage(buttonIndex);
+
               log("button index$buttonIndex");
               context.read<TabButtonIndexCubit>().emit(
                 TabButtonIndex(slideIndex: buttonIndex),
-              );
-              context.read<PageController>().jumpToPage(
-                buttonIndex,
               );
               if (context.read<CheckButtonsBloc>()
                       .state.customeTabButton[buttonIndex].docData !=

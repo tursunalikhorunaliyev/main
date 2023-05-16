@@ -19,10 +19,11 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
         ..add(
           CustomeTabButton(
             buttonIndex: state.customeTabButton.length,
+      
            
           ),
         );
-      emit(CheckButtonsPanelData(customeTabButton: from, isFirstDraft: true));
+      emit(CheckButtonsPanelData(customeTabButton: from, isFirstDraft: false));
     });
 
     on<CheckButtonsRemove>((event, emit) {

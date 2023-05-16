@@ -24,9 +24,13 @@ class TopPanel extends StatelessWidget {
       children: [
         Flexible(
           child: BlocBuilder<SellPanelBloc, SellPanelState>(
-            bloc: context.read<SellPanelBloc>(),
+           
             builder: (context, state) {
+              log("block o'zgardi");  
               return PageView.builder(
+                onPageChanged: (value) {
+                  log(value.toString()+"-ga o'tdi");
+                },
                 allowImplicitScrolling: true,
                 controller: context.read<PageController>(),
                 itemCount: state.sellPanel.length,
@@ -60,6 +64,7 @@ class TopPanel extends StatelessWidget {
                   if (index == 0 &&
                       state.customeTabButton.isNotEmpty &&
                       !state.isFirstDraft) {
+                        
                     context.read<SellPanelBloc>().state.sellPanel[index].sellDataBloc.add(
                       SellDataFromServer(
                           docId: state.customeTabButton[index].docData!.uuid!),

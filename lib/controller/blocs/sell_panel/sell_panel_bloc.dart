@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
@@ -38,10 +40,14 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
       }
     });
     on<SellPanelAdd>((event, emit) {
-      state.sellPanel.add(SellPanel(
+
+      log("panel qo'shildi"+state.sellPanel.length.toString());
+      List<SellPanel> newSellPanel = List.from(state.sellPanel);
+      newSellPanel .add(SellPanel(
           index: state.sellPanel.length, sellDataBloc: SellDataBloc(), topSelectionBloc: TopSelectionBloc(),));
 
-      emit(state);
+      emit(SellPanelData(sellPanel: newSellPanel));
+      log("panel qo'shildi okok");
     });
     on<SellPanelRemove>((event, emit) {
       state.sellPanel.removeAt(event.removeIndex);
