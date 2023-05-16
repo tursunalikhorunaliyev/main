@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
+import 'package:napt_sklad/controller/blocs/search/search_bloc.dart';
 import 'package:napt_sklad/view/widgets/bottom_grid_row.dart';
 
 class BottomTable extends StatelessWidget {
@@ -12,24 +12,26 @@ class BottomTable extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    
+   
     return Column(
       children: [
         rowHeader(),
-        BlocBuilder<SearchCubit, SearchCubitState>(
+        BlocBuilder<SearchBloc, SearchState>(
        
           builder: (context, state) {
-            state as SearchCubitData;
-            if (state.searchData == null) {
+            
+            if (state.searchData.data.isEmpty) {
               return const SizedBox();
             }
            context.read<SelectorBloC>().changeDataLength(state.searchData!.data.length);
-
             return Expanded(
               child: ListView.builder(
+                controller: context.read<ScrollController>(),
                 scrollDirection: Axis.vertical,
-                itemCount: state.searchData!.data.length,
+                itemCount: state.searchData.data.length,
                 itemBuilder: (context, index) => BottomGridRow(
-                  dataModel: state.searchData!.data[index],
+                  dataModel: state.searchData.data[index],
                   index: index,
                 ),
               ),

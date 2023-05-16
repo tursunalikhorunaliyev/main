@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/search/search_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
-import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 import 'package:napt_sklad/view/screens/main_panel.dart';
@@ -28,8 +28,8 @@ void main(List<String> args) {
       ChangeNotifierProvider(
         create: (context) => PageController(),
       ),
-      BlocProvider<SearchCubit>(
-        create: (context) => SearchCubit(),
+      BlocProvider<SearchBloc>(
+        create: (context) => SearchBloc(),
       ),
       BlocProvider<TabButtonIndexCubit>(
         create: (context) => TabButtonIndexCubit(),

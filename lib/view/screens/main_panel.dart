@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
+import 'package:napt_sklad/controller/blocs/search/search_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
-import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_state.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
@@ -62,9 +62,9 @@ class MainPanel extends StatelessWidget {
                 return AlertDialog(
                   content: QtyPanel(
                     data: context
-                        .read<SearchCubit>()
+                        .read<SearchBloc>()
                         .state
-                        .searchData!
+                        .searchData
                         .data[context.read<SelectorBloC>().state.currentIndex],
                     ostatok: 20,
                     sena: "25000",

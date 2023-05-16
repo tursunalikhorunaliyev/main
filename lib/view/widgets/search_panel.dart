@@ -1,10 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
-import 'package:napt_sklad/controller/cubits/search_cubit/search_cubit_cubit.dart';
+import 'package:napt_sklad/controller/blocs/search/search_bloc.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
 
 class SearchPanel extends StatelessWidget {
@@ -35,7 +33,7 @@ class SearchPanel extends StatelessWidget {
         autofocus:
             context.read<FocusNodesProvider>().focusNodeSearchBox.hasFocus,
         onChanged: (value) {
-          context.read<SearchCubit>().getData(value, 0);
+          context.read<SearchBloc>().add(SearchNonSkippedEvent(searchWord: value.trim()));
           context
               .read<SelectorBloC>()
               .add(const SelectorClickEvent(currentIndex: -1));
