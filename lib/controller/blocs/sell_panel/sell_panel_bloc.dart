@@ -40,14 +40,10 @@ class SellPanelBloc extends Bloc<SellPanelEvent, SellPanelState> {
       }
     });
     on<SellPanelAdd>((event, emit) {
-
-      log("panel qo'shildi"+state.sellPanel.length.toString());
       List<SellPanel> newSellPanel = List.from(state.sellPanel);
       newSellPanel .add(SellPanel(
           index: state.sellPanel.length, sellDataBloc: SellDataBloc(), topSelectionBloc: TopSelectionBloc(),));
-
       emit(SellPanelData(sellPanel: newSellPanel));
-      log("panel qo'shildi okok");
     });
     on<SellPanelRemove>((event, emit) {
       state.sellPanel.removeAt(event.removeIndex);
