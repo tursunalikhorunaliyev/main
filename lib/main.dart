@@ -7,18 +7,20 @@ import 'package:napt_sklad/controller/blocs/search/search_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_panel/sell_panel_bloc.dart';
 import 'package:napt_sklad/controller/cubits/tab_button/tab_button_index_dart_cubit.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
+import 'package:napt_sklad/controller/provider/search_word.dart';
 import 'package:napt_sklad/view/screens/main_panel.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
   initializeDateFormatting();
-
   runApp(MultiProvider(
     providers: [
+      ChangeNotifierProvider(
+        create: (context) => SearchWordProvider(),
+      ),
       BlocProvider(
         create: (context) => SelectorBloC(),
       ),
-  
       BlocProvider<SellPanelBloc>(
         create: (context) => SellPanelBloc(),
       ),

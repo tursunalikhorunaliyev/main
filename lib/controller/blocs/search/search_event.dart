@@ -14,9 +14,7 @@ class SearchNonSkippedEvent extends SearchEvent {
 }
 
 class SearchSkippedEvent extends SearchEvent {
-  final int skipNumber;
   const SearchSkippedEvent({
-    required super.searchWord,
-    required this.skipNumber,
+    required super.searchWord
   });
 }

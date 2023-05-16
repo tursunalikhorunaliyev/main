@@ -4,13 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/bottom_selection/selector_blo_c_bloc.dart';
 import 'package:napt_sklad/controller/blocs/search/search_bloc.dart';
 import 'package:napt_sklad/controller/provider/focus_nodes.dart';
+import 'package:napt_sklad/controller/provider/search_word.dart';
+import 'package:napt_sklad/service/scroll_search_service.dart';
 
 class SearchPanel extends StatelessWidget {
   const SearchPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return RawKeyboardListener(
       focusNode: FocusNode(),
       onKey: (value) {
@@ -33,7 +34,10 @@ class SearchPanel extends StatelessWidget {
         autofocus:
             context.read<FocusNodesProvider>().focusNodeSearchBox.hasFocus,
         onChanged: (value) {
-          context.read<SearchBloc>().add(SearchNonSkippedEvent(searchWord: value.trim()));
+          context.read<SearchWordProvider>().setSearchWord(value.trim());
+          context
+              .read<SearchBloc>()
+              .add(SearchNonSkippedEvent(searchWord: value.trim()));
           context
               .read<SelectorBloC>()
               .add(const SelectorClickEvent(currentIndex: -1));

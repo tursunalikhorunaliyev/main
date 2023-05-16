@@ -17,8 +17,6 @@ class BottomGridRow extends StatelessWidget {
     return BlocBuilder<SelectorBloC, SelectorBloCState>(
     
       builder: (context, state) {
-        SelectorBloCIndexState selector =
-            state as SelectorBloCIndexState;
 
      
 
@@ -28,9 +26,11 @@ class BottomGridRow extends StatelessWidget {
               context.read<FocusNodesProvider>().focusNodeBottomPanel.hasFocus,
           onKey: (value) {
             if (value.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
+              context.read<FocusNodesProvider>().focusNodeTopPanel.unfocus();
          context.read<SelectorBloC>()    
                   .add(SelectorKeyDownEvent(currentIndex: state.currentIndex));
             } else if (value.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
+              context.read<FocusNodesProvider>().focusNodeTopPanel.unfocus();
                context.read<SelectorBloC>()
                   .add(SelectorKeyUpEvent(currentIndex: state.currentIndex));
             }

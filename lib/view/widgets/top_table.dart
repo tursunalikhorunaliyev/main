@@ -31,6 +31,7 @@ class TopTable extends StatelessWidget {
               return BlocProvider(
                 create: (context) => topSelectionBloc,
                 child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
                   addAutomaticKeepAlives: true,
                   scrollDirection: Axis.vertical,
                   itemCount: state.topTableGridRow.length,
