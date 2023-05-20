@@ -40,6 +40,7 @@ class MainPanel extends StatelessWidget {
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowUp &&
           keyEvent is KeyDownEvent &&
           !focusNodes.focusNodeBottomPanel.hasFocus) {
+        log(context.read<TabButtonIndexCubit>().state.slideIndex.toString());
         context
             .read<SellPanelBloc>()
             .state
@@ -84,7 +85,6 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowLeft &&
           keyEvent is KeyDownEvent) {
-       
         focusNodes.focusNodeTopPanel.requestFocus();
         focusNodes.focusNodeBottomPanel.unfocus();
 
@@ -126,7 +126,6 @@ class MainPanel extends StatelessWidget {
         }
       } else if (keyEvent.logicalKey == LogicalKeyboardKey.arrowRight &&
           keyEvent is KeyDownEvent) {
-          
         focusNodes.focusNodeTopPanel.requestFocus();
         focusNodes.focusNodeBottomPanel.unfocus();
 
