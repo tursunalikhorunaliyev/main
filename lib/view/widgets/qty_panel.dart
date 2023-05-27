@@ -192,7 +192,7 @@ class QtyPanel extends StatelessWidget {
                           .then((value) {
                         TableLine tabLine = TableLine(
                           document: value.uuid,
-                          goods: data.uuid,
+                          goods: data.name,
                           qty: Qty(
                               number: int.parse(kolichestvoTextController.text),
                               uom: "pkg"),
@@ -233,7 +233,7 @@ class QtyPanel extends StatelessWidget {
                             .topTableGridRow[0]
                             .topTableLine
                             .document,
-                        goods: data.uuid,
+                        goods: data.name,
                         qty: Qty(
                           number: int.parse(kolichestvoTextController.text),
                           uom: "pkg",
@@ -395,7 +395,7 @@ class QtyPanel extends StatelessWidget {
                         .then((value) {
                       TableLine tabLine = TableLine(
                         document: value.uuid,
-                        goods: data.uuid,
+                        goods: data.name,
                         qty: Qty(
                             number: int.parse(kolichestvoTextController.text),
                             uom: "pkg"),
@@ -436,7 +436,7 @@ class QtyPanel extends StatelessWidget {
                           .topTableGridRow[0]
                           .topTableLine
                           .document,
-                      goods: data.uuid,
+                      goods: data.name,
                       qty: Qty(
                         number: int.parse(kolichestvoTextController.text),
                         uom: "pkg",
