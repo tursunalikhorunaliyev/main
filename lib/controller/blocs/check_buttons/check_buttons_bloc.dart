@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:napt_sklad/controller/data/model/tab/tab_data.dart';
 import 'package:napt_sklad/controller/data/model/table/docs_model.dart';
 import 'package:napt_sklad/controller/data/service/feathers.dart';
 import 'package:napt_sklad/view/widgets/tab_button.dart';
@@ -15,12 +16,10 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
           const CheckButtonsPanelData(customeTabButton: [], isFirstDraft: true),
         ) {
     on<CheckButtonsAdd>((event, emit) {
-      List<CustomeTabButton> from = List.from(state.customeTabButton)
+      List<TabData> from = List.from(state.customeTabButton)
         ..add(
-          CustomeTabButton(
-            buttonIndex: state.customeTabButton.length,
-      
-           
+          TabData(
+            index: state.customeTabButton.length,
           ),
         );
       emit(CheckButtonsPanelData(customeTabButton: from, isFirstDraft: false));
@@ -34,17 +33,16 @@ class CheckButtonsBloc extends Bloc<CheckButtonsEvent, CheckButtonsState> {
       Docs docs = await FeathersService().listCheckDoc();
       if (docs.data.isEmpty) {
         emit(
-          const CheckButtonsPanelData(customeTabButton: [
-            CustomeTabButton(
-              buttonIndex: 0,
-             
+          CheckButtonsPanelData(customeTabButton: [
+            TabData(
+              index: 0,
             ),
           ], isFirstDraft: true),
         );
       } else {
-        List<CustomeTabButton> buttons = docs.data
-            .map((e) => CustomeTabButton(
-                  buttonIndex: docs.data.indexOf(e),
+        List<TabData> buttons = docs.data
+            .map((e) => TabData(
+                  index: docs.data.indexOf(e),
                   docData: docs.data[docs.data.indexOf(e)],
                 ))
             .toList();

@@ -29,7 +29,6 @@ class MainPanel extends StatelessWidget {
     context.read<SellPanelBloc>().add(const SellPanelOnLoad());
     context.read<CheckButtonsBloc>().add(CheckButtonOnLoad());
     //
-
     ServicesBinding.instance.keyboard.addHandler((KeyEvent keyEvent) {
       if ((RegExp("[0-9a-zA-Zа-яА-Я]").hasMatch(keyEvent.character ?? "")) &&
           keyEvent is KeyDownEvent) {

@@ -1,7 +1,7 @@
 part of 'sell_data_bloc.dart';
 
 abstract class SellDataState {
-  final List<TopTableGridRow> topTableGridRow;
+  final List<TopTableData> topTableGridRow;
   final PaymentDetails paymentDetails;
   const SellDataState(
       {required this.topTableGridRow, required this.paymentDetails});

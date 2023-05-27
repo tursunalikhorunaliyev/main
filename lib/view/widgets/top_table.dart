@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
 import 'package:napt_sklad/controller/blocs/top_selection/top_selection_bloc.dart';
-import 'package:napt_sklad/controller/provider/focus_nodes.dart';
+import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
 class TopTable extends StatelessWidget {
   final int tableIndex;
@@ -36,7 +33,11 @@ class TopTable extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   itemCount: state.topTableGridRow.length,
                   itemBuilder: (context, index) {
-                    return state.topTableGridRow[index];
+                    return TopTableGridRow(
+                      tableLine: state.topTableGridRow[index].topTableLine,
+                      goods: state.topTableGridRow[index].topTableLine.goods,
+                      index: state.topTableGridRow[index].index,
+                    );
                   },
                 ),
               );

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,8 +29,6 @@ class QtyPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     final kolichestvoTextController = TextEditingController();
     var summaTextController = TextEditingController(text: "0.00");
 
@@ -181,7 +177,10 @@ class QtyPanel extends StatelessWidget {
                     if (context
                         .read<SellPanelBloc>()
                         .state
-                        .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                        .sellPanel[context
+                            .read<TabButtonIndexCubit>()
+                            .state
+                            .slideIndex]
                         .sellDataBloc
                         .state
                         .topTableGridRow
@@ -211,7 +210,10 @@ class QtyPanel extends StatelessWidget {
                         context
                             .read<SellPanelBloc>()
                             .state
-                            .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                            .sellPanel[context
+                                .read<TabButtonIndexCubit>()
+                                .state
+                                .slideIndex]
                             .sellDataBloc
                             .add(
                               SellDataAdd(tableLine: tabLine, goods: data.name),
@@ -222,11 +224,14 @@ class QtyPanel extends StatelessWidget {
                         document: context
                             .read<SellPanelBloc>()
                             .state
-                            .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                            .sellPanel[context
+                                .read<TabButtonIndexCubit>()
+                                .state
+                                .slideIndex]
                             .sellDataBloc
                             .state
                             .topTableGridRow[0]
-                            .tableLine
+                            .topTableLine
                             .document,
                         goods: data.uuid,
                         qty: Qty(
@@ -250,7 +255,10 @@ class QtyPanel extends StatelessWidget {
                       context
                           .read<SellPanelBloc>()
                           .state
-                          .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                          .sellPanel[context
+                              .read<TabButtonIndexCubit>()
+                              .state
+                              .slideIndex]
                           .sellDataBloc
                           .add(SellDataAdd(
                               tableLine: tableLine, goods: data.name));
@@ -374,7 +382,8 @@ class QtyPanel extends StatelessWidget {
                   if (context
                       .read<SellPanelBloc>()
                       .state
-                      .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                      .sellPanel[
+                          context.read<TabButtonIndexCubit>().state.slideIndex]
                       .sellDataBloc
                       .state
                       .topTableGridRow
@@ -404,7 +413,10 @@ class QtyPanel extends StatelessWidget {
                       context
                           .read<SellPanelBloc>()
                           .state
-                          .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                          .sellPanel[context
+                              .read<TabButtonIndexCubit>()
+                              .state
+                              .slideIndex]
                           .sellDataBloc
                           .add(
                             SellDataAdd(tableLine: tabLine, goods: data.name),
@@ -415,11 +427,14 @@ class QtyPanel extends StatelessWidget {
                       document: context
                           .read<SellPanelBloc>()
                           .state
-                          .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                          .sellPanel[context
+                              .read<TabButtonIndexCubit>()
+                              .state
+                              .slideIndex]
                           .sellDataBloc
                           .state
                           .topTableGridRow[0]
-                          .tableLine
+                          .topTableLine
                           .document,
                       goods: data.uuid,
                       qty: Qty(
@@ -443,7 +458,10 @@ class QtyPanel extends StatelessWidget {
                     context
                         .read<SellPanelBloc>()
                         .state
-                        .sellPanel[context.read<TabButtonIndexCubit>().state.slideIndex]
+                        .sellPanel[context
+                            .read<TabButtonIndexCubit>()
+                            .state
+                            .slideIndex]
                         .sellDataBloc
                         .add(SellDataAdd(
                             tableLine: tableLine, goods: data.name));

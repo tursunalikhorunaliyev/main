@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:napt_sklad/controller/blocs/check_buttons/check_buttons_bloc.dart';
 import 'package:napt_sklad/controller/blocs/sell_data/sell_data_bloc.dart';
@@ -18,28 +17,30 @@ class CustomeTabButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 1),
       child: BlocBuilder<TabButtonIndexCubit, TabButtonIndexState>(
-       
         builder: (context, state) {
           return InkWell(
             onTap: () {
-
-              
               context.read<PageController>().jumpToPage(buttonIndex);
 
               log("button index$buttonIndex");
               context.read<TabButtonIndexCubit>().emit(
-                TabButtonIndex(slideIndex: buttonIndex),
-              );
-              if (context.read<CheckButtonsBloc>()
-                      .state.customeTabButton[buttonIndex].docData !=
+                    TabButtonIndex(slideIndex: buttonIndex),
+                  );
+              if (context
+                      .read<CheckButtonsBloc>()
+                      .state
+                      .customeTabButton[buttonIndex]
+                      .docData !=
                   null) {
-                    log("nullga teng emas"+"button index $buttonIndex");
-                context.read<SellPanelBloc>().state.sellPanel[buttonIndex].sellDataBloc
+                log("nullga teng emas" + "button index $buttonIndex");
+                context
+                    .read<SellPanelBloc>()
+                    .state
+                    .sellPanel[buttonIndex]
+                    .sellDataBloc
                     .add(SellDataFromServer(docId: docData!.uuid!));
               }
             },

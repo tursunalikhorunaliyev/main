@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:napt_sklad/controller/data/model/check/doc_checks_data_model.dart';
 import 'package:napt_sklad/controller/data/model/tables/sell_model_test.dart';
+import 'package:napt_sklad/controller/data/model/top_table/top_table_data.dart';
 import 'package:napt_sklad/controller/data/service/feathers.dart';
 import 'package:napt_sklad/view/widgets/top_grid_row.dart';
 
@@ -21,8 +22,8 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
         emit(
           SellStateData(
             topTableGridRow: [
-              TopTableGridRow(
-                tableLine: event.tableLine,
+              TopTableData(
+                topTableLine: event.tableLine,
                 goods: event.goods,
                 index: 0,
               )
@@ -37,8 +38,8 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
       } else {
         state.topTableGridRow.insert(
             0,
-            TopTableGridRow(
-              tableLine: event.tableLine,
+            TopTableData(
+              topTableLine: event.tableLine,
               goods: event.goods,
               index: state.topTableGridRow.length,
             ));
@@ -63,11 +64,11 @@ class SellDataBloc extends Bloc<SellDataEvent, SellDataState> {
       int summa = 0;
       DocChecksData docChecksData =
           await FeathersService().findCheckLine(event.docId);
-      List<TopTableGridRow> rows = docChecksData.data.map((e) {
+      List<TopTableData> rows = docChecksData.data.map((e) {
         amount += e.cost.number;
         summa += e.cost.number;
-        return TopTableGridRow(
-          tableLine: tl.TableLine(
+        return TopTableData(
+          topTableLine: tl.TableLine(
             document: e.document,
             goods: e.goods.name,
             qty: tl.Qty(number: e.qty.number, uom: e.qty.uom.id),
